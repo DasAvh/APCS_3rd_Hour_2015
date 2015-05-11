@@ -7,7 +7,7 @@
 ####http://www.cheat-sheets.org/saved-copy/git-cheat-sheet.pdf
 
 ##Vi Cheat Sheet
-####http://www.atmos.albany.edu/daes/atmclasses/atm350/vi_cheat_sheet.pd
+####http://www.atmos.albany.edu/daes/atmclasses/atm350/vi_cheat_sheet.pdf
 
  -  Esc - Exits current mode (needed to change mode)
  -  i - Enters insert mode where you can edit text
