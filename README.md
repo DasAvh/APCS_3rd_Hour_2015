@@ -2,7 +2,7 @@
 ##Download Git 
 ####http://www.git-scm.com/downloads
 
-##Git Cheat Sheet 
+##Git Cheat Sheets 
 ####https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf
 ####http://www.cheat-sheets.org/saved-copy/git-cheat-sheet.pdf
 
