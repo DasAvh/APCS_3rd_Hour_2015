@@ -39,3 +39,4 @@ of folders.
 - mkdir _name_ - Creates a folder
 - mv _name_ _NewLocation_- Moves file to a new place
  - Can also be used to rename files by simple moving it with a new name 
+- clear - Clears screen
