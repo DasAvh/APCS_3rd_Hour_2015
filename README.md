@@ -1,2 +1,7 @@
-# APCS_3rd_Hour_2015
-Chavez's 3rd hour APCS 
+# Chavez's 3rd hour APCS 
+##Download Git 
+####http://www.git-scm.com/downloads
+
+##Git Cheat Sheet 
+####http://www.cheat-sheets.org/saved-copy/git-cheat-sheet.pdf
+
