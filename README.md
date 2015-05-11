@@ -3,7 +3,7 @@ Chavez's 3rd hour APCS
 Download Git
 ------------
 
-- ####http://www.git-scm.com/downloads
+- http://www.git-scm.com/downloads
 
 #### Storing credential using the command line
 If you are being ask for your username and password everytime 
@@ -12,11 +12,11 @@ you push and pull, use the following command to stop this.
 _git config --global credential.helper wincred_
 
 ##Git Cheat Sheets 
-- ####https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf
-- ####http://www.cheat-sheets.org/saved-copy/git-cheat-sheet.pdf
+- https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf
+- http://www.cheat-sheets.org/saved-copy/git-cheat-sheet.pdf
 
 ##Vi Cheat Sheet
-- ####http://www.atmos.albany.edu/daes/atmclasses/atm350/vi_cheat_sheet.pdf
+- http://www.atmos.albany.edu/daes/atmclasses/atm350/vi_cheat_sheet.pdf
  -  Esc - Exits current mode (needed to change mode)
  -  i - Enters insert mode where you can edit text
  -  :w - Saves, but does not exit vi
