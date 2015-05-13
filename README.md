@@ -12,9 +12,15 @@ you push and pull, use the following command to stop this.
 
 `git config --global credential.helper wincred`
 
+### Mrs. Chavez Tutorial Video
+- https://www.youtube.com/watch?v=0fKg7e37bQE
+
 ##Git Cheat Sheets 
 - https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf
 - http://www.cheat-sheets.org/saved-copy/git-cheat-sheet.pdf
+
+##How to Play Clue
+- http://game-oldies.com/play-online/clue-sega-genesis
 
 ##Vi Cheat Sheet
 Vi is a really confusing text editor if you have never used it before. Git uses it by default,
