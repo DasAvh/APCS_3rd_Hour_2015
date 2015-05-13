@@ -31,6 +31,6 @@ public class Testing {
 	};
 	private static String[] rooms = {"Mr. Clark's Room","Chem Lab","Chavez's Room","Cafeteria","Auto Room","Bathroom","Band Room","Art Studio","Gym"};
 	public static void main(String[] args){
-
+		System.out.println("test");
 	}
 }
