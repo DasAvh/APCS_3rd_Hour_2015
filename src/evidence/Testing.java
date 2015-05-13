@@ -32,6 +32,6 @@ public class Testing {
 	private static String[] rooms = {"Mr. Clark's Room","Chem Lab","Chavez's Room","Cafeteria","Auto Room","Bathroom","Band Room","Art Studio","Gym"};
 	public static void main(String[] args){
 		System.out.println(people[(int) (Math.random() * people.length)] + " was found with a " + weapons[(int) (Math.random() * weapons.length)] + " in the " + rooms[(int) (Math.random() * rooms.length)]);
-		System.out.println("Okkk!");
 	}
+	
 }
