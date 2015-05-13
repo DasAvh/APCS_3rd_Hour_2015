@@ -2,6 +2,8 @@ Stuff to Do
 ===========
 
 ###Sound
+- Use mp3 files
+- Arraylist to hold sounds
 - 
 
 ###Logic
