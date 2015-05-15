@@ -44,7 +44,7 @@ public class Interrogation
 		}
 		else if(solWeapon.equals(w))
 		{
-			System.out.println("")
+			System.out.println("");
 		}
 	}
 	
