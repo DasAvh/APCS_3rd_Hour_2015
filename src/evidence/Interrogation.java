@@ -1,5 +1,7 @@
 package evidence;
 
+import weapons.Weapon;
+
 public class Interrogation 
 {
 	private static String[] listOfRooms = {"Mr. Clark's Room","Chem Lab","Chavez's Room","Cafeteria","Auto Room","Bathroom","Band Room","Art Studio","Gym"};
@@ -37,7 +39,7 @@ public class Interrogation
 
 	
 	//public String getInterogation(Weapon w, Character c, Room r)
-	public void getInterogation(String w, String c, String r)
+	public void getInterogation(Weapon w, String c, String r)
 	{
 		if(solWeapon.equals(w) && solCharacter.equals(c) && solRoom.equals(r))
 		{
