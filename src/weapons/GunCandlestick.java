@@ -11,4 +11,8 @@ public class GunCandlestick extends Weapon
 		super();
 		setWeaponPicture((Image)(new ImageIcon("GunCandlestick.jpg").getImage()));
 	}
+	public String toString()
+	{
+		return "Candlestick made of guns";
+	}
 }

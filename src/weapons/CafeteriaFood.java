@@ -12,4 +12,9 @@ public class CafeteriaFood extends Weapon
 		super();
 		setWeaponPicture((Image)(new ImageIcon("CafeteriaFood.jpg").getImage()));
 	}
+	
+	public String toString()
+	{
+		return "Cafeteria food";
+	}
 }

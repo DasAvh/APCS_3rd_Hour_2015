@@ -11,4 +11,8 @@ public class Tuba extends Weapon
 		super();
 		setWeaponPicture((Image)(new ImageIcon("Tuba.JPG").getImage()));
 	}
+	public String toString()
+	{
+		return "Tuba";
+	}
 }

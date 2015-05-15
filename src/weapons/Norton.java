@@ -12,4 +12,8 @@ public class Norton extends Weapon
 		super();
 		setWeaponPicture((Image)(new ImageIcon("TheNorton.jpg").getImage()));
 	}
+	public String toString()
+	{
+		return "The Norton Anthology of English Literature";
+	}
 }

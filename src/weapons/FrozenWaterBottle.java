@@ -11,4 +11,8 @@ public class FrozenWaterBottle extends Weapon
 		super();
 		setWeaponPicture((Image)(new ImageIcon("FrozenWaterBottle.jpg").getImage()));
 	}
+	public String toString()
+	{
+		return "FROZEN water bottle";
+	}
 }

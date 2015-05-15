@@ -11,4 +11,8 @@ public class FriendSlayer extends Weapon
 		super();
 		setWeaponPicture((Image)(new ImageIcon("FriendSlayer.jpg").getImage()));
 	}
+	public String toString()
+	{
+		return "A fireaxe named Friendslayer";
+	}
 }
