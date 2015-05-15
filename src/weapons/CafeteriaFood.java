@@ -9,6 +9,7 @@ public class CafeteriaFood extends Weapon
 
 	public CafeteriaFood()
 	{
+		//constructs the weapon and sets its image
 		super();
 		setWeaponPicture((Image)(new ImageIcon("CafeteriaFood.jpg").getImage()));
 	}

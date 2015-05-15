@@ -9,6 +9,7 @@ public class Norton extends Weapon
 
 	public Norton()
 	{
+		//constructs the weapon and sets its image
 		super();
 		setWeaponPicture((Image)(new ImageIcon("TheNorton.jpg").getImage()));
 	}

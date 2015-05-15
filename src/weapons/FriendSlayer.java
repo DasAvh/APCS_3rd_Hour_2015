@@ -8,6 +8,7 @@ public class FriendSlayer extends Weapon
 {
 	public FriendSlayer()
 	{
+		//constructs the weapon and sets its image
 		super();
 		setWeaponPicture((Image)(new ImageIcon("FriendSlayer.jpg").getImage()));
 	}

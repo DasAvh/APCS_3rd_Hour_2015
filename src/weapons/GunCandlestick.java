@@ -8,6 +8,7 @@ public class GunCandlestick extends Weapon
 {
 	public GunCandlestick()
 	{
+		//constructs the weapon and sets its image
 		super();
 		setWeaponPicture((Image)(new ImageIcon("GunCandlestick.jpg").getImage()));
 	}

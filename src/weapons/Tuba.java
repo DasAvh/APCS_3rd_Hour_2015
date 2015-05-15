@@ -8,6 +8,7 @@ public class Tuba extends Weapon
 {
 	public Tuba()
 	{
+		//constructs the weapon and sets its image
 		super();
 		setWeaponPicture((Image)(new ImageIcon("Tuba.JPG").getImage()));
 	}
