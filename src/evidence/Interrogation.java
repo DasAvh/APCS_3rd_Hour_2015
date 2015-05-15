@@ -30,7 +30,9 @@ public class Interrogation
 		"Jakub Wrobel",
 		"Jacob Zak"
 	};
-	private static String finalAnswer = weapons[(int)(Math.random() * 6)] + " " + people[(int)(Math.random() * 25) + " " + listOfRooms[(int)(Math.random() * 9)];
+	//private static String finalAnswer = weapons[(int)(Math.random() * 6)] + " " + people[(int)(Math.random() * 25) + " " + listOfRooms[(int)(Math.random() * 9)];
+	public static void main(String[] args){
+		
 	}
 
 
