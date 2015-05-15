@@ -36,4 +36,12 @@ public class Weapon
 	{
 		weaponPicture = weapPic;
 	}
+	public boolean getIsMurderWeapon()
+	{
+		return isMurderWeapon;
+	}
+	public Image getWeaponPicture()
+	{
+		return weaponPicture;
+	}
 }
