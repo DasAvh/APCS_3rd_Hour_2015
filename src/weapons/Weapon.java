@@ -8,8 +8,8 @@ import javax.swing.ImageIcon;
 
 public class Weapon
 {
-	protected boolean isMurderWeapon;
-	protected Image weaponPicture;
+	private boolean isMurderWeapon;
+	private Image weaponPicture;
 	
 	public Weapon()
 	{
