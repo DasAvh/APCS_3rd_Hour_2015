@@ -36,9 +36,10 @@ public class Interrogation
 	private String solRoom = listOfRooms[(int)(Math.random() * 9)];
 
 	
-	public String getInterogation(Weapon w, Character c, Room r)
+	//public String getInterogation(Weapon w, Character c, Room r)
+	public void getInterogation(String w, String c, String r)
 	{
-		if(solWeapon.equals(w) && solCharacter.equals(c) && solRoom.equals(r.getName()))
+		if(solWeapon.equals(w) && solCharacter.equals(c) && solRoom.equals(r))
 		{
 			System.out.println("That's an interesting possibility...");
 		}
