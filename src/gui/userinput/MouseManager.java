@@ -10,6 +10,11 @@ public class MouseManager implements MouseListener
 
 	private Tile tile;
 
+	public void tick()
+	{
+		
+	}
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub

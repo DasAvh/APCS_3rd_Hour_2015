@@ -1,5 +1,6 @@
 package display;
 
+import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -11,7 +12,7 @@ public class Display {
 
 	private JFrame frame;
 	private JPanel panel;
-	
+	private Canvas canvas;
 	private String title;
 	private int width, height;
 	
@@ -33,29 +34,29 @@ public class Display {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 		
-		panel = new JPanel();
-		panel.setBackground(Color.BLACK);
-		panel.setPreferredSize(new Dimension(width, height));
-		panel.setMaximumSize(new Dimension(width, height));
-		panel.setMinimumSize(new Dimension(width, height));
-		panel.setFocusable(false);
+		canvas = new Canvas();
+		canvas.setBackground(Color.BLACK);
+		canvas.setPreferredSize(new Dimension(width, height));
+		canvas.setMaximumSize(new Dimension(width, height));
+		canvas.setMinimumSize(new Dimension(width, height));
+		canvas.setFocusable(false);
 		
 
 		
-		frame.add(panel);
+		frame.add(canvas);
 		frame.pack();
 	}//End createDisplay method
 	
 	public JPanel getJPanel()
 	{
 		return panel;
+	}//End getJPanel method
+	
+	public Canvas getCanvas()
+	{
+		return canvas;
 	}//End getCanvas method
 	
-	public void paintComponent(Graphics g)
-	{
-		g.clearRect(0, 0, width, height);
-
-	}
 	
 	public JFrame getFrame()
 	{

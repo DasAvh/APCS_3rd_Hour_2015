@@ -17,17 +17,20 @@ public abstract class Characters extends Entity
 	 * Weapon - Weapon assign to player
 	 * Room- Room assign to player
 	 */
-	public Characters(Game game, int x, int y, int width, int height) 
+	public Characters(Game game, int x, int y, int width, int height, int id) 
 	{
-		super(game, x, y, width, height);
+		super(game, x, y, width, height, id);
 		xMove = 0;
 		yMove = 0;
 	}//End constructor
 	
 	public void move()
 	{
-		x += xMove;
-		y += yMove;
+		if(Board.hitObject(this, xMove, yMove))
+		{
+			x += xMove;
+			y += yMove;
+		}//End if
 	}//End move method
 	
 	//GETTER & SETTERS

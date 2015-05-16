@@ -3,6 +3,7 @@ package board;
 import java.awt.Graphics;
 
 import runner.Game;
+import states.GameState;
 import tiles.Tile;
 import utilities.Utilities;
 import entity.Entity;
@@ -53,20 +54,20 @@ public class Board
 		return t;
 	}//End method getTile
 	
-	public static boolean hitWall(Entity entity, int xMove, int yMove)
+	public static boolean hitObject(Entity entity, int xMove, int yMove)
 	{
 		int currentX = entity.getX() / Tile.TILE_WIDTH;
 		int currentY = entity.getY() / Tile.TILE_HEIGHT;
-		int tileX = entity.getX() / Tile.TILE_WIDTH + (xMove / 64);
-		int tileY = entity.getX() / Tile.TILE_HEIGHT + (yMove / 64);
+		int tileX = currentX + (xMove / 64);
+		int tileY = currentY+ (yMove / 64);
 		
-	
+		//System.out.printf("%s %s %s %s%n", currentX, currentY, tileX, tileY);	
 		
 		if(Tile.tiles[tiles[tileX][tileY]].isWalkable())
 		{
 			return true;
 		}
-		System.out.printf("%s %s%n%s %s%n", currentX, currentY, tileX, tileY);	
+	
 		return false;
 	}//End hitWall method
 	

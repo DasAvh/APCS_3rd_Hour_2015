@@ -1,22 +1,30 @@
 package entity;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 import runner.Game;
+import tiles.Tile;
+import utilities.Utilities;
 
 public abstract class Entity
 {
 	protected Game game;
 	protected int x, y;
 	protected int width, height;
+	protected int id;
+	protected int amountOfMoves;
+	protected ArrayList<Integer> lastPosition;
 	
-	public Entity(Game game, int x, int y, int width, int height)
+	public Entity(Game game, int x, int y, int width, int height, int id)
 	{
 		this.game = game;
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
+		this.id = id;
+		lastPosition = new ArrayList<Integer>();
 	}//End constructor
 	
 	public abstract void tick();
@@ -31,4 +39,21 @@ public abstract class Entity
 	public void setWidth(int width) {this.width = width;}
 	public int getHeight() {return height;}
 	public void setHeight(int height) {this.height = height;}
+	public int getId(){return id;}
+	public void decreaseMoveCount(){amountOfMoves--;}
+	
+	public String toString()
+	{
+		return String.format("X : %d%nY : %d", getX() / Tile.TILE_WIDTH, getY() / Tile.TILE_HEIGHT);
+	}//End toString method
+	
+	public void roll()
+	{
+		amountOfMoves = Utilities.diceRoll();
+	}//End roll method
+	
+	public void undoMove()
+	{
+		
+	}
 }//End class Entity

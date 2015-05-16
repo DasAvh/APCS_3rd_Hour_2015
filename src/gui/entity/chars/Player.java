@@ -7,27 +7,30 @@ import java.awt.image.BufferedImage;
 
 import board.Board;
 import runner.Game;
+import states.GameState;
 import tiles.Tile;
+import utilities.Utilities;
 
 public class Player extends Characters 
 {
 	private BufferedImage texture;
-	private int id;
+
 	
 	public Player(Game game, int x, int y, int id) 
 	{
-		super(game, x, y, Characters.CHARACTER_WIDTH, Characters.CHARACTER_HEIGHT);
-		this.id = id;
+		super(game, x, y, Characters.CHARACTER_WIDTH, Characters.CHARACTER_HEIGHT, id);
 		
-		switch (id) { 
-		case 1:texture = Assets.playerOne;break;
-		case 2:texture = Assets.playerTwo;break;
-		case 3:texture = Assets.playerThree;break;
-		case 4:texture = Assets.playerFour;break;
-		case 5:texture = Assets.playerFive;break;
-		case 6:texture = Assets.playerSix;break;
-		default:texture = Assets.missing;break;
-		}
+		//Sets Player texture
+		switch (id) 
+		{ 
+			case 1:texture = Assets.playerOne;break;
+			case 2:texture = Assets.playerTwo;break;
+			case 3:texture = Assets.playerThree;break;
+			case 4:texture = Assets.playerFour;break;
+			case 5:texture = Assets.playerFive;break;
+			case 6:texture = Assets.playerSix;break;
+			default:texture = Assets.missing;break;
+		}//End switch 
 	}//End constructor
 
 	@Override
@@ -35,7 +38,7 @@ public class Player extends Characters
 	{
 		getUserInput();
 		move();
-		game.getCamera().centerOnEntity(this);
+		game.getCamera().centerOnEntity(GameState.activePlayer());
 	}//End tick method
 
 	private void getUserInput()
@@ -43,18 +46,19 @@ public class Player extends Characters
 		xMove = 0;
 		yMove = 0;
 		
-		if(game.getKeyboardManager().up && Board.hitWall(this, 0,-Tile.TILE_HEIGHT))
+		if(game.getKeyboardManager().up)
 			yMove = -SPEED;
 		
-		if(game.getKeyboardManager().down && Board.hitWall(this,0,Tile.TILE_HEIGHT))
+		if(game.getKeyboardManager().down)
 			yMove = SPEED;
 		
-		if(game.getKeyboardManager().left && Board.hitWall(this, -Tile.TILE_WIDTH,0))
+		if(game.getKeyboardManager().left)
 			xMove = -SPEED;
 		
-		if(game.getKeyboardManager().right && Board.hitWall(this, Tile.TILE_WIDTH,0))
+		if(game.getKeyboardManager().right)
 			xMove = SPEED;
 	}//End getUserInput method
+
 	
 	@Override
 	public void render(Graphics g)

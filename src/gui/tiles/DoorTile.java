@@ -9,5 +9,9 @@ public class DoorTile extends Tile
 		super(Assets.door, id);
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	public boolean isWalkable()
+	{
+		return true;
+	}
 }

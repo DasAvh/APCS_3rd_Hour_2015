@@ -52,7 +52,7 @@ public class Game implements Runnable
 	{
 		display = new Display(title, width, height);
 		display.getFrame().addKeyListener(keyboard);
-		display.getJPanel().addMouseListener(mouse);
+		//display.getJPanel().addMouseListener(mouse);
 		Assets.init();
 		
 		boardCamera = new Camera(this, 0, 0);
@@ -64,6 +64,8 @@ public class Game implements Runnable
 	private void tick()
 	{
 		keyboard.tick();
+		mouse.tick();
+		
 		if(State.getState() != null)
 		{
 			State.getState().tick();
@@ -72,26 +74,25 @@ public class Game implements Runnable
 	
 	public void render()
 	{
-		g = display.getJPanel().getGraphics();
+		bs = display.getCanvas().getBufferStrategy();
 		
-		if(g == null)
+		if(bs == null)
 		{
-			
+			display.getCanvas().createBufferStrategy(3);
 			return;
 		}//End if
 		
-		//Setup
-		//g = bs.getDrawGraphics();
-		//g.clearRect(0, 0, width, height);
-
-		//Start Drawing
+		g = bs.getDrawGraphics();
+		
+		//Clear Screen
+		g.clearRect(0, 0, width, height);
+		//Drawing
+		
 		if(State.getState() != null)
-		{
 			State.getState().render(g);
-		}//End if
 		
 		//End Drawing
-		//bs.show();
+		bs.show();
 		g.dispose();
 	}//End method render
 	
@@ -124,7 +125,7 @@ public class Game implements Runnable
 			
 			if(timer >= 1000000000)
 			{
-				System.out.println("Ticks and Frames: " + ticks);
+				//System.out.println("Ticks and Frames: " + ticks);
 				ticks = 0;
 				timer = 0;
 			}//End if
