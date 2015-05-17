@@ -20,18 +20,14 @@ public class MainMenuState extends State
 	private static final int HOW_TO_PLAY = 1;
 	private static final int SETTINGS = 2;
 	private static final int EXIT_GAME = 3;
-	
-	//Fields
-	private ArrayList<String> textOptions;
-	private Color backDropColor, passiveTextColor, activeTextColor;
-	private int choosenText, fontSize;
-	private Font font, titleFont;
+
 	
 	public MainMenuState(Game game) 
 	{
 		super(game);
 		
 		//Setup text options
+		titleText = "CLUE";
 		textOptions = new ArrayList<String>();
 		textOptions.add("Play Game");
 		textOptions.add("How to Play");
@@ -46,11 +42,6 @@ public class MainMenuState extends State
 		//Defaults chosen text
 		choosenText = 0;
 		
-		//Font
-		fontSize = 48;
-		font = new Font("Consolas", Font.PLAIN, fontSize);
-		titleFont = new Font("Consolas", Font.BOLD, 72);
-		
 		//Add to hashmap of states
 		addState("mainMenu", this);
 	}//End constructor
@@ -58,15 +49,21 @@ public class MainMenuState extends State
 	@Override
 	public void tick() 
 	{
-		if(game.getKeyboardManager().up && choosenText != 0)
-			choosenText --;
-		
-		if(game.getKeyboardManager().down && choosenText != textOptions.size() - 1)
-			choosenText ++;
+		navigateMenu();
 		
 		if(game.getKeyboardManager().enter && choosenText == PLAY_GAME)
 			setState(State.getState("game"));
 		//End if
+		
+		if(game.getKeyboardManager().enter && choosenText == HOW_TO_PLAY)
+			setState(State.getState("howToPlay"));
+		//End if
+		
+		if(game.getKeyboardManager().enter && choosenText == SETTINGS)
+			setState(State.getState("gameOptions"));
+		//End if
+		
+		
 		
 		if(game.getKeyboardManager().enter && choosenText == EXIT_GAME)
 			System.exit(0);
@@ -75,40 +72,12 @@ public class MainMenuState extends State
 
 	@Override
 	public void render(Graphics g) 
-	{
-		//Formatting options
-		int paddingHeight = 150;
-		int paddingWidth = 100;
-		int spaceing = 100;
-		
+	{	
 		//Sets background
 		g.drawImage(Assets.mainMenuBackgroundImage, 0, 0, null);
 		
-		//Title
-		g.setColor(Utilities.genRandomColor());
-		g.setFont(titleFont);
-		g.drawString("CLUE", paddingWidth, 70);
-		
-		//Backdrop for menu
-		g.setColor(backDropColor);
-		g.fillRect(paddingWidth, paddingHeight - fontSize, fontSize * 7, spaceing * textOptions.size()); 
-		
-		//Text color and font
-		g.setColor(passiveTextColor);
-		g.setFont(font);
-		
-		for(int x = 0; x < textOptions.size(); x++)
-		{
-			if(choosenText == x)
-			{
-				g.setColor(activeTextColor);
-				g.drawString(textOptions.get(x), paddingWidth, paddingHeight + (spaceing * x));
-				g.setColor(passiveTextColor);
-			} else
-			{
-				g.drawString(textOptions.get(x), paddingWidth, paddingHeight + (spaceing * x));
-			}//End if
-		}//End for
-	}//End render method
+		drawMenu(g);
+	}
+
 	
 }//End class MainMenuState

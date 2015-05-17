@@ -27,7 +27,7 @@ public class PlayerOptionsState extends State
 		textOptions.add("End turn");
 		
 		//Setup colors
-	
+		overlayColor = new Color(0, 0, 0, 155);
 		passiveTextColor = new Color(255, 255, 255);
 		activeTextColor = new Color(0, 255, 0);
 		

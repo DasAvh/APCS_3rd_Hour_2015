@@ -1,15 +1,34 @@
 package states;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import runner.Game;
+import utilities.Utilities;
+
+/*
+ * Move some rendering code methods and fields from states into here as protected
+ * Reduce amount of repeated code
+ * 
+ */
 
 public abstract class State 
 {
 	private static HashMap<String, State> states = new HashMap<String, State>();
 	private static State currentState = null;
 	protected Game game;
+	
+	//Fields
+	protected ArrayList<String> textOptions;
+	protected String titleText;
+	protected Color backDropColor, passiveTextColor, activeTextColor;
+	protected int choosenText;
+	protected static final int fontSize = 48, titleFontSize = 72;
+	protected static final Font font = new Font("Consolas", Font.PLAIN, fontSize),
+								titleFont = new Font("Consolas", Font.BOLD, titleFontSize);;
 	
 	public State(Game game)
 	{
@@ -38,4 +57,49 @@ public abstract class State
 
 	public abstract void tick();
 	public abstract void render(Graphics g);
+	
+	protected void navigateMenu()
+	{
+		if(game.getKeyboardManager().up && choosenText != 0)
+			choosenText --;
+		
+		if(game.getKeyboardManager().down && choosenText != textOptions.size() - 1)
+			choosenText ++;
+	}
+	
+	protected void drawMenu(Graphics g)
+	{
+		//Formatting options
+		int paddingHeight = 150;
+		int paddingWidth = 100;
+		int spaceing = 100;
+		
+		//Title
+		g.setColor(Utilities.genRandomColor());
+		g.setFont(titleFont);
+		g.drawString(titleText, paddingWidth, 70);
+		
+		//Backdrop for menu
+		g.setColor(backDropColor);
+		g.fillRect(paddingWidth, paddingHeight - fontSize, fontSize * 7, spaceing * textOptions.size()); 
+		
+		//Text color and font
+		g.setColor(passiveTextColor);
+		g.setFont(font);
+		
+		for(int x = 0; x < textOptions.size(); x++)
+		{
+			if(choosenText == x)
+			{
+				g.setColor(activeTextColor);
+				g.drawString(textOptions.get(x), paddingWidth, paddingHeight + (spaceing * x));
+				g.setColor(passiveTextColor);
+			} else
+			{
+				g.drawString(textOptions.get(x), paddingWidth, paddingHeight + (spaceing * x));
+			}//End if
+		}//End for
+	}//End render method
+	
+	
 }//End abstract class State
