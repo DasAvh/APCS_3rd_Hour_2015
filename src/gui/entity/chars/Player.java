@@ -37,10 +37,14 @@ public class Player extends Characters
 	@Override
 	public void tick()
 	{
+		//Gets user input
 		getUserInput();
 		move();
+
+		//Centers camera on player
 		game.getCamera().centerOnEntity(GameState.activePlayer());
 		
+		//Collision check for rooms
 		int roomNum = Board.hitRoom(this);
 		
 		if(roomNum != 0 && !inRoom)
@@ -63,17 +67,28 @@ public class Player extends Characters
 		xMove = 0;
 		yMove = 0;
 		
-		if(game.getKeyboardManager().up)
+	//	System.out.println(getAmountOfMoves());
+		
+		if(game.getKeyboardManager().u)
+			undoMove();
+		
+		if(game.getKeyboardManager().up && Board.hitObject(this, xMove, yMove))
+		{
 			yMove = -SPEED;
-		
+		}
 		if(game.getKeyboardManager().down)
+		{
 			yMove = SPEED;
-		
+		}
 		if(game.getKeyboardManager().left)
+		{
 			xMove = -SPEED;
-		
+
+		}
 		if(game.getKeyboardManager().right)
+		{
 			xMove = SPEED;
+		}
 	}//End getUserInput method
 
 	

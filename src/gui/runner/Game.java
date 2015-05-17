@@ -4,8 +4,10 @@ import graphics.Assets;
 
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.io.ObjectInputStream.GetField;
 
 import states.ChoosePlayersState;
+import states.DieRollState;
 import states.GameOptionsState;
 import states.GameState;
 import states.HowToPlayState;
@@ -39,6 +41,7 @@ public class Game implements Runnable
 	private State gameOptionsState;
 	private State choosePlayerState;
 	private State playerOptionsState;
+	private State dieState;
 	
 	//Input
 	private KeyboardManager keyboard;
@@ -75,6 +78,7 @@ public class Game implements Runnable
 		gameOptionsState = new GameOptionsState(this);
 		choosePlayerState = new ChoosePlayersState(this);
 		playerOptionsState = new PlayerOptionsState(this);
+		dieState = new DieRollState(this);
 		
 		//Sets menuState to display main menu
 		State.setState(menuState);
@@ -183,6 +187,16 @@ public class Game implements Runnable
 		return height;
 	}//End getHeight method
 
+	public Graphics getGraphics()
+	{
+		return g;
+	}
+	
+	public BufferStrategy getBufferStrategy()
+	{
+		return bs;
+	}
+	
 	public synchronized void start()
 	{
 		if(isRunning)

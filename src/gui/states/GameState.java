@@ -42,10 +42,20 @@ public class GameState extends State
 	{
 		board.tick();
 		
-		if(game.getKeyboardManager().leftArrow && currentPlayer != 0)
-			currentPlayer--;
-		else if(game.getKeyboardManager().rightArrow && currentPlayer != 5)
-			currentPlayer++;
+		if(!players.get(currentPlayer).hasRolled())
+		{
+			setState(getState("die"));
+		}
+		
+		if(players.get(currentPlayer).getAmountOfMoves() == 0)
+		{
+			players.get(currentPlayer).resetRoll();
+			
+			if(currentPlayer != players.size() - 1)
+				currentPlayer++;
+			else 
+				currentPlayer = 0;
+		}
 		
 		//Exit game
 		if(game.getKeyboardManager().escape)
