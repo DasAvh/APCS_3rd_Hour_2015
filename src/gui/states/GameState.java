@@ -12,12 +12,13 @@ import entity.chars.Player;
 public class GameState extends State 
 {
 	//Fields
-	private Player player;
 	private Board board;
 	
 	//Players
 	public static ArrayList<Player> players;
 	public static int currentPlayer;
+	
+	//Spaces
 	
 	public GameState(Game game)
 	{
@@ -26,10 +27,14 @@ public class GameState extends State
 		players = new ArrayList<Player>();
 		
 		for(int x = 0; x < 6; x++)
-			players.add(new Player(game, board.getSpawnX()[x] * Tile.TILE_WIDTH, board.getSpawnY()[x] * Tile.TILE_HEIGHT, x + 1)); 
-
+		{
+			players.add(new Player(game, board.getSpawnX()[x] * Tile.TILE_WIDTH, board.getSpawnY()[x] * Tile.TILE_HEIGHT, x + 1));
+			
+		}//End for
+		
 		currentPlayer = 0;
-		//player = new Player(game, board.getSpawnX()[0] * Tile.TILE_WIDTH, board.getSpawnY()[0] * Tile.TILE_HEIGHT, 1);
+		
+		addState("game", this);
 	}//End constructor
 	
 	@Override
@@ -42,12 +47,19 @@ public class GameState extends State
 		else if(game.getKeyboardManager().rightArrow && currentPlayer != 5)
 			currentPlayer++;
 		
+		//Exit game
+		if(game.getKeyboardManager().escape)
+			System.exit(0);
+		
+		
+		//Allows only the currentPlayer to move
 		players.get(currentPlayer).tick();
 	}//End method tick
 
 	@Override
 	public void render(Graphics g) 
 	{
+		//Renders board
 		board.render(g);
 		
 		//Renders players
@@ -58,5 +70,14 @@ public class GameState extends State
 	public static Player activePlayer()
 	{
 		return players.get(currentPlayer);
-	}
+	}//End method getActivePlayer
+	
+	public static void nextPlayer()
+	{
+		if(currentPlayer == 5)
+			currentPlayer = 0;
+		else
+			currentPlayer++;
+		//End if
+	}//End method nextPlayer
 }//End GameState class

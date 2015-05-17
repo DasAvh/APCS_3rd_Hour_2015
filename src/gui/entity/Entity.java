@@ -13,8 +13,8 @@ public abstract class Entity
 	protected int x, y;
 	protected int width, height;
 	protected int id;
-	protected int amountOfMoves;
-	protected ArrayList<Integer> lastPosition;
+
+
 	
 	public Entity(Game game, int x, int y, int width, int height, int id)
 	{
@@ -24,7 +24,6 @@ public abstract class Entity
 		this.width = width;
 		this.height = height;
 		this.id = id;
-		lastPosition = new ArrayList<Integer>();
 	}//End constructor
 	
 	public abstract void tick();
@@ -40,20 +39,9 @@ public abstract class Entity
 	public int getHeight() {return height;}
 	public void setHeight(int height) {this.height = height;}
 	public int getId(){return id;}
-	public void decreaseMoveCount(){amountOfMoves--;}
 	
 	public String toString()
 	{
 		return String.format("X : %d%nY : %d", getX() / Tile.TILE_WIDTH, getY() / Tile.TILE_HEIGHT);
 	}//End toString method
-	
-	public void roll()
-	{
-		amountOfMoves = Utilities.diceRoll();
-	}//End roll method
-	
-	public void undoMove()
-	{
-		
-	}
 }//End class Entity

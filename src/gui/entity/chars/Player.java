@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import board.Board;
 import runner.Game;
 import states.GameState;
+import states.State;
 import tiles.Tile;
 import utilities.Utilities;
 
@@ -15,7 +16,6 @@ public class Player extends Characters
 {
 	private BufferedImage texture;
 
-	
 	public Player(Game game, int x, int y, int id) 
 	{
 		super(game, x, y, Characters.CHARACTER_WIDTH, Characters.CHARACTER_HEIGHT, id);
@@ -39,6 +39,12 @@ public class Player extends Characters
 		getUserInput();
 		move();
 		game.getCamera().centerOnEntity(GameState.activePlayer());
+		
+		if(Board.hitRoom(this) && !inRoom)
+		{
+			State.setState(State.getState("playerOption"));
+			setInRoom();
+		}//End if
 	}//End tick method
 
 	private void getUserInput()

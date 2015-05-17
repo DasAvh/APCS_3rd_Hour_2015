@@ -9,7 +9,8 @@ public class KeyboardManager implements KeyListener {
 	
 	private boolean[] keys;
 
-	public boolean up, down, left, right, leftArrow, rightArrow;
+	public boolean up, down, left, right, leftArrow, rightArrow, numPadOne, numPadTwo,
+				   enter, escape;
 	
 	private boolean keyIsPressed;
 	private int currentKeyDown;
@@ -28,7 +29,11 @@ public class KeyboardManager implements KeyListener {
 		right = keys[KeyEvent.VK_D];
 		leftArrow = keys[KeyEvent.VK_LEFT];
 		rightArrow = keys[KeyEvent.VK_RIGHT];
-
+		numPadOne = keys[KeyEvent.VK_NUMPAD1];
+		numPadTwo = keys[KeyEvent.VK_NUMPAD2];
+		enter = keys[KeyEvent.VK_ENTER];
+		escape = keys[KeyEvent.VK_ESCAPE];
+		
 		keys[currentKeyDown] = false;
 	}//End method tick
 

@@ -3,7 +3,6 @@ package board;
 import java.awt.Graphics;
 
 import runner.Game;
-import states.GameState;
 import tiles.Tile;
 import utilities.Utilities;
 import entity.Entity;
@@ -13,7 +12,7 @@ public class Board
 	private Game game;
 	private int width, height;
 	private int[] spawnX, spawnY;
-	private static int[][] tiles;
+	public static int[][] tiles;
 	
 	public Board(Game game, String path)
 	{
@@ -51,6 +50,7 @@ public class Board
 		
 		if(t == null)
 			return Tile.hallwayTile;
+		
 		return t;
 	}//End method getTile
 	
@@ -70,6 +70,24 @@ public class Board
 	
 		return false;
 	}//End hitWall method
+	
+	public static boolean hitDoor(Entity entity)
+	{
+		if(Tile.tiles[tiles[entity.getX() / Tile.TILE_WIDTH][entity.getY() / Tile.TILE_HEIGHT]].getId() == Tile.DOOR_TILE)
+			return true;
+		
+		return false;
+	}//End hitDoor method
+	
+	public static boolean hitRoom(Entity entity)
+	{
+		if(Tile.tiles[tiles[entity.getX() / Tile.TILE_WIDTH][entity.getY() / Tile.TILE_HEIGHT]].getId() == Tile.ROOM_TILE)
+			return true;
+		
+		return false;
+	}//End hitDoor method
+	
+
 	
 	private void loadBoard(String path)
 	{
@@ -98,6 +116,7 @@ public class Board
 		
 		tiles = new int[width][height];
 		
+		//Actually board
 		for(int y = 0; y < height; y++)
 		{
 			for(int x = 0 ; x < width; x++)

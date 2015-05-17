@@ -7,6 +7,7 @@ import java.awt.image.BufferStrategy;
 
 import states.GameState;
 import states.MainMenuState;
+import states.PlayerOptionsState;
 import states.State;
 import userinput.KeyboardManager;
 import userinput.MouseManager;
@@ -31,6 +32,7 @@ public class Game implements Runnable
 	//States
 	private State gameState;
 	private State menuState;
+	private State playerOptionsState;
 	
 	//Input
 	private KeyboardManager keyboard;
@@ -53,11 +55,13 @@ public class Game implements Runnable
 		display = new Display(title, width, height);
 		display.getFrame().addKeyListener(keyboard);
 		//display.getJPanel().addMouseListener(mouse);
-		Assets.init();
+		Assets.initialize();
 		
 		boardCamera = new Camera(this, 0, 0);
 		gameState = new GameState(this);
 		menuState = new MainMenuState(this);
+		playerOptionsState = new PlayerOptionsState(this);
+		
 		State.setState(gameState);
 	}//End initialize method
 
@@ -65,6 +69,11 @@ public class Game implements Runnable
 	{
 		keyboard.tick();
 		mouse.tick();
+		
+		if(keyboard.numPadOne)
+			State.setState(playerOptionsState);
+		else if(keyboard.numPadTwo)
+			State.setState(gameState);
 		
 		if(State.getState() != null)
 		{

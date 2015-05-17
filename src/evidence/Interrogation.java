@@ -2,10 +2,12 @@ package evidence;
 
 import weapons.Weapon;
 
-public class Interrogation 
+public class Interrogation
 {
-	private static String[] listOfRooms = {"Mr. Clark's Room","Chem Lab","Chavez's Room","Cafeteria","Auto Room","Bathroom","Band Room","Art Studio","Gym"};
-	private static String[] weapons = {"The Norton","Gun Candlestick","Tuba","Frozen Waterbottle","Cafeteria Food","Fire Axe"};
+	private static String[] listOfRooms = {"Mr. Clark's Room","Chem Lab","Chavez's Room","Cafeteria",
+																				 "Auto Room","Bathroom","Band Room","Art Studio","Gym"};
+	private static String[] weapons = {"The Norton","Gun Candlestick","Tuba","Frozen Waterbottle",
+																		 "Cafeteria Food","Fire Axe"};
 	private static String[] people = {
 		"Nicholas Biegel",
 		"Victor Bolivar",
@@ -37,7 +39,7 @@ public class Interrogation
 	private String solCharacter = people[(int)(Math.random() * 25)];
 	private String solRoom = listOfRooms[(int)(Math.random() * 9)];
 
-	
+
 	//public String getInterogation(Weapon w, Character c, Room r)
 	public void getInterogation(Weapon w, String c, String r)
 	{
@@ -50,6 +52,6 @@ public class Interrogation
 			System.out.println("");
 		}
 	}
-	
-	
+
+
 }
