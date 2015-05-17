@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import board.Board;
+import rooms.Room;
 import runner.Game;
 import states.GameState;
 import states.State;
@@ -40,10 +41,20 @@ public class Player extends Characters
 		move();
 		game.getCamera().centerOnEntity(GameState.activePlayer());
 		
-		if(Board.hitRoom(this) && !inRoom)
+		int roomNum = Board.hitRoom(this);
+		
+		if(roomNum != 0 && !inRoom)
 		{
-			State.setState(State.getState("playerOptions"));
-			setInRoom();
+			if(!Room.rooms[roomNum].isFull())
+			{
+				setInRoom();
+				Room.rooms[roomNum].setPlayerInRoom(this);
+				State.setState(State.getState("playerOptions"));
+			}else
+			{
+				System.out.println("FULL");
+			}
+			
 		}//End if
 	}//End tick method
 

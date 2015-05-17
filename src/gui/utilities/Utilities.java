@@ -28,6 +28,39 @@ public class Utilities
 		return builder.toString();
 	}//End loadFile
 	
+	public static String[] loadFile(String path, String ignore)
+	{
+		StringBuilder builder = new StringBuilder();
+		String[] sections = {
+				"",""
+		};
+		try
+		{
+			BufferedReader br = new BufferedReader(new FileReader(path));
+			String line;
+			int index = -1;
+			
+			while((line = br.readLine()) != null)
+			{
+				if(line.substring(0, 1).equals(ignore))
+				{
+						index++;
+						line = br.readLine();
+				}
+				
+				sections[index] += (line + " ");
+
+			}//End while
+				
+			
+			br.close();
+		}catch(IOException e){
+			e.printStackTrace();
+		}//End try-catch
+		
+		return sections;
+	}//End loadFile
+	
 	public static int parseInt(String number){
 		try{
 			return Integer.parseInt(number);
@@ -46,4 +79,10 @@ public class Utilities
 	{
 		return new Color((int)(Math.random() * 256), (int)(Math.random() * 256), (int)(Math.random() * 256));
 	}//End genRandonColor method
+	
+	public static void printArrays(String[] data)
+	{
+		for(String d : data)
+			System.out.println(d + "|");
+	}
 }//End Utilities class

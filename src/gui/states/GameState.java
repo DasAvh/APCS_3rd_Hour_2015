@@ -23,7 +23,7 @@ public class GameState extends State
 	public GameState(Game game)
 	{
 		super(game);
-		board = new Board(game, "res/boards/TestBoard.txt");
+		board = new Board(game, "res/boards/TestBoardMap.txt", "res/boards/TestBoardData.txt");
 		players = new ArrayList<Player>();
 		
 		for(int x = 0; x < 6; x++)

@@ -45,7 +45,7 @@ public class KeyboardManager implements KeyListener {
 			keys[e.getKeyCode()] = true;
 			keyIsPressed = true;
 			currentKeyDown = e.getKeyCode();
-			System.out.println(e.getKeyChar() + " Pressed");
+			//System.out.println(e.getKeyChar() + " Pressed");
 		}//End if
 	}//End method keyPressed
 
@@ -56,7 +56,7 @@ public class KeyboardManager implements KeyListener {
 		{
 			keys[e.getKeyCode()] = false;
 			keyIsPressed = false;
-			System.out.println(e.getKeyChar() + " Released");
+		//	System.out.println(e.getKeyChar() + " Released");
 		}
 	}//End method keyReleased
 

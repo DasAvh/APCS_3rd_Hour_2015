@@ -1,7 +1,9 @@
 package graphics;
 
 import java.awt.image.BufferedImage;
-
+/*
+ * Add method to set players image
+ */
 public class Assets
 {
 	//Dimensions
@@ -11,9 +13,10 @@ public class Assets
 	//General
 	public static BufferedImage missing;
 	public static BufferedImage mainMenuBackgroundImage;
+	
 	//Players
 	public static BufferedImage playerOne, playerTwo, playerThree, playerFour, playerFive, playerSix; 
-
+	
 	//Floors
 	public static BufferedImage hallway, door, wall, room, spawn;
 	

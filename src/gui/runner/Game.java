@@ -5,7 +5,7 @@ import graphics.Assets;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
-import states.ChooseCardsState;
+import states.ChoosePlayersState;
 import states.GameOptionsState;
 import states.GameState;
 import states.HowToPlayState;
@@ -37,7 +37,7 @@ public class Game implements Runnable
 	private State menuState;
 	private State howToPlayState;
 	private State gameOptionsState;
-	private State chooseCardsState;
+	private State choosePlayerState;
 	private State playerOptionsState;
 	
 	//Input
@@ -62,7 +62,7 @@ public class Game implements Runnable
 		display = new Display(title, width, height);
 		display.getFrame().addKeyListener(keyboard);
 		
-		//Loads up images
+		//Loads Assets
 		Assets.initialize();
 		
 		//Setups game camera
@@ -73,7 +73,7 @@ public class Game implements Runnable
 		gameState = new GameState(this);
 		howToPlayState = new HowToPlayState(this);
 		gameOptionsState = new GameOptionsState(this);
-		chooseCardsState = new ChooseCardsState(this);
+		choosePlayerState = new ChoosePlayersState(this);
 		playerOptionsState = new PlayerOptionsState(this);
 		
 		//Sets menuState to display main menu

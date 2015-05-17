@@ -36,7 +36,7 @@ public class MainMenuState extends State
 		
 		//Setup colors
 		passiveTextColor = new Color(255, 255, 255);
-		activeTextColor = new Color(0, 255, 255);
+		activeTextColor = new Color(255, 0, 255);
 		backDropColor = new Color(0, 0, 0, 155);
 		
 		//Defaults chosen text

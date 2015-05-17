@@ -9,11 +9,6 @@ import java.util.HashMap;
 import runner.Game;
 import utilities.Utilities;
 
-/*
- * Move some rendering code methods and fields from states into here as protected
- * Reduce amount of repeated code
- * 
- */
 
 public abstract class State 
 {
