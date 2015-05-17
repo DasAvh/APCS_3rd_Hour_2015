@@ -49,7 +49,7 @@ public class GameState extends State
 		
 		//Exit game
 		if(game.getKeyboardManager().escape)
-			System.exit(0);
+			State.setState(getState("mainMenu"));
 		
 		
 		//Allows only the currentPlayer to move

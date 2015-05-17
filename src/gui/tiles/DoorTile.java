@@ -23,13 +23,11 @@ public class DoorTile extends Tile
 	
 	public static void movePlayerIntoRoom(Entity entity)
 	{
-		//entity.setX(1*64);
-		//entity.setY(1*64);
+
 	}//End movePlayerIntoRoom method
 	
 	public static void movePlayerOutOfRoom(Entity entity)
 	{
-		//entity.setX(4*64);
-		//entity.setY(4*64);
+
 	}//End movePlayerOutOfRoom method
 }//End DoorTile class

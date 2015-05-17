@@ -5,7 +5,10 @@ import graphics.Assets;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
+import states.ChooseCardsState;
+import states.GameOptionsState;
 import states.GameState;
+import states.HowToPlayState;
 import states.MainMenuState;
 import states.PlayerOptionsState;
 import states.State;
@@ -32,6 +35,9 @@ public class Game implements Runnable
 	//States
 	private State gameState;
 	private State menuState;
+	private State howToPlayState;
+	private State gameOptionsState;
+	private State chooseCardsState;
 	private State playerOptionsState;
 	
 	//Input
@@ -52,17 +58,26 @@ public class Game implements Runnable
 
 	private void initialize()
 	{
+		//Creates window and adds KeyListener
 		display = new Display(title, width, height);
 		display.getFrame().addKeyListener(keyboard);
-		//display.getJPanel().addMouseListener(mouse);
+		
+		//Loads up images
 		Assets.initialize();
 		
+		//Setups game camera
 		boardCamera = new Camera(this, 0, 0);
-		gameState = new GameState(this);
+		
+		//Create states
 		menuState = new MainMenuState(this);
+		gameState = new GameState(this);
+		howToPlayState = new HowToPlayState(this);
+		gameOptionsState = new GameOptionsState(this);
+		chooseCardsState = new ChooseCardsState(this);
 		playerOptionsState = new PlayerOptionsState(this);
 		
-		State.setState(gameState);
+		//Sets menuState to display main menu
+		State.setState(menuState);
 	}//End initialize method
 
 	private void tick()

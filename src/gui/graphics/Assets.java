@@ -10,7 +10,7 @@ public class Assets
 	
 	//General
 	public static BufferedImage missing;
-	
+	public static BufferedImage mainMenuBackgroundImage;
 	//Players
 	public static BufferedImage playerOne, playerTwo, playerThree, playerFour, playerFive, playerSix; 
 
@@ -29,6 +29,7 @@ public class Assets
 		
 		//General
 		missing = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_GRAY);
+		mainMenuBackgroundImage = ImageLoader.loadImage("/textures/misc/Josh.png");
 		
 		//Player assets
 		playerOne = playerSheet.crop(0, 0, width, height);

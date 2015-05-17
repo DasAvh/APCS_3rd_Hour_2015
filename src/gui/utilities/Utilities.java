@@ -1,6 +1,7 @@
 package utilities;
 
-	import java.io.BufferedReader;
+	import java.awt.Color;
+import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -40,4 +41,9 @@ public class Utilities
 	{
 		return (int)(Math.random() * 5 + 1);
 	}//End diceRoll method
+	
+	public static Color genRandomColor()
+	{
+		return new Color((int)(Math.random() * 256), (int)(Math.random() * 256), (int)(Math.random() * 256));
+	}//End genRandonColor method
 }//End Utilities class

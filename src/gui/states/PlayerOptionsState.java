@@ -12,7 +12,7 @@ public class PlayerOptionsState extends State
 	//Fields
 	private ArrayList<String> textOptions;
 	private Color overlayColor, passiveTextColor, activeTextColor;
-	private int choosenText, fontSize;
+	private int choosenText, fontSize; //This is how chosen is spelled now
 	private Font font;
 	
 	public PlayerOptionsState(Game game) 
@@ -27,7 +27,7 @@ public class PlayerOptionsState extends State
 		textOptions.add("End turn");
 		
 		//Setup colors
-		overlayColor = new Color(0, 0, 0, 155);
+	
 		passiveTextColor = new Color(255, 255, 255);
 		activeTextColor = new Color(0, 255, 0);
 		
@@ -38,7 +38,8 @@ public class PlayerOptionsState extends State
 		fontSize = 48;
 		font = new Font("Consolas", Font.PLAIN, fontSize);
 		
-		addState("playerOption", this);
+		//Add to hashmap of states
+		addState("playerOptions", this);
 	}//End constructor
 
 	@Override
@@ -47,7 +48,7 @@ public class PlayerOptionsState extends State
 		if(game.getKeyboardManager().up && choosenText != 0)
 			choosenText --;
 		
-		if(game.getKeyboardManager().down && choosenText != 3)
+		if(game.getKeyboardManager().down && choosenText != textOptions.size() - 1)
 			choosenText ++;
 		
 		if(game.getKeyboardManager().enter && choosenText == 3)
@@ -61,11 +62,12 @@ public class PlayerOptionsState extends State
 	@Override
 	public void render(Graphics g)
 	{
+		//Formatting options
 		int paddingHeight = 150;
 		int paddingWidth = 100;
 		int spaceing = 100;
 		
-		//Maintains game states background
+		//Maintains game state as a background
 		getState("game").render(g);
 		
 		//Sets black overlay

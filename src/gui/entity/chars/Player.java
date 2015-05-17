@@ -42,7 +42,7 @@ public class Player extends Characters
 		
 		if(Board.hitRoom(this) && !inRoom)
 		{
-			State.setState(State.getState("playerOption"));
+			State.setState(State.getState("playerOptions"));
 			setInRoom();
 		}//End if
 	}//End tick method
