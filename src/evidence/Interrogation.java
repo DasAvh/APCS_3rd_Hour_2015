@@ -35,6 +35,7 @@ public class Interrogation
 		"Jakub Wrobel",
 		"Jacob Zak"
 	};
+
 	private String solWeapon =  weapons[(int)(Math.random() * 6)];
 	private String solCharacter = people[(int)(Math.random() * 25)];
 	private String solRoom = listOfRooms[(int)(Math.random() * 9)];

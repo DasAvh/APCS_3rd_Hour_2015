@@ -22,6 +22,7 @@ public class Room
 	
 	//Protected
 	protected int id;
+	protected String name;
 	protected int playersInRoom;
 	
 	
@@ -80,4 +81,19 @@ public class Room
 		entity.setY(yPoints[playersInRoom] * 64);
 		playersInRoom++;
 	}//End method setPlayerInRoom
+	
+	public void setPlayerOutOfRoom(Entity entity)
+	{
+		
+	}
+	
+	public void setName(String name)
+	{
+		this.name = name;
+	}//End setName
+	
+	public int getId()
+	{
+		return id;
+	}
 }//End class Room

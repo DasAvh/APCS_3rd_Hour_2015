@@ -32,8 +32,9 @@ public class Utilities
 	{
 		StringBuilder builder = new StringBuilder();
 		String[] sections = {
-				"",""
+				"","",""
 		};
+		
 		try
 		{
 			BufferedReader br = new BufferedReader(new FileReader(path));
@@ -46,7 +47,7 @@ public class Utilities
 				{
 						index++;
 						line = br.readLine();
-				}
+				}//End if
 				
 				sections[index] += (line + " ");
 
@@ -80,9 +81,20 @@ public class Utilities
 		return new Color((int)(Math.random() * 256), (int)(Math.random() * 256), (int)(Math.random() * 256));
 	}//End genRandonColor method
 	
-	public static void printArrays(String[] data)
+	public static void printArray(String[] data)
 	{
 		for(String d : data)
 			System.out.println(d + "|");
-	}
+	}//End printArray method
+	
+	public static void pauseGame(int duration)
+	{
+		try 
+		{
+			Thread.sleep(duration);
+		} catch (InterruptedException e) 
+		{
+			e.printStackTrace();
+		}//End try catch
+	}//End pauseGame method
 }//End Utilities class

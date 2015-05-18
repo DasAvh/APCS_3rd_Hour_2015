@@ -6,10 +6,12 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import board.Board;
+import rooms.Door;
 import rooms.Room;
 import runner.Game;
 import states.GameState;
 import states.State;
+import tiles.DoorTile;
 import tiles.Tile;
 import utilities.Utilities;
 
@@ -44,30 +46,39 @@ public class Player extends Characters
 		//Centers camera on player
 		game.getCamera().centerOnEntity(GameState.activePlayer());
 		
-		//Collision check for rooms
-		int roomNum = Board.hitRoom(this);
+		//Gets index of room players is in
+		int doorNum = Board.hitDoor(this);
 		
-		if(roomNum != 0 && !inRoom)
+		if(!inRoom && doorNum != 0)
 		{
-			if(!Room.rooms[roomNum].isFull())
+			Room room = Door.doors[doorNum].getAssignRoom();
+			if(!room.isFull())
 			{
 				setInRoom();
-				Room.rooms[roomNum].setPlayerInRoom(this);
+				Door.doors[doorNum].movePlayerIntoRoom(this);
 				State.setState(State.getState("playerOptions"));
 			}else
 			{
+				undoMove();
 				System.out.println("FULL");
-			}
-			
+			}//End if
 		}//End if
 	}//End tick method
 
 	private void getUserInput()
 	{
+		//Set movement to 0, to prevent
+		//player from going forever in 
+		//one direction
 		xMove = 0;
 		yMove = 0;
 		
-	//	System.out.println(getAmountOfMoves());
+		//If player is in a room and mover, get that player outside the door
+		if(isInRoom() && (game.getKeyboardManager().up || game.getKeyboardManager().down || game.getKeyboardManager().left || game.getKeyboardManager().right))
+		{
+			//DoorTile.movePlayerOutOfRoom(this);
+			setOutOfRoom();
+		}//End if
 		
 		if(game.getKeyboardManager().u)
 			undoMove();

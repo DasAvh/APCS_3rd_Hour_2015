@@ -45,12 +45,12 @@ public class GameState extends State
 		if(!players.get(currentPlayer).hasRolled())
 		{
 			setState(getState("die"));
+			return;
 		}
 		
 		if(players.get(currentPlayer).getAmountOfMoves() == 0)
 		{
 			players.get(currentPlayer).resetRoll();
-			
 			if(currentPlayer != players.size() - 1)
 				currentPlayer++;
 			else 

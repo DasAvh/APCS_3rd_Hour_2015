@@ -9,13 +9,19 @@ import utilities.Utilities;
 
 public abstract class Entity
 {
+	//Protected Fields
 	protected Game game;
 	protected int x, y;
 	protected int width, height;
 	protected int id;
 
-
-	
+	//A Entity is a object that is used in game
+	//This is basically any object that is drawn 
+	//to the screen and serves a purpose.
+	//All entities have access to the Game class
+	//Have a x and y position
+	//Have a width and a height
+	//Have a id
 	public Entity(Game game, int x, int y, int width, int height, int id)
 	{
 		this.game = game;
@@ -26,6 +32,9 @@ public abstract class Entity
 		this.id = id;
 	}//End constructor
 	
+	//Required methods
+	//Used for drawing the entity and 
+	//Giving the entity function
 	public abstract void tick();
 	public abstract void render(Graphics g);
 
@@ -42,6 +51,7 @@ public abstract class Entity
 	
 	public String toString()
 	{
+		//Returns info about entity
 		return String.format("X : %d%nY : %d", getX() / Tile.TILE_WIDTH, getY() / Tile.TILE_HEIGHT);
 	}//End toString method
 }//End class Entity

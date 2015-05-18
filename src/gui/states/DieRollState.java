@@ -12,7 +12,7 @@ public class DieRollState extends State
 {
 	//Fields
 	private static final int DIE_SIZE = 300;
-	private static final int ROLL_DURATION = 20;
+	private static final int ROLL_DURATION = 2;
 	
 	public DieRollState(Game game)
 	{

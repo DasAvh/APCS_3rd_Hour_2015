@@ -2,6 +2,7 @@ package tiles;
 
 import entity.Entity;
 import graphics.Assets;
+import rooms.Room;
 
 public class DoorTile extends Tile
 {
@@ -21,13 +22,4 @@ public class DoorTile extends Tile
 		return true;
 	}//End isWalkable method
 	
-	public static void movePlayerIntoRoom(Entity entity)
-	{
-
-	}//End movePlayerIntoRoom method
-	
-	public static void movePlayerOutOfRoom(Entity entity)
-	{
-
-	}//End movePlayerOutOfRoom method
 }//End DoorTile class

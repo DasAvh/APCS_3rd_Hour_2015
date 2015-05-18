@@ -1,22 +1,19 @@
 package entity.chars;
 
-import java.util.ArrayList;
-
-import board.Board;
 import runner.Game;
-import states.GameState;
-import states.State;
 import tiles.DoorTile;
 import tiles.Tile;
-import utilities.Utilities;
+import board.Board;
 import entity.Entity;
 
 public abstract class Characters extends Entity 
 {
+	//Static fields
 	public static final int CHARACTER_WIDTH = Tile.TILE_WIDTH;
 	public static final int CHARACTER_HEIGHT = Tile.TILE_HEIGHT;
 	public static final int SPEED = Tile.TILE_HEIGHT;
 	
+	//Protected fields
 	protected int xMove, yMove;
 	protected int[] lastX, lastY;
 	protected int amountOfMoves, amountOfUndos;
@@ -26,51 +23,61 @@ public abstract class Characters extends Entity
 	//Fields
 	/*
 	 * Weapon - Weapon assign to player
-	 * Room- Room assign to player
+	 * Room   - Room assign to player
 	 */
+	
 	public Characters(Game game, int x, int y, int width, int height, int id) 
 	{
+		//Entity constructor
 		super(game, x, y, width, height, id);
+		
+		//Array used to record a character's last
+		//positions. Ranges from 1 to 6
 		lastX = new int[6];
 		lastY = new int[6];
+		
+		//Character's movement speed
+		//Defaults to 0
 		xMove = 0;
 		yMove = 0;
+		
+		//Sets boolean variables to false
+		//Used to check if character has rolled
+		//and if character is in a room
 		inRoom = false;
 		rolled = false;
 	}//End constructor
 	
 	public void move()
 	{
-		if(Board.hitObject(this, xMove, yMove))
+		if(!isInRoom())
 		{
-			//Moves Character
-			x += xMove;
-			y += yMove;
-
-			//If moved decrease moves and store last position
-			if(xMove != 0 || yMove != 0)
+			if(Board.hitObject(this, xMove, yMove))
 			{
-				amountOfMoves--;
-				amountOfUndos++;
-				
-				if(amountOfMoves != 0)
+				//Moves Character by xMove and yMove
+				x += xMove;
+				y += yMove;
+	
+				//If Character did move, decrease amount of 
+				//moves, store last position, and increase 
+				//number of undos the Character has
+				if(xMove != 0 || yMove != 0)
 				{
-					lastX[amountOfMoves - 1] = x;
-					lastY[amountOfMoves - 1] = y;
+					amountOfMoves--;
+					amountOfUndos++;
+					
+					//Checks to see if its the Character's
+					//last turn, if so do not record last
+					//position. Prevents OutOfBounds error
+					if(amountOfMoves != 0)
+					{
+						lastX[amountOfMoves - 1] = x;
+						lastY[amountOfMoves - 1] = y;
+					}//End if
 				}//End if
-
 			}//End if
-		}//End if
-		
-		if(Board.hitDoor(this))
+		}else
 		{
-			if(!isInRoom())
-				DoorTile.movePlayerIntoRoom(this);
-			else if(isInRoom())
-			{
-				DoorTile.movePlayerOutOfRoom(this);
-				setOutOfRoom();
-			}//End if
 			
 		}//End if
 	}//End move method

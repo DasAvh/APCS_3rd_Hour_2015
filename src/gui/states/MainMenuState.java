@@ -52,7 +52,7 @@ public class MainMenuState extends State
 		navigateMenu();
 		
 		if(game.getKeyboardManager().enter && choosenText == PLAY_GAME)
-			setState(State.getState("game"));
+			setState(State.getState("die"));
 		//End if
 		
 		if(game.getKeyboardManager().enter && choosenText == HOW_TO_PLAY)

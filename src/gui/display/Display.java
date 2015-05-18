@@ -8,16 +8,18 @@ import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class Display {
-
+public class Display 
+{
+	//Fields
 	private JFrame frame;
-	private JPanel panel;
 	private Canvas canvas;
 	private String title;
 	private int width, height;
 	
 	public Display(String title, int width, int height)
 	{
+		//Creates a display with this title, width, and height
+		//Also stores the data for later
 		this.title = title;
 		this.width = width;
 		this.height = height;
@@ -27,6 +29,7 @@ public class Display {
 	
 	private void createDisplay()
 	{
+		//Creates JFrame with constructor data
 		frame = new JFrame(title);
 		frame.setSize(width, height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,6 +37,7 @@ public class Display {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 		
+		//Creates a Canvas to draw the game on
 		canvas = new Canvas();
 		canvas.setBackground(Color.BLACK);
 		canvas.setPreferredSize(new Dimension(width, height));
@@ -41,20 +45,15 @@ public class Display {
 		canvas.setMinimumSize(new Dimension(width, height));
 		canvas.setFocusable(false);
 		
+		//Adds canvas to JFram
 		frame.add(canvas);
 		frame.pack();
 	}//End createDisplay method
-	
-	public JPanel getJPanel()
-	{
-		return panel;
-	}//End getJPanel method
 	
 	public Canvas getCanvas()
 	{
 		return canvas;
 	}//End getCanvas method
-	
 	
 	public JFrame getFrame()
 	{
