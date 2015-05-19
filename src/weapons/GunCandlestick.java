@@ -2,10 +2,10 @@ package weapons;
 
 import graphics.Assets;
 
-public class GunCandleStick extends Weapon
+public class GunCandlestick extends Weapon
 {
 
-	public GunCandleStick(int id) 
+	public GunCandlestick(int id) 
 	{
 		super(Assets.gunCandleStick, id);
 	}//End constructor
