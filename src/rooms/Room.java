@@ -1,87 +1,101 @@
+package rooms;
+
 import java.util.ArrayList;
+
+import utilities.Utilities;
+import entity.Entity;
+import entity.chars.Player;
 
 public class Room 
 {
-	private int length;
-	private int width;
-	private String name;
-	private boolean redPassage;
-	private boolean bluePassage;
-	private ArrayList<Player> playersInRoom = new ArrayList<Player>();
-	private Weapon weaponInRoom;
+	//Fields
+	public static Room[] rooms = new Room[10];
+	public static final int ROOM_WIDTH = 2;
+	public static final int ROOM_HEIGHT = 2;
+	public static final int ROOM_SIZE = ROOM_WIDTH * ROOM_HEIGHT; 
+
+	//Ids
+	//public static Room generalRoom = new GeneralRoom(0); 
+	//public static Room passageRoom = new PassageRoom(1);
+	public static final int GENERAL_ROOM = 0;
+	public static final int PASSAGE_ROOM = 1;
 	
-	public Room(int l, int w, String n, boolean rP, boolean bP)
-	{
-		length = l;
-		width = w;
-		n = name;
-		redPassage = rP;
-		bluePassage = bP;
-		weaponInRoom = null;
-	}
+	//Protected
+	protected int id;
+	protected String name;
+	protected ArrayList<Entity> playersInRoom;
+	protected int[] xPoints;
+	protected int[] yPoints;
 	
-	public boolean isInRoom(Player p)
+	public Room(String[] data, int id)
 	{
-		for(Player pl : playersInRoom)
+		xPoints = new int[ROOM_SIZE];
+		yPoints = new int[ROOM_SIZE];
+		this.id = id;
+		
+		int index = 0;
+		
+		for(int i = 0; i < data.length / 2; i++)
 		{
-			if(pl == p)
+			
+			//System.out.println(Integer.parseInt(spawnData[index]) + " " + Integer.parseInt(spawnData[index + 1]));
+			xPoints[i] = Utilities.parseInt(data[index]);
+			yPoints[i] = Utilities.parseInt(data[index + 1]);
+			index += 2;
+		}//End for
+
+		playersInRoom = new ArrayList<Entity>(0);
+		System.out.println(playersInRoom.size());
+	}//End constructor
+	
+	public boolean isFull()
+	{
+		return ROOM_SIZE == playersInRoom.size();
+	}//End isFull method
+	
+	public void printRoom()
+	{
+		for(int x = 0; x < ROOM_SIZE; x++)
+		{
+			System.out.print(xPoints[x] + " ");
+			System.out.println(yPoints[x]);
+		}//End for
+		
+		System.out.println("\nPlayers: " + playersInRoom);
+	}//End printRoom method
+	
+	public boolean inRoom(int x, int y)
+	{
+		for(int i = 0; i < ROOM_SIZE; i++)
+		{
+			if(x == xPoints[i] && y == yPoints[i])
 				return true;
 		}
 		return false;
-	}
+	}//End inRoom method
 	
-	public void goThroughPassage(Room target, Player p)
+	public void setPlayerInRoom(Player entity)
 	{
-		if(redPassage == target.getRedPassage())
-		{
-			target.addPlayer(p);
-			removePlayer(p);
-		}
-		else if(bluePassage == target.getBluePassage())
-		{
-			target.addPlayer(p);
-			removePlayer(p);
-		}
-	}
+		entity.setX(xPoints[playersInRoom.size()] * 64);
+		entity.setY(yPoints[playersInRoom.size()] * 64);
+		playersInRoom.add(entity);
+	}//End method setPlayerInRoom
 	
-	public boolean getRedPassage()
+	public void setPlayerOutOfRoom(Player entity)
 	{
-		return redPassage;
-	}
+		entity.setX(entity.getLastMoveX());
+		entity.setY(entity.getLastMoveY());
+		playersInRoom.remove(entity);
+
+	}//End metho setPlayerOutOfRoom
 	
-	public boolean getBluePassage()
+	public void setName(String name)
 	{
-		return bluePassage;
-	}
+		this.name = name;
+	}//End setName
 	
-	public void addPlayer(Player p)
+	public int getId()
 	{
-		playersInRoom.add(p);
+		return id;
 	}
-	
-	public String getName()
-	{
-		return name;
-	}
-	
-	public Weapon getWeapon()
-	{
-		return weaponInRoom;
-	}
-	
-	public void setWeapon(Weapon wep)
-	{
-		weaponInRoom = wep;
-	}
-	
-	public void removePlayer(Player p)
-	{
-		for(int x = 0; x <= playersInRoom.size() - 1; x++)
-		{
-			if(playersInRoom.get(x) == p)
-			{
-				playersInRoom.remove(x);
-			}
-		}
-	}
-}
+}//End class Room

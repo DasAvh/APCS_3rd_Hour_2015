@@ -1,19 +1,17 @@
 package weapons;
 
-import java.awt.Image;
+import graphics.Assets;
 
-import javax.swing.ImageIcon;
-
-public class GunCandlestick extends Weapon
+public class GunCandleStick extends Weapon
 {
-	public GunCandlestick()
+
+	public GunCandleStick(int id) 
 	{
-		//constructs the weapon and sets its image
-		super();
-		setWeaponPicture((Image)(new ImageIcon("GunCandlestick.jpg").getImage()));
-	}
+		super(Assets.gunCandleStick, id);
+	}//End constructor
+
 	public String toString()
 	{
 		return "Candlestick made of guns";
-	}
-}
+	}//End toString method
+}//End class GunCandleStick

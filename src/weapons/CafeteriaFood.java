@@ -1,21 +1,17 @@
 package weapons;
 
-import java.awt.Image;
+import graphics.Assets;
 
-import javax.swing.ImageIcon;
-
-public class CafeteriaFood extends Weapon
+public class CafeteriaFood extends Weapon 
 {
-
-	public CafeteriaFood()
+	public CafeteriaFood(int id) 
 	{
-		//constructs the weapon and sets its image
-		super();
-		setWeaponPicture((Image)(new ImageIcon("CafeteriaFood.jpg").getImage()));
-	}
+		super(Assets.cafeteriaFood, id);
+	}//End constructor
+	
 	
 	public String toString()
 	{
 		return "Cafeteria food";
-	}
-}
+	}//End toString method
+}//End class CaferiaFood

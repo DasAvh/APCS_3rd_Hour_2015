@@ -1,19 +1,17 @@
 package weapons;
 
-import java.awt.Image;
+import graphics.Assets;
 
-import javax.swing.ImageIcon;
-
-public class FriendSlayer extends Weapon
+public class FriendSlayer extends Weapon 
 {
-	public FriendSlayer()
+
+	public FriendSlayer(int id) 
 	{
-		//constructs the weapon and sets its image
-		super();
-		setWeaponPicture((Image)(new ImageIcon("FriendSlayer.jpg").getImage()));
-	}
+		super(Assets.friendSlayer, id);
+	}//End constructor
+
 	public String toString()
 	{
 		return "A fireaxe named Friendslayer";
-	}
-}
+	}//End toString method
+}//End class FriendSlayer

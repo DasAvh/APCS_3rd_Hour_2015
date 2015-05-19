@@ -1,19 +1,17 @@
 package weapons;
 
-import java.awt.Image;
+import graphics.Assets;
 
-import javax.swing.ImageIcon;
-
-public class FrozenWaterBottle extends Weapon
+public class FrozenWaterBottle extends Weapon 
 {
-	public FrozenWaterBottle()
+
+	public FrozenWaterBottle(int id) 
 	{
-		//constructs the weapon and sets its image
-		super();
-		setWeaponPicture((Image)(new ImageIcon("FrozenWaterBottle.jpg").getImage()));
-	}
+		super(Assets.frozenWaterBottle, id);
+	}//End constructor
+	
 	public String toString()
 	{
 		return "FROZEN water bottle";
-	}
-}
+	}//End toString method
+}//End class FrozenWaterBottle

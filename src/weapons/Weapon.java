@@ -1,51 +1,53 @@
 package weapons;
 
-import java.awt.Image;
-
-
-
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 public class Weapon
 {
-	private boolean isMurderWeapon;
-	private Image weaponPicture;
+	//Ids
+	public static Weapon[] weapons = new Weapon[6];
+	public static Weapon cafeteriaFoodWeapon = new CafeteriaFood(0);
+	public static Weapon friendSlayerWeapon = new FriendSlayer(1);
+	public static Weapon frozenWaterBottleWeapon = new FrozenWaterBottle(2);
+	public static Weapon gunCandleStickWeapon = new GunCandleStick(3);
+	public static Weapon theNortondWeapon = new TheNorton(4);
+	public static Weapon tubaWeapon = new Tuba(5);
 	
-	public Weapon()
+	//Fields
+	public static final int WEAPON_WIDTH = 256;
+	public static final int WEAPON_HEIGHT = 256;
+	
+	protected BufferedImage texture;
+	protected boolean isMurderWeapon;
+	protected final int id;
+	
+	
+	
+	public Weapon(BufferedImage texture, int id)
 	{
-		isMurderWeapon = false;
-		weaponPicture = null;
-	}
-
+		this.texture = texture;
+		this.id = id;
+		weapons[id] = this;
+	}//End constructor
+	
 	public void makeMurderWeapon()
 	{
-		//like switch murder weapon but only turns isMurderWeapon to true
 		isMurderWeapon = true;
-	}
+	}//End makeMurederWeapon method
 	
-	public void switchMurderWeapon()
+	public boolean isMurderWeapon()
 	{
-		//switches if the weapon is a murder weapon or not
-		if(isMurderWeapon)
-		{
-			isMurderWeapon = false;
-		}
-		else
-			isMurderWeapon = true;
-	}
-	
-	public void setWeaponPicture(Image weapPic)
-	{
-		//sets the picture that is the weapon
-		weaponPicture = weapPic;
-	}
-	public boolean getIsMurderWeapon()
-	{
-		//gets if the weapon is a murder weapon
 		return isMurderWeapon;
-	}
-	public Image getWeaponPicture()
+	}//End isMurderWeapon method
+	
+	public void render(Graphics g, int x, int y)
 	{
-		//gets the picture of the weapon
-		return weaponPicture;
-	}
-}
+		g.drawImage(texture, x, y, null);
+	}//End render method
+	
+	public int getId()
+	{
+		return id;
+	}//End getId
+}//End class Weapon

@@ -1,19 +1,16 @@
 package weapons;
 
-import java.awt.Image;
+import graphics.Assets;
 
-import javax.swing.ImageIcon;
-
-public class Tuba extends Weapon
+public class Tuba extends Weapon 
 {
-	public Tuba()
+	public Tuba(int id)
 	{
-		//constructs the weapon and sets its image
-		super();
-		setWeaponPicture((Image)(new ImageIcon("Tuba.JPG").getImage()));
-	}
+		super(Assets.tuba, id);
+	}//End constructor
+
 	public String toString()
 	{
 		return "Tuba";
-	}
-}
+	}//End toString method	
+}//End Tuba class
