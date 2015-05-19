@@ -42,27 +42,27 @@ public class Player extends Characters
 		//Gets user input
 		getUserInput();
 		move();
-
+		
 		//Centers camera on player
 		game.getCamera().centerOnEntity(GameState.activePlayer());
 		
-		//Gets index of room players is in
+		//Checks if player hit door
 		int doorNum = Board.hitDoor(this);
 		
-		if(!inRoom && doorNum != 0)
+		if(!isInRoom() && doorNum != 0)
 		{
 			Room room = Door.doors[doorNum].getAssignRoom();
 			if(!room.isFull())
 			{
-				setInRoom();
-				Door.doors[doorNum].movePlayerIntoRoom(this);
+				setInRoom(room);
 				State.setState(State.getState("playerOptions"));
 			}else
 			{
 				undoMove();
 				System.out.println("FULL");
 			}//End if
-		}//End if
+		}
+		//End if
 	}//End tick method
 
 	private void getUserInput()
@@ -74,34 +74,52 @@ public class Player extends Characters
 		yMove = 0;
 		
 		//If player is in a room and mover, get that player outside the door
-		if(isInRoom() && (game.getKeyboardManager().up || game.getKeyboardManager().down || game.getKeyboardManager().left || game.getKeyboardManager().right))
+		if(isInRoom())
 		{
 			//DoorTile.movePlayerOutOfRoom(this);
 			setOutOfRoom();
+		}else
+		{	
+			if(game.getKeyboardManager().u)
+				undoMove();
+			
+			if(game.getKeyboardManager().up && Board.hitObject(this, xMove, yMove))
+				yMove = -SPEED;
+			
+			if(game.getKeyboardManager().down)
+				yMove = SPEED;
+			
+			if(game.getKeyboardManager().left)
+				xMove = -SPEED;
+	
+			if(game.getKeyboardManager().right)
+				xMove = SPEED;
 		}//End if
 		
-		if(game.getKeyboardManager().u)
-			undoMove();
-		
-		if(game.getKeyboardManager().up && Board.hitObject(this, xMove, yMove))
+		if(xMove != 0 || yMove != 0)
 		{
-			yMove = -SPEED;
-		}
-		if(game.getKeyboardManager().down)
-		{
-			yMove = SPEED;
-		}
-		if(game.getKeyboardManager().left)
-		{
-			xMove = -SPEED;
-
-		}
-		if(game.getKeyboardManager().right)
-		{
-			xMove = SPEED;
+			prevTurnX = x;
+			prevTurnY = y;
+			System.out.println(prevTurnX + " " + prevTurnY);
 		}
 	}//End getUserInput method
 
+	public void setInRoom(Room room)
+	{
+		this.room = room;
+		room.setPlayerInRoom(this);
+	}//End method setInRoom
+	
+	public void setOutOfRoom()
+	{
+		room.setPlayerOutOfRoom(this);
+		room = null;
+	}//End method setOutOfInRoom
+	
+	public boolean isInRoom()
+	{
+		return room != null;
+	}//End method isInRoom
 	
 	@Override
 	public void render(Graphics g)

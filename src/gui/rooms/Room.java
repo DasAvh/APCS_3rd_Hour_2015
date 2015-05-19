@@ -1,7 +1,10 @@
 package rooms;
 
+import java.util.ArrayList;
+
 import utilities.Utilities;
 import entity.Entity;
+import entity.chars.Player;
 
 public class Room 
 {
@@ -10,21 +13,19 @@ public class Room
 	public static final int ROOM_WIDTH = 2;
 	public static final int ROOM_HEIGHT = 2;
 	public static final int ROOM_SIZE = ROOM_WIDTH * ROOM_HEIGHT; 
-	protected int[] xPoints;
-	protected int[] yPoints;
-	
+
 	//Ids
 	//public static Room generalRoom = new GeneralRoom(0); 
 	//public static Room passageRoom = new PassageRoom(1);
-	
 	public static final int GENERAL_ROOM = 0;
 	public static final int PASSAGE_ROOM = 1;
 	
 	//Protected
 	protected int id;
 	protected String name;
-	protected int playersInRoom;
-	
+	protected ArrayList<Entity> playersInRoom;
+	protected int[] xPoints;
+	protected int[] yPoints;
 	
 	public Room(String[] data, int id)
 	{
@@ -43,12 +44,13 @@ public class Room
 			index += 2;
 		}//End for
 
-		playersInRoom = 0;
+		playersInRoom = new ArrayList<Entity>(0);
+		System.out.println(playersInRoom.size());
 	}//End constructor
 	
 	public boolean isFull()
 	{
-		return ROOM_SIZE == playersInRoom;
+		return ROOM_SIZE == playersInRoom.size();
 	}//End isFull method
 	
 	public void printRoom()
@@ -72,20 +74,20 @@ public class Room
 		return false;
 	}//End inRoom method
 	
-	public void setPlayerInRoom(Entity entity)
+	public void setPlayerInRoom(Player entity)
 	{
-		System.out.println(xPoints[playersInRoom]);
-		System.out.println(yPoints[playersInRoom]);
-		System.out.println(id);
-		entity.setX(xPoints[playersInRoom] * 64);
-		entity.setY(yPoints[playersInRoom] * 64);
-		playersInRoom++;
+		entity.setX(xPoints[playersInRoom.size()] * 64);
+		entity.setY(yPoints[playersInRoom.size()] * 64);
+		playersInRoom.add(entity);
 	}//End method setPlayerInRoom
 	
-	public void setPlayerOutOfRoom(Entity entity)
+	public void setPlayerOutOfRoom(Player entity)
 	{
-		
-	}
+		entity.setX(entity.getLastMoveX());
+		entity.setY(entity.getLastMoveY());
+		playersInRoom.remove(entity);
+
+	}//End metho setPlayerOutOfRoom
 	
 	public void setName(String name)
 	{

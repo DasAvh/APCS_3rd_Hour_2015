@@ -94,7 +94,7 @@ public class Board
 	
 	public static int hitDoor(Entity entity)
 	{
-		for(int x = 1; x < Door.doors.length - 1; x++)
+		for(int x = 1; x < Door.doors.length; x++)
 		{
 			//If standing in a room, return the room number
 			if(Door.doors[x].onDoor(entity.getX() / Tile.TILE_WIDTH,
@@ -103,7 +103,7 @@ public class Board
 			//End if
 		}//End for
 		
-		//Return 0 if player is not standing in a room
+		//Return 0 if player is not standing in a rooms
 		return 0;
 	}//End hitDoor method
 	
@@ -215,8 +215,7 @@ public class Board
 			index++;
 		}//End if
 		
-		for(int i = 0; i < Door.doors.length - 1; i++)
-			System.out.println(Door.doors[i + 1].getAssignRoom().getId());
+		Door.printDoors();
 	}//End method loadTriggers
 	
 	public int[] getSpawnX()

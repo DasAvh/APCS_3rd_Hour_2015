@@ -21,9 +21,9 @@ public class PlayerOptionsState extends State
 		
 		//Setup text options
 		textOptions = new ArrayList<String>();
-		textOptions.add("1");
-		textOptions.add("Suggest");
-		textOptions.add("3");
+		textOptions.add("Suggestion");
+		textOptions.add("Interrogation");
+		textOptions.add("Accusation");
 		textOptions.add("End turn");
 		
 		//Setup colors

@@ -1,7 +1,7 @@
 package rooms;
 
-import entity.Entity;
 import utilities.Utilities;
+import entity.chars.Player;
 
 public class Door 
 {
@@ -33,14 +33,26 @@ public class Door
 		return (this.x == x) && (this.y == y);
 	}
 	
-	public void movePlayerIntoRoom(Entity entity)
+	public void movePlayerIntoRoom(Player entity)
 	{
 		System.out.println("Move into room");
 		assignedRoom.setPlayerInRoom(entity);
 	}//End movePlayerIntoRoom method
 	
-	public  void movePlayerOutOfRoom(Entity entity)
+	public  void movePlayerOutOfRoom(Player entity)
 	{
 		System.out.println("Move out of room");
 	}//End movePlayerOutOfRoom method
+	
+	public static void printDoors()
+	{
+		for(Door d : doors)
+			System.out.println(d);
+		System.out.println(doors.length);
+	}
+	
+	public String toString()
+	{
+		return String.format("X: %-3d  Y: %-3d  Id: %-3d %n", x,y,id);
+	}
 }//End door class

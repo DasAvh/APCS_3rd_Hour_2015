@@ -1,5 +1,6 @@
 package entity.chars;
 
+import rooms.Room;
 import runner.Game;
 import tiles.DoorTile;
 import tiles.Tile;
@@ -16,9 +17,10 @@ public abstract class Characters extends Entity
 	//Protected fields
 	protected int xMove, yMove;
 	protected int[] lastX, lastY;
+	protected int prevTurnX, prevTurnY;
 	protected int amountOfMoves, amountOfUndos;
 	protected boolean rolled;
-	protected boolean inRoom;
+	protected Room room;
 	
 	//Fields
 	/*
@@ -44,41 +46,37 @@ public abstract class Characters extends Entity
 		//Sets boolean variables to false
 		//Used to check if character has rolled
 		//and if character is in a room
-		inRoom = false;
+		room = null;
 		rolled = false;
+
 	}//End constructor
 	
 	public void move()
 	{
-		if(!isInRoom())
+		if(Board.hitObject(this, xMove, yMove))
 		{
-			if(Board.hitObject(this, xMove, yMove))
+			//Moves Character by xMove and yMove
+			x += xMove;
+			y += yMove;
+
+			//If Character did move, decrease amount of 
+			//moves, store last position, and increase 
+			//number of undos the Character has
+			if(xMove != 0 || yMove != 0)
 			{
-				//Moves Character by xMove and yMove
-				x += xMove;
-				y += yMove;
-	
-				//If Character did move, decrease amount of 
-				//moves, store last position, and increase 
-				//number of undos the Character has
-				if(xMove != 0 || yMove != 0)
+				amountOfMoves--;
+				amountOfUndos++;
+				
+				//Checks to see if its the Character's
+				//last turn, if so do not record last
+				//position. Prevents OutOfBounds error
+				if(amountOfMoves != 0)
 				{
-					amountOfMoves--;
-					amountOfUndos++;
-					
-					//Checks to see if its the Character's
-					//last turn, if so do not record last
-					//position. Prevents OutOfBounds error
-					if(amountOfMoves != 0)
-					{
-						lastX[amountOfMoves - 1] = x;
-						lastY[amountOfMoves - 1] = y;
-					}//End if
+
+					lastX[amountOfMoves - 1] = x;
+					lastY[amountOfMoves - 1] = y;
 				}//End if
 			}//End if
-		}else
-		{
-			
 		}//End if
 	}//End move method
 	
@@ -91,8 +89,6 @@ public abstract class Characters extends Entity
 		amountOfUndos = 0;
 		lastX[amountOfMoves - 1] = getX();
 		lastY[amountOfMoves - 1] = getY();
-		System.out.println(amountOfMoves + " " + amountOfUndos + " Index "+ (amountOfMoves - 1)+ " " +
-				lastX[amountOfMoves - 1] + " " + lastY[amountOfMoves - 1]);
 		rolled = true;
 	}//End roll method
 	
@@ -127,22 +123,18 @@ public abstract class Characters extends Entity
 	 *  Room methods *
 	 * * * * * * * * */
 	
-	public void setInRoom()
-	{
-		inRoom = true;
-	}//End method setInRoom
-	
-	public void setOutOfRoom()
-	{
-		inRoom = false;
-	}//End method setOutOfInRoom
-	
-	public boolean isInRoom()
-	{
-		return inRoom;
-	}//End method isInRoom
 	
 	//GETTER & SETTERS
+	public int getLastMoveX()
+	{
+		return prevTurnX;
+	}
+	
+	public int getLastMoveY()
+	{
+		return prevTurnY;
+	}
+	
 	public float getxMove() {
 		return xMove;
 	}

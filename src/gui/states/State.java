@@ -21,9 +21,11 @@ public abstract class State
 	protected String titleText;
 	protected Color backDropColor, passiveTextColor, activeTextColor;
 	protected int choosenText;
-	protected static final int fontSize = 48, titleFontSize = 72;
+	protected static final int fontSize = 48, titleFontSize = 72, hugeFontSize = 200;
 	protected static final Font font = new Font("Consolas", Font.PLAIN, fontSize),
-								titleFont = new Font("Consolas", Font.BOLD, titleFontSize);;
+								titleFont = new Font("Consolas", Font.BOLD, titleFontSize),
+								hugeFont = new Font("Consolas", Font.BOLD, hugeFontSize);
+								
 	
 	public State(Game game)
 	{

@@ -32,6 +32,8 @@ public class DieRollState extends State
 		textOptions.add("5");
 		textOptions.add("6");
 		
+		
+		
 		choosenText = 0;
 		
 		addState("die", this);
@@ -42,18 +44,7 @@ public class DieRollState extends State
 	{
 		if(game.getKeyboardManager().enter)
 		{
-			for(int x = 0; x < ROLL_DURATION; x++)
-			{
-				choosenText = Utilities.diceRoll();
-				render(game.getGraphics());
-				try {
-					Thread.sleep(x * ROLL_DURATION);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}//End try-catch
-			}//End for
-			System.out.println("DONE");
+			choosenText = Utilities.diceRoll();
 			GameState.players.get(GameState.currentPlayer).setAmountOfMoves(choosenText + 1);
 			setState(getState("game"));
 		}//End if
@@ -70,13 +61,13 @@ public class DieRollState extends State
 		g.fillRect(0, 0, game.getWidth(), game.getHeight());
 		
 		//Create die backdrop
-		g.setColor(passiveTextColor);
-		g.fillRect(250, 175, DIE_SIZE, DIE_SIZE);
+		//g.setColor(passiveTextColor);
+		//g.fillRect(250, 175, DIE_SIZE, DIE_SIZE);
 		
 		//Die number
-		g.setFont(font);
-		g.setColor(activeTextColor);
-		g.drawString(textOptions.get(choosenText), 352, 350);
+		g.setFont(hugeFont);
+		g.setColor(Utilities.genRandomColor());
+		g.drawString("ROLL", game.getWidth() / 2 - hugeFontSize, game.getHeight() / 2 + 75);
 		
 		g.dispose();
 	}//End render method

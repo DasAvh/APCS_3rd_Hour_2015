@@ -186,16 +186,6 @@ public class Game implements Runnable
 	{
 		return height;
 	}//End getHeight method
-
-	public Graphics getGraphics()
-	{
-		return g;
-	}
-	
-	public BufferStrategy getBufferStrategy()
-	{
-		return bs;
-	}
 	
 	public synchronized void start()
 	{
