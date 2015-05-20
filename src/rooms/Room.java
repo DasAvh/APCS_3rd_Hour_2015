@@ -98,4 +98,46 @@ public class Room
 	{
 		return id;
 	}
+	
+	//change this if you need to Jacob
+	public String getRoomPhrase()
+	{
+		if(name.equalsIgnoreCase("Art Room"))
+		{
+			return "Paintbrushes and sketches scatter the tables...";
+		}
+		else if(name.equalsIgnoreCase("Auto Shop"))
+		{
+			return "The room is filled with old cars and the smell of oil.";
+		}
+		else if(name.equalsIgnoreCase("Chem Lab"))
+		{
+			return "Old, worn down science equipment litters the room.";
+		}
+		else if(name.equalsIgnoreCase("Mrs. Chavez's Room"))
+		{
+			return "An eerie blue glow emits from the computers in the room.";
+		}
+		else if(name.equalsIgnoreCase("Mr. Clark's Room"))
+		{
+			return "There are mountains of historical objects around the room...";
+		}
+		else if(name.equalsIgnoreCase("Bathroom"))
+		{
+			return "The unearthly odor of clogged toilets fumes from the bathrooms of unkempt teenagers...";
+		}
+		else if(name.equalsIgnoreCase("Cafeteria"))
+		{
+			return "The temperature is -20 degress and the smell of undercooked tacos lingers in the air...";
+		}
+		else if(name.equalsIgnoreCase("Gym"))
+		{
+			return "The smell of sweat permeates the air...";
+		}
+		else
+		{
+			return "The normally clanging instruments lay perfectly quiet...";
+		}		
+	} //End getRoomPhrase method
+	
 }//End class Room
