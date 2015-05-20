@@ -6,6 +6,7 @@ import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 
 import runner.Game;
+import sound.SoundBoard;
 import utilities.Utilities;
 
 public class DieRollState extends State
@@ -71,4 +72,11 @@ public class DieRollState extends State
 		
 		g.dispose();
 	}//End render method
+
+	@Override
+	public void startup() 
+	{	
+		if(SoundBoard.isSoundPlaying())
+			SoundBoard.stopSound();
+	}
 }//End class DieRollState

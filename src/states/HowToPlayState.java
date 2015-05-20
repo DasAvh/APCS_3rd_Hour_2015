@@ -55,7 +55,7 @@ public class HowToPlayState extends State
 	{
 		navigateMenu();
 		if(game.getKeyboardManager().enter && choosenText == RETURN)
-			setState(State.getState("mainMenu"));
+			setState(State.getPrevState());
 		//End if
 	}//End tick method
 
@@ -67,5 +67,11 @@ public class HowToPlayState extends State
 		
 		drawMenu(g);
 	}//End render method
+
+	@Override
+	public void startup() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }//End class HowToPlayState

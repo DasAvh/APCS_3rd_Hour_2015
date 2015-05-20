@@ -39,7 +39,7 @@ public class GameOptionsState extends State
 		navigateMenu();
 		
 		if(game.getKeyboardManager().enter && choosenText == RETURN)
-			setState(State.getState("mainMenu"));
+			setState(State.getPrevState());
 	}//End method tick
 
 	@Override
@@ -50,4 +50,10 @@ public class GameOptionsState extends State
 		
 		drawMenu(g);
 	}//End render method
+
+	@Override
+	public void startup() {
+		// TODO Auto-generated method stub
+		
+	}
 }//End class GameOptionsState

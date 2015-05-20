@@ -76,6 +76,11 @@ public class Utilities
 		return (int)(Math.random() * 5 + 1);
 	}//End diceRoll method
 	
+	public static int genRandomNum(int seed)
+	{
+		return (int)(Math.random() * seed);
+	}//End method genRandomNumber
+	
 	public static Color genRandomColor()
 	{
 		return new Color((int)(Math.random() * 256), (int)(Math.random() * 256), (int)(Math.random() * 256));

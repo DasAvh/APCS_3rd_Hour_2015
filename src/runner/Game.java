@@ -6,12 +6,14 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.io.ObjectInputStream.GetField;
 
+import sound.SoundBoard;
 import states.ChoosePlayersState;
 import states.DieRollState;
 import states.GameOptionsState;
 import states.GameState;
 import states.HowToPlayState;
 import states.MainMenuState;
+import states.PauseGameState;
 import states.PlayerOptionsState;
 import states.State;
 import userinput.KeyboardManager;
@@ -42,6 +44,7 @@ public class Game implements Runnable
 	private State choosePlayerState;
 	private State playerOptionsState;
 	private State dieState;
+	private State pauseState;
 	
 	//Input
 	private KeyboardManager keyboard;
@@ -67,6 +70,7 @@ public class Game implements Runnable
 		
 		//Loads Assets
 		Assets.initialize();
+		SoundBoard.initialize();
 		
 		//Setups game camera
 		boardCamera = new Camera(this, 0, 0);
@@ -79,8 +83,10 @@ public class Game implements Runnable
 		choosePlayerState = new ChoosePlayersState(this);
 		playerOptionsState = new PlayerOptionsState(this);
 		dieState = new DieRollState(this);
+		pauseState = new PauseGameState(this);
 		
 		//Sets menuState to display main menu
+		
 		State.setState(menuState);
 	}//End initialize method
 

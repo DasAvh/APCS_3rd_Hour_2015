@@ -28,4 +28,10 @@ public class ChoosePlayersState extends State
 	{
 		
 	}//End render method
+
+	@Override
+	public void startup() {
+		// TODO Auto-generated method stub
+		
+	}
 }//End ChoosePlayersState

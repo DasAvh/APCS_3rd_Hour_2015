@@ -14,6 +14,7 @@ public abstract class State
 {
 	private static HashMap<String, State> states = new HashMap<String, State>();
 	private static State currentState = null;
+	private static State lastState = null;
 	protected Game game;
 	
 	//Fields
@@ -24,8 +25,8 @@ public abstract class State
 	protected static final int fontSize = 48, titleFontSize = 72, hugeFontSize = 200;
 	protected static final Font font = new Font("Consolas", Font.PLAIN, fontSize),
 								titleFont = new Font("Consolas", Font.BOLD, titleFontSize),
-								hugeFont = new Font("Consolas", Font.BOLD, hugeFontSize);
-								
+								hugeFont = new Font("Consolas", Font.BOLD, hugeFontSize);		
+	
 	
 	public State(Game game)
 	{
@@ -34,7 +35,9 @@ public abstract class State
 	
 	public static void setState(State state)
 	{
+		lastState = currentState;
 		currentState = state;
+		currentState.startup();
 	}//End setState method
 	
 	public static State getState()
@@ -52,6 +55,13 @@ public abstract class State
 		states.put(id, state);
 	}//End method addState
 
+	public static State getPrevState()
+	{
+		return lastState;
+	}//End lastState method
+	
+	//Abstract methods
+	public abstract void startup();
 	public abstract void tick();
 	public abstract void render(Graphics g);
 	
@@ -62,7 +72,7 @@ public abstract class State
 		
 		if(game.getKeyboardManager().down && choosenText != textOptions.size() - 1)
 			choosenText ++;
-	}
+	}//End naviagteMenu method
 	
 	protected void drawMenu(Graphics g)
 	{

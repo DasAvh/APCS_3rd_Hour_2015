@@ -10,7 +10,7 @@ public class Weapon
 	public static Weapon cafeteriaFoodWeapon = new CafeteriaFood(0);
 	public static Weapon friendSlayerWeapon = new FriendSlayer(1);
 	public static Weapon frozenWaterBottleWeapon = new FrozenWaterBottle(2);
-	public static Weapon gunCandleStickWeapon = new GunCandlestick(3);
+	public static Weapon gunCandleStickWeapon = new GunCandleStick(3);
 	public static Weapon theNortondWeapon = new TheNorton(4);
 	public static Weapon tubaWeapon = new Tuba(5);
 	

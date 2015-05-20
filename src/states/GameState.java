@@ -1,8 +1,10 @@
 package states;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import javafx.scene.AmbientLight;
 import runner.Game;
 import tiles.Tile;
 import board.Board;
@@ -25,6 +27,10 @@ public class GameState extends State
 		super(game);
 		board = new Board(game, "res/boards/TestBoardMap.txt", "res/boards/TestBoardData.txt");
 		players = new ArrayList<Player>();
+		
+		backDropColor = new Color(0, 0, 0, 155);
+		passiveTextColor = new Color(255, 0, 0);
+		activeTextColor = new Color(255, 255, 255);
 		
 		for(int x = 0; x < 6; x++)
 		{
@@ -59,7 +65,7 @@ public class GameState extends State
 		
 		//Exit game
 		if(game.getKeyboardManager().escape)
-			State.setState(getState("mainMenu"));
+			State.setState(getState("pause"));
 		
 		
 		//Allows only the currentPlayer to move
@@ -75,6 +81,12 @@ public class GameState extends State
 		//Renders players
 		for(Player p : players)
 			p.render(g);
+		
+		g.setColor(backDropColor);
+		g.fillRect(10, 10, 200, 50);
+		g.setColor(activeTextColor);
+		g.setFont(font);
+		g.drawString("Moves " + players.get(currentPlayer).getAmountOfMoves(), 20, font.getSize());
 	}//End method render
 	
 	public static Player activePlayer()
@@ -90,4 +102,10 @@ public class GameState extends State
 			currentPlayer++;
 		//End if
 	}//End method nextPlayer
+
+	@Override
+	public void startup() {
+		// TODO Auto-generated method stub
+		
+	}
 }//End GameState class

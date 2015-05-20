@@ -27,5 +27,11 @@ public class LookAtCardsState extends State
 	{
 	
 	}//End render method
+
+	@Override
+	public void startup() {
+		// TODO Auto-generated method stub
+		
+	}
 }//End ChooseCardsState
 

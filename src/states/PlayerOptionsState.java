@@ -93,4 +93,10 @@ public class PlayerOptionsState extends State
 		}//End for
 	}//End render method
 
+	@Override
+	public void startup() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }//End class PlayerOptionsState

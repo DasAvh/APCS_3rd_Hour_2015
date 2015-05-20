@@ -1,6 +1,8 @@
 package graphics;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.util.ArrayList;
 /*
  * Add method to set players image
  */
@@ -9,6 +11,9 @@ public class Assets
 	//Dimensions
 	private static final int width = 32, height = 32;
 	private static final int cardWidth = 256, cardHeight = 256;
+	
+	//MainMenu
+	public static ArrayList<BufferedImage> mainMenuImages;
 	
 	//General
 	public static BufferedImage missing;
@@ -34,6 +39,10 @@ public class Assets
 		missing = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_GRAY);
 		mainMenuBackgroundImage = ImageLoader.loadImage("/textures/misc/Josh.png");
 		
+		//Load folder of images - Only for main menu
+		mainMenuImages = new ArrayList<BufferedImage>();
+		listFilesForFolder(new File("res/textures/menu/"));
+				
 		//Player assets
 		playerOne = playerSheet.crop(0, 0, width, height);
 		playerTwo = playerSheet.crop(width, 0, width, height);
@@ -57,4 +66,19 @@ public class Assets
 		theNorton = weaponsSheet.crop(0, cardHeight, cardWidth, cardHeight);
 		tuba = weaponsSheet.crop(cardWidth, cardHeight, cardWidth, cardHeight);
 	}//End init method
+	
+	private static void listFilesForFolder(final File folder)
+	{
+	    for (final File fileEntry : folder.listFiles()) 
+	    {
+	        if (fileEntry.isDirectory()) 
+	        {
+	            listFilesForFolder(fileEntry);
+	        } else 
+	        {
+	        	mainMenuImages.add(ImageLoader.loadImage("/textures/menu/" + fileEntry.getName()));
+	            System.out.println(fileEntry.getName());
+	        }//End if
+	    }//End if
+	}//End method listFilesForFolder
 }//End class Assets
