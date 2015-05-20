@@ -99,6 +99,7 @@ public class Room
 		return id;
 	}
 	
+	//change this if you need to Jacob
 	public String getRoomPhrase()
 	{
 		if(name.equalsIgnoreCase("Art Room"))
@@ -137,5 +138,6 @@ public class Room
 		{
 			return "The normally clanging instruments lay perfectly quiet...";
 		}		
-	}
+	} //End getRoomPhrase method
+	
 }//End class Room
