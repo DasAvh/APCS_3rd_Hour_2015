@@ -10,10 +10,6 @@ public class FriendSlayer extends Weapon
 		super(Assets.friendSlayer, id);
 	}//End constructor
 
-	public String message(String name)
-	{
-		return name + " traitorously grabbed the Friend Slayer.";
-	}
 	public String toString()
 	{
 		return "A fireaxe named Friendslayer";

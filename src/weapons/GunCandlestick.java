@@ -9,10 +9,7 @@ public class GunCandleStick extends Weapon
 	{
 		super(Assets.gunCandleStick, id);
 	}//End constructor
-	public String message(String name)
-	{
-		return name + " suddenly grabbed the gun candle stick.";
-	}
+
 	public String toString()
 	{
 		return "Candlestick made of guns";

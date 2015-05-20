@@ -1,0 +1,19 @@
+How to Play  
+ 
+Warning: SEIZURES 
+ 
+Controls:  
+Move – WASD 
+Selection – ENTER 
+ 
+Instructions: 
+Have each player choose a character before starting the game. 
+Your goal is to investigate a grisly murder (Chavez) 
+and find the murderer, the weapon he/she used, 
+and the room he/she did it in. Players will roll the dice 
+on his/her turn. Once the dice is rolled, move your  character 
+the number of dots on the dice. You may enter a room 
+if it is within the number of moves on your turn.  At the end of each turn, 
+a menu will open up. Choose an option. *Insert “TL;DR” option here.
+
+Press "Enter" to exit.

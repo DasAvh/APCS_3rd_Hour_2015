@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import runner.Game;
 import tiles.Tile;
+import utilities.Utilities;
 import board.Board;
 import entity.chars.Player;
 
@@ -64,7 +65,6 @@ public class GameState extends State
 		//Exit game
 		if(game.getKeyboardManager().escape)
 			State.setState(getState("pause"));
-		
 		
 		//Allows only the currentPlayer to move
 		players.get(currentPlayer).tick();

@@ -4,7 +4,8 @@ import graphics.Assets;
 
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-import java.io.ObjectInputStream.GetField;
+
+import javax.swing.JFrame;
 
 import states.ChoosePlayersState;
 import states.DieRollState;
@@ -18,6 +19,7 @@ import states.State;
 import userinput.KeyboardManager;
 import userinput.MouseManager;
 import utilities.SoundBoard;
+import utilities.Utilities;
 import display.Display;
 
 
@@ -108,6 +110,7 @@ public class Game implements Runnable
 	
 	public void render()
 	{
+
 		bs = display.getCanvas().getBufferStrategy();
 		
 		if(bs == null)
@@ -121,6 +124,8 @@ public class Game implements Runnable
 		//Clear Screen
 		g.clearRect(0, 0, width, height);
 		//Drawing
+	//	g.setColor(Utilities.genRandomColor());
+		//g.fillRect(0, 0, 800, 600);
 		
 		if(State.getState() != null)
 			State.getState().render(g);

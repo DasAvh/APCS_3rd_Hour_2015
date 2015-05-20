@@ -8,6 +8,7 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 
 import runner.Game;
+import utilities.Utilities;
 
 public class HowToPlayState extends State
 {
@@ -19,7 +20,8 @@ public class HowToPlayState extends State
 	 */
 	
 	//Fields
-	private String instructions;
+	private ArrayList<String> instructions;
+	
 	private Font messageFont;
 	private static final int messageFontSize = 24;
 	
@@ -30,12 +32,12 @@ public class HowToPlayState extends State
 		//Text options
 		titleText = "HOW TO PLAY";
 		textOptions = new ArrayList<String>();
-		textOptions.add("Jesse did it");
+		textOptions.add("Jessie do it");
 		textOptions.add("Return");
 		
 		//How to play message
-		instructions = "Jesse did it";
-		
+		instructions = Utilities.loadFileArray("res/Instructions.txt");
+		System.out.print(instructions);
 		//Message settings
 		messageFont = new Font("Impact", Font.BOLD, messageFontSize);
 		
@@ -45,7 +47,7 @@ public class HowToPlayState extends State
 		backDropColor = new Color(0, 0, 0, 155);
 		
 		//Defaults chosen text
-		choosenText = 0;
+		choosenText = 0; 
 		
 		addState("howToPlay", this);
 	}//End constructor
@@ -54,7 +56,7 @@ public class HowToPlayState extends State
 	public void tick() 
 	{
 		navigateMenu();
-		if(game.getKeyboardManager().enter && choosenText == RETURN)
+		if(game.getKeyboardManager().enter)
 			setState(State.getPrevState());
 		//End if
 	}//End tick method
@@ -65,7 +67,19 @@ public class HowToPlayState extends State
 		//Sets background
 		g.drawImage(Assets.mainMenuBackgroundImage, 0, 0, null);
 		
-		drawMenu(g);
+		g.setColor(backDropColor);
+		g.fillRect(150, 150 - fontSize, 500, 200 * textOptions.size()); 
+		
+		
+		Font nozzle = new Font("Arial", Font.BOLD, 12);
+		g.setFont(nozzle);
+		g.setColor(Color.CYAN);
+		
+		for(int x = 0; x < instructions.size(); x++)
+		{
+			g.drawString(instructions.get(x), 200, (x * 14) + 150 );
+			System.out.println("\n");
+		}
 	}//End render method
 
 	@Override

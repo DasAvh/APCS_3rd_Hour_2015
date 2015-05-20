@@ -4,6 +4,7 @@ package utilities;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Utilities 
 {
@@ -21,7 +22,8 @@ public class Utilities
 			
 			while((line = br.readLine()) != null)
 				builder.append(line + "\n");
-			
+				
+				
 			br.close();
 		}catch(IOException e){
 			e.printStackTrace();
@@ -29,6 +31,29 @@ public class Utilities
 		
 		return builder.toString();
 	}//End loadFile
+	
+	public static ArrayList<String> loadFileArray(String path)
+	{
+		StringBuilder builder = new StringBuilder();
+		ArrayList<String> text = new ArrayList<String>();
+		try
+		{
+			BufferedReader br = new BufferedReader(new FileReader(path));
+			String line;
+			
+			while((line = br.readLine()) != null)
+				text.add(line);
+				
+				
+			br.close();
+		}catch(IOException e){
+			e.printStackTrace();
+		}//End try-catch
+		
+		return text;
+	}//End loadFile
+	
+	
 	
 	public static String[] loadFile(String path, String ignore)
 	{

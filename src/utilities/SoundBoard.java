@@ -40,20 +40,23 @@ public class SoundBoard
 	
 	public static void playSoundWithLoop(String name, int loopNum)
 	{   
-		try
+		if(!isSoundPlaying())
 		{
-			//Opens file
-	        audioInputStream = AudioSystem.getAudioInputStream(new File(name).getAbsoluteFile());
-	        clip = AudioSystem.getClip();
-	        
-	        //Starts playing sound
-	        clip.open(audioInputStream);
-	        clip.start();
-	        clip.loop(loopNum);
-	    } catch(Exception ex) {
-	        System.out.println("Error with playing sound.");
-	        ex.printStackTrace();
-	    }//End try catch
+			try
+			{
+				//Opens file
+		        audioInputStream = AudioSystem.getAudioInputStream(new File(name).getAbsoluteFile());
+		        clip = AudioSystem.getClip();
+		        
+		        //Starts playing sound
+		        clip.open(audioInputStream);
+		        clip.start();
+		        clip.loop(loopNum);
+		    } catch(Exception ex) {
+		        System.out.println("Error with playing sound.");
+		        ex.printStackTrace();
+		    }//End try catch
+		}
 	}//End method playSoundWithLoop
 	
 	public static void stopSound()

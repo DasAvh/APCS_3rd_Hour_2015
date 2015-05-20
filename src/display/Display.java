@@ -8,6 +8,8 @@ import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import utilities.Utilities;
+
 public class Display 
 {
 	//Fields
@@ -54,6 +56,11 @@ public class Display
 	{
 		return canvas;
 	}//End getCanvas method
+	
+	public void hotlineDLC()
+	{
+		frame.setBackground(Utilities.genRandomColor());
+	}
 	
 	public JFrame getFrame()
 	{
