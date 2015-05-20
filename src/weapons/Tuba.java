@@ -8,7 +8,10 @@ public class Tuba extends Weapon
 	{
 		super(Assets.tuba, id);
 	}//End constructor
-
+	public String message(String name)
+	{
+		return name + " suddunley gabbed dah toobah.";
+	}
 	public String toString()
 	{
 		return "Tuba";

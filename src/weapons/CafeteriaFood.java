@@ -9,6 +9,10 @@ public class CafeteriaFood extends Weapon
 		super(Assets.cafeteriaFood, id);
 	}//End constructor
 	
+	public String message(String name)
+	{
+		return name + " suddenly grabbed the cafeteria food.";
+	}
 	
 	public String toString()
 	{
