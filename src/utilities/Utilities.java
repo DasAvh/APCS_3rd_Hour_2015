@@ -7,6 +7,8 @@ import java.io.IOException;
 
 public class Utilities 
 {
+	//Fields
+	private static int prevNum;
 	
 	public static String loadFile(String path)
 	{
@@ -30,7 +32,6 @@ public class Utilities
 	
 	public static String[] loadFile(String path, String ignore)
 	{
-		StringBuilder builder = new StringBuilder();
 		String[] sections = {
 				"","",""
 		};
@@ -80,6 +81,17 @@ public class Utilities
 	{
 		return (int)(Math.random() * seed);
 	}//End method genRandomNumber
+	
+	public static int genNonRepeatRandomNum(int seed)
+	{
+		int num = (int)(Math.random() * seed);
+		
+		while (num == prevNum)
+			num = (int)(Math.random() * seed);
+		
+		prevNum = num;
+		return num;
+	}
 	
 	public static Color genRandomColor()
 	{

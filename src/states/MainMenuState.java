@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlAccessOrder;
 
 import display.Display;
 import runner.Game;
-import sound.SoundBoard;
+import utilities.SoundBoard;
 import utilities.Utilities;
 
 public class MainMenuState extends State 
@@ -133,7 +133,7 @@ public class MainMenuState extends State
 	
 	private void switchImages()
 	{
-		index = Utilities.genRandomNum(Assets.mainMenuImages.size());
+		index = Utilities.genNonRepeatRandomNum(Assets.mainMenuImages.size());
 	}
 	
 	private void setDirection()
@@ -168,9 +168,9 @@ public class MainMenuState extends State
 			y = 0;
 			xMove = -1;
 			yMove = -1;
-		}
-
-	}
+		}//End if
+	}//End setDirection method
+	
 	@Override
 	public void startup() 
 	{

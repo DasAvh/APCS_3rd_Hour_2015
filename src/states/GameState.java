@@ -4,11 +4,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-import javafx.scene.AmbientLight;
 import runner.Game;
 import tiles.Tile;
 import board.Board;
-import entity.Entity;
 import entity.chars.Player;
 
 public class GameState extends State 

@@ -6,7 +6,6 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.io.ObjectInputStream.GetField;
 
-import sound.SoundBoard;
 import states.ChoosePlayersState;
 import states.DieRollState;
 import states.GameOptionsState;
@@ -18,6 +17,7 @@ import states.PlayerOptionsState;
 import states.State;
 import userinput.KeyboardManager;
 import userinput.MouseManager;
+import utilities.SoundBoard;
 import display.Display;
 
 

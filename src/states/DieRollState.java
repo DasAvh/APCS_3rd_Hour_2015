@@ -6,7 +6,7 @@ import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 
 import runner.Game;
-import sound.SoundBoard;
+import utilities.SoundBoard;
 import utilities.Utilities;
 
 public class DieRollState extends State
