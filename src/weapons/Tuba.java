@@ -4,9 +4,9 @@ import graphics.Assets;
 
 public class Tuba extends Weapon 
 {
-	public Tuba(int id)
+	public Tuba()
 	{
-		super(Assets.tuba, id);
+		super(Assets.tuba, "Tuba", "This is a tuba");
 	}//End constructor
 
 	public String toString()

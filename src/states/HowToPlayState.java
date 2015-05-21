@@ -65,7 +65,7 @@ public class HowToPlayState extends State
 	public void render(Graphics g) 
 	{
 		//Sets background
-		g.drawImage(Assets.mainMenuBackgroundImage, 0, 0, null);
+		imageFade(g);
 		
 		g.setColor(backDropColor);
 		g.fillRect(150, 150 - fontSize, 500, 200 * textOptions.size()); 

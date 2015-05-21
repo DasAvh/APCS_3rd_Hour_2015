@@ -4,9 +4,12 @@ import graphics.Assets;
 
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.io.ObjectInputStream.GetField;
 
-import javax.swing.JFrame;
-
+import cards.Card;
+import board.Board;
+import javafx.scene.layout.Border;
+import sound.SoundBoard;
 import states.ChoosePlayersState;
 import states.DieRollState;
 import states.GameOptionsState;
@@ -18,8 +21,6 @@ import states.PlayerOptionsState;
 import states.State;
 import userinput.KeyboardManager;
 import userinput.MouseManager;
-import utilities.SoundBoard;
-import utilities.Utilities;
 import display.Display;
 
 
@@ -50,7 +51,8 @@ public class Game implements Runnable
 	
 	//Input
 	private KeyboardManager keyboard;
-	private MouseManager mouse;
+	private boolean newGame;
+	
 	
 	//Camera
 	private Camera boardCamera;
@@ -61,7 +63,7 @@ public class Game implements Runnable
 		this.height = height;
 		this.title = title;
 		keyboard = new KeyboardManager();
-		mouse = new MouseManager();
+		newGame = true;
 	}//End 3-args constructor
 
 	private void initialize()
@@ -73,7 +75,8 @@ public class Game implements Runnable
 		//Loads Assets
 		Assets.initialize();
 		SoundBoard.initialize();
-		
+		Board.initialize(this, "res/boards/TestBoardMap.txt", "res/boards/TestBoardData.txt");
+		Card.initialize(this);
 		//Setups game camera
 		boardCamera = new Camera(this, 0, 0);
 		
@@ -95,7 +98,6 @@ public class Game implements Runnable
 	private void tick()
 	{
 		keyboard.tick();
-		mouse.tick();
 		
 		if(keyboard.numPadOne)
 			State.setState(playerOptionsState);
@@ -110,7 +112,6 @@ public class Game implements Runnable
 	
 	public void render()
 	{
-
 		bs = display.getCanvas().getBufferStrategy();
 		
 		if(bs == null)
@@ -124,8 +125,6 @@ public class Game implements Runnable
 		//Clear Screen
 		g.clearRect(0, 0, width, height);
 		//Drawing
-	//	g.setColor(Utilities.genRandomColor());
-		//g.fillRect(0, 0, 800, 600);
 		
 		if(State.getState() != null)
 			State.getState().render(g);
@@ -178,10 +177,15 @@ public class Game implements Runnable
 		return keyboard;
 	}//End getKeyboardManager
 	
-	public MouseManager getMouseManager()
+	public boolean newGame()
 	{
-		return mouse;
-	}//End getMouseManager method
+		return newGame;
+	}
+	
+	public void gameStarted()
+	{
+		newGame = false;
+	}
 	
 	public Camera getCamera()
 	{

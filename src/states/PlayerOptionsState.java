@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import rooms.Room;
 import runner.Game;
 
 public class PlayerOptionsState extends State 
@@ -14,6 +15,7 @@ public class PlayerOptionsState extends State
 	private Color overlayColor, passiveTextColor, activeTextColor;
 	private int choosenText, fontSize; //This is how chosen is spelled now
 	private Font font;
+	private static Room roomToRender;
 	
 	public PlayerOptionsState(Game game) 
 	{
@@ -53,8 +55,8 @@ public class PlayerOptionsState extends State
 		
 		if(game.getKeyboardManager().enter && choosenText == 3)
 		{
-			setState(State.getState("game"));
 			GameState.nextPlayer();
+			setState(State.getState("game"));
 			choosenText = 0;
 		}//End if
 	}//End tick method
@@ -68,7 +70,7 @@ public class PlayerOptionsState extends State
 		int spaceing = 100;
 		
 		//Maintains game state as a background
-		getState("game").render(g);
+		g.drawImage(roomToRender.getTexture(), 0,0, null);
 		
 		//Sets black overlay
 		g.setColor(overlayColor);
@@ -93,8 +95,14 @@ public class PlayerOptionsState extends State
 		}//End for
 	}//End render method
 
+	public static void setRoom(Room room)
+	{
+		roomToRender = room;
+	}
+	
 	@Override
-	public void startup() {
+	public void startup() 
+	{
 		// TODO Auto-generated method stub
 		
 	}

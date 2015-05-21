@@ -5,9 +5,9 @@ import graphics.Assets;
 public class GunCandleStick extends Weapon
 {
 
-	public GunCandleStick(int id) 
+	public GunCandleStick() 
 	{
-		super(Assets.gunCandleStick, id);
+		super(Assets.gunCandleStick, "Gun CandleStick", "Candlestick made of guns");
 	}//End constructor
 
 	public String toString()

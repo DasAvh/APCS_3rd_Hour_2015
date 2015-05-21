@@ -5,9 +5,9 @@ import graphics.Assets;
 public class FrozenWaterBottle extends Weapon 
 {
 
-	public FrozenWaterBottle(int id) 
+	public FrozenWaterBottle() 
 	{
-		super(Assets.frozenWaterBottle, id);
+		super(Assets.frozenWaterBottle,"Frozen Water Bottle", "FROZEN water bottle");
 	}//End constructor
 	
 	public String toString()

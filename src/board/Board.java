@@ -2,6 +2,7 @@ package board;
 
 import java.awt.Graphics;
 import java.awt.geom.GeneralPath;
+import java.util.ArrayList;
 
 import rooms.Door;
 import rooms.GeneralRoom;
@@ -16,24 +17,37 @@ public class Board
 {
 	//Fields
 	private Game game;
-	private int width, height;
-	private int[] spawnX, spawnY;
-	
+	private static int width;
+	private static int height;
+	private static int[] spawnX;
+	private static int[] spawnY;
+	private static Board board;
 	//Static Fields
 	public static int[][] rooms;
 	public static int[][] tiles;
 	public static int[][] doors;
 	
-	public Board(Game game, String path, String pathTwo)
+	public static void initialize(Game game, String path, String pathTwo)
 	{
+		//new Board(game, "res/boards/TestBoardMap.txt", "res/boards/TestBoardData.txt");
 		//Allows use of Game methods
-		this.game = game;
+		board = new Board(game);
 		
 		//Loads two files
 		loadBoard(path);
 		loadTriggers(pathTwo);
+	}
+	
+	public Board(Game game)
+	{
+		this.game = game;
 	}//End constructor
 
+	public static Board getBoard()
+	{
+		return board;
+	}
+	
 	public void tick()
 	{
 		//Maybe disco tiles if threading can be figured out?
@@ -129,7 +143,7 @@ public class Board
 		return 0;
 	}//End hitDoor method
 	
-	private void loadBoard(String path)
+	private static void loadBoard(String path)
 	{
 		//Loads file & separates data into a array
 		//Data is split if there is whitespace
@@ -152,7 +166,7 @@ public class Board
 		}//End outer for
 	}//End method loadBoard
 	
-	private void loadTriggers(String path)
+	private static void loadTriggers(String path)
 	{
 		//Loads file with special condition and returns a Array of Strings
 		//Condition is to skip lines that begin with the condition
@@ -181,8 +195,13 @@ public class Board
 		//Starting index of second array
 		index = 1;
 		
+		ArrayList<String> roomNames = Utilities.loadFileArray("res/lists/rooms.txt");
+		String name;
+		System.out.println(roomNames);
+		
 		while(index < roomData.length)
 		{
+			name = roomNames.remove(0);
 			//If roomData starts with "P", generate a Passage Room
 			//Else generate a General room
 			//Gets x and y coordinates and splits the data
@@ -191,12 +210,12 @@ public class Board
 			{
 				String temp = roomData[index].substring(3);
 				String[] xyCoords = temp.split("\\s+");
-				Room.rooms[index] = new PassageRoom(xyCoords, index);
+				Room.rooms[index] = new PassageRoom(xyCoords, index, name);
 			}else
 			{
 				String temp = roomData[index].substring(3);
 				String[] xyCoords = temp.split("\\s+");
-				Room.rooms[index] = new GeneralRoom(xyCoords, index);
+				Room.rooms[index] = new GeneralRoom(xyCoords, index, name);
 			}//End if
 			
 			index++;

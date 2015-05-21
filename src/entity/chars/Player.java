@@ -10,6 +10,7 @@ import rooms.Door;
 import rooms.Room;
 import runner.Game;
 import states.GameState;
+import states.PlayerOptionsState;
 import states.State;
 import tiles.DoorTile;
 import tiles.Tile;
@@ -19,9 +20,9 @@ public class Player extends Characters
 {
 	private BufferedImage texture;
 
-	public Player(Game game, int x, int y, int id) 
+	public Player(Game game, int x, int y, int id, String name, String slogan) 
 	{
-		super(game, x, y, Characters.CHARACTER_WIDTH, Characters.CHARACTER_HEIGHT, id);
+		super(game, x, y, Characters.CHARACTER_WIDTH, Characters.CHARACTER_HEIGHT, id, name, slogan);
 		
 		//Sets Player texture
 		switch (id) 
@@ -55,6 +56,8 @@ public class Player extends Characters
 			if(!room.isFull())
 			{
 				setInRoom(room);
+				PlayerOptionsState.setRoom(room);
+				resetRoll();
 				State.setState(State.getState("playerOptions"));
 			}else
 			{
@@ -76,7 +79,6 @@ public class Player extends Characters
 		//If player is in a room and mover, get that player outside the door
 		if(isInRoom())
 		{
-			//DoorTile.movePlayerOutOfRoom(this);
 			setOutOfRoom();
 		}else
 		{	

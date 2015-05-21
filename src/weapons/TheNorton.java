@@ -5,9 +5,9 @@ import graphics.Assets;
 public class TheNorton extends Weapon 
 {
 
-	public TheNorton( int id) 
+	public TheNorton() 
 	{
-		super(Assets.theNorton, id);
+		super(Assets.theNorton, "The Nortan", "The Norton Anthology of English Literature");
 	}//End constructor
 
 	public String toString()

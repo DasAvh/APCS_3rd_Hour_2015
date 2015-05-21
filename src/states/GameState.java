@@ -4,10 +4,12 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import cards.Card;
+import javafx.scene.AmbientLight;
 import runner.Game;
 import tiles.Tile;
-import utilities.Utilities;
 import board.Board;
+import entity.Entity;
 import entity.chars.Player;
 
 public class GameState extends State 
@@ -24,18 +26,14 @@ public class GameState extends State
 	public GameState(Game game)
 	{
 		super(game);
-		board = new Board(game, "res/boards/TestBoardMap.txt", "res/boards/TestBoardData.txt");
+		
+		board = Board.getBoard();
 		players = new ArrayList<Player>();
+
 		
 		backDropColor = new Color(0, 0, 0, 155);
 		passiveTextColor = new Color(255, 0, 0);
 		activeTextColor = new Color(255, 255, 255);
-		
-		for(int x = 0; x < 6; x++)
-		{
-			players.add(new Player(game, board.getSpawnX()[x] * Tile.TILE_WIDTH, board.getSpawnY()[x] * Tile.TILE_HEIGHT, x + 1));
-			
-		}//End for
 		
 		currentPlayer = 0;
 		
@@ -65,6 +63,7 @@ public class GameState extends State
 		//Exit game
 		if(game.getKeyboardManager().escape)
 			State.setState(getState("pause"));
+		
 		
 		//Allows only the currentPlayer to move
 		players.get(currentPlayer).tick();

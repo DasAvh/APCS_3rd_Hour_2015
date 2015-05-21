@@ -4,9 +4,9 @@ import graphics.Assets;
 
 public class CafeteriaFood extends Weapon 
 {
-	public CafeteriaFood(int id) 
+	public CafeteriaFood() 
 	{
-		super(Assets.cafeteriaFood, id);
+		super(Assets.cafeteriaFood, "Cafeteria Food", "Some Cafeteria food");
 	}//End constructor
 	
 	

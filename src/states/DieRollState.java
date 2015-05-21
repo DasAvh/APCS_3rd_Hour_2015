@@ -2,12 +2,14 @@ package states;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 
 import runner.Game;
-import utilities.SoundBoard;
+import sound.SoundBoard;
+import tiles.Tile;
 import utilities.Utilities;
+import board.Board;
+import entity.chars.Player;
 
 public class DieRollState extends State
 {
@@ -78,5 +80,18 @@ public class DieRollState extends State
 	{	
 		if(SoundBoard.isSoundPlaying())
 			SoundBoard.stopSound();
+		
+		if(game.newGame())
+		{
+			for(int x = 0; x < 6; x++)
+			{
+				GameState.players.add(new Player(game, Board.getBoard().getSpawnX()[x] * Tile.TILE_WIDTH, Board.getBoard().getSpawnY()[x] * Tile.TILE_HEIGHT, x + 1,
+						ChoosePlayersState.choosenCards.get(x).getName(),ChoosePlayersState.choosenCards.get(x).getSlogan()));
+				
+			}//End for
+			game.gameStarted();
+			for(Player p : GameState.players)
+				System.out.println(p.getName() + "\n" + p.getSlogan());
+		}
 	}
 }//End class DieRollState

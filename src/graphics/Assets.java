@@ -3,6 +3,8 @@ package graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
+
+import utilities.Utilities;
 /*
  * Add method to set players image
  */
@@ -11,6 +13,7 @@ public class Assets
 	//Dimensions
 	private static final int width = 32, height = 32;
 	private static final int cardWidth = 256, cardHeight = 256;
+	private static final int roomWidth = 800, roomHeight = 600;
 	
 	//MainMenu
 	public static ArrayList<BufferedImage> mainMenuImages;
@@ -25,15 +28,22 @@ public class Assets
 	//Floors
 	public static BufferedImage hallway, door, wall, room, spawn;
 	
+	//Rooms
+	public static BufferedImage clarkRoom, chemLab, chavezRoom, cafeteria, autoRoom, bathroom, bandRoom, artStudio, gym, hall;
+	
 	//Weapons
 	public static BufferedImage cafeteriaFood, friendSlayer, frozenWaterBottle, gunCandleStick,
 								theNorton, tuba;
+	
+	public static ArrayList<String> chars;
+	
 	public static void initialize()
 	{
 		//Sprite sheets
 		SpriteSheet boardSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tiles/FloorSheet.png"));
 		SpriteSheet playerSheet = new SpriteSheet(ImageLoader.loadImage("/textures/players/PlayerSheet.png"));
 		SpriteSheet weaponsSheet = new SpriteSheet(ImageLoader.loadImage("/textures/weapons/WeaponsSheet.png"));
+		SpriteSheet roomsSheet = new SpriteSheet(ImageLoader.loadImage("/textures/rooms/RoomsSheet.png"));
 		
 		//General
 		missing = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_GRAY);
@@ -65,6 +75,21 @@ public class Assets
 		gunCandleStick = weaponsSheet.crop(cardWidth * 3, 0, cardWidth, cardHeight);
 		theNorton = weaponsSheet.crop(0, cardHeight, cardWidth, cardHeight);
 		tuba = weaponsSheet.crop(cardWidth, cardHeight, cardWidth, cardHeight);
+		
+		//Room assets
+		clarkRoom = roomsSheet.crop(0, 0, roomWidth, roomHeight);
+		chemLab = roomsSheet.crop(roomWidth, 0, roomWidth, roomHeight);
+		chavezRoom = roomsSheet.crop(roomWidth * 2, 0, roomWidth, roomHeight);
+		cafeteria = roomsSheet.crop(0, roomHeight, roomWidth, roomHeight);
+		autoRoom = roomsSheet.crop(roomWidth, roomHeight, roomWidth, roomHeight);
+		bathroom = roomsSheet.crop(roomWidth * 2, roomHeight, roomWidth, roomHeight);
+		bandRoom = roomsSheet.crop(0, roomHeight * 2, roomWidth, roomHeight);
+		artStudio = roomsSheet.crop(roomWidth, roomHeight * 2, roomWidth, roomHeight);
+		gym = roomsSheet.crop(roomWidth * 2, roomHeight * 2, roomWidth, roomHeight);
+		
+		//Load class
+		chars = Utilities.loadFileArray("res/lists/players.txt");
+		System.out.println(chars);
 	}//End init method
 	
 	private static void listFilesForFolder(final File folder)

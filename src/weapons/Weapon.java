@@ -2,17 +2,12 @@ package weapons;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class Weapon
 {
 	//Ids
-	public static Weapon[] weapons = new Weapon[6];
-	public static Weapon cafeteriaFoodWeapon = new CafeteriaFood(0);
-	public static Weapon friendSlayerWeapon = new FriendSlayer(1);
-	public static Weapon frozenWaterBottleWeapon = new FrozenWaterBottle(2);
-	public static Weapon gunCandleStickWeapon = new GunCandleStick(3);
-	public static Weapon theNortondWeapon = new TheNorton(4);
-	public static Weapon tubaWeapon = new Tuba(5);
+	public static ArrayList<Weapon> weapons = new ArrayList<Weapon>();
 	
 	//Fields
 	public static final int WEAPON_WIDTH = 256;
@@ -20,15 +15,23 @@ public class Weapon
 	
 	protected BufferedImage texture;
 	protected boolean isMurderWeapon;
-	protected final int id;
+	private String name, slogan;
 	
+	public static void initialize()
+	{
+		weapons.add(new Tuba());
+		weapons.add(new TheNorton());
+		weapons.add(new GunCandleStick());
+		weapons.add(new FrozenWaterBottle());
+		weapons.add(new FriendSlayer());
+		weapons.add(new CafeteriaFood());
+	}
 	
-	
-	public Weapon(BufferedImage texture, int id)
+	public Weapon(BufferedImage texture, String name, String slogan)
 	{
 		this.texture = texture;
-		this.id = id;
-		weapons[id] = this;
+		this.name = name;
+		this.slogan = slogan;
 	}//End constructor
 	
 	public void makeMurderWeapon()
@@ -46,8 +49,14 @@ public class Weapon
 		g.drawImage(texture, x, y, null);
 	}//End render method
 	
-	public int getId()
+	public String getName()
 	{
-		return id;
-	}//End getId
+		return name;
+	}
+	
+	public String getSlogan()
+	{
+		return slogan;
+	}
 }//End class Weapon
+

@@ -5,9 +5,9 @@ import graphics.Assets;
 public class FriendSlayer extends Weapon 
 {
 
-	public FriendSlayer(int id) 
+	public FriendSlayer() 
 	{
-		super(Assets.friendSlayer, id);
+		super(Assets.friendSlayer, "FriendSlayer", "A fireaxe named Friendslayer");
 	}//End constructor
 
 	public String toString()

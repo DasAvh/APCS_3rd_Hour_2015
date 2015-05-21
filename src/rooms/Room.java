@@ -1,10 +1,12 @@
 package rooms;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import utilities.Utilities;
 import entity.Entity;
 import entity.chars.Player;
+import graphics.Assets;
 
 public class Room 
 {
@@ -23,11 +25,13 @@ public class Room
 	//Protected
 	protected int id;
 	protected String name;
+	protected String slogan;
 	protected ArrayList<Entity> playersInRoom;
 	protected int[] xPoints;
 	protected int[] yPoints;
+	protected BufferedImage texture;
 	
-	public Room(String[] data, int id)
+	public Room(String[] data, int id, String name)
 	{
 		xPoints = new int[ROOM_SIZE];
 		yPoints = new int[ROOM_SIZE];
@@ -44,8 +48,26 @@ public class Room
 			index += 2;
 		}//End for
 
+		//this.slogan = slogan;
+		this.name = name;
 		playersInRoom = new ArrayList<Entity>(0);
-		System.out.println(playersInRoom.size());
+		
+		switch (id) 
+		{
+		case 1:texture = Assets.clarkRoom;break;
+		case 2:texture = Assets.chemLab;break;
+		case 3:texture = Assets.chavezRoom;break;
+		case 4:texture = Assets.cafeteria;break;
+		case 5:texture = Assets.autoRoom;break;
+		case 6:texture = Assets.bathroom;break;
+		case 7:texture = Assets.bandRoom;break;
+		case 8:texture = Assets.artStudio;break;
+		case 9:texture = Assets.gym;break;
+		case 10:texture = Assets.clarkRoom;break;
+
+		default:
+			break;
+		}
 	}//End constructor
 	
 	public boolean isFull()
@@ -79,6 +101,7 @@ public class Room
 		entity.setX(xPoints[playersInRoom.size()] * 64);
 		entity.setY(yPoints[playersInRoom.size()] * 64);
 		playersInRoom.add(entity);
+		System.out.println(name);
 	}//End method setPlayerInRoom
 	
 	public void setPlayerOutOfRoom(Player entity)
@@ -89,10 +112,20 @@ public class Room
 
 	}//End metho setPlayerOutOfRoom
 	
-	public void setName(String name)
+	public BufferedImage getTexture()
 	{
-		this.name = name;
-	}//End setName
+		return texture;
+	}
+	
+	public String getName()
+	{
+		return name;
+	}
+	
+	public String getSlogan()
+	{
+		return slogan;
+	}
 	
 	public int getId()
 	{

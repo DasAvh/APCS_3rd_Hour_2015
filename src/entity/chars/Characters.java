@@ -22,13 +22,16 @@ public abstract class Characters extends Entity
 	protected boolean rolled;
 	protected Room room;
 	
+	//Evidence Stuff
+	protected String name, slogan;
+	
 	//Fields
 	/*
 	 * Weapon - Weapon assign to player
 	 * Room   - Room assign to player
 	 */
 	
-	public Characters(Game game, int x, int y, int width, int height, int id) 
+	public Characters(Game game, int x, int y, int width, int height, int id, String name, String slogan) 
 	{
 		//Entity constructor
 		super(game, x, y, width, height, id);
@@ -49,6 +52,8 @@ public abstract class Characters extends Entity
 		room = null;
 		rolled = false;
 
+		this.name = name;
+		this.slogan = slogan;
 	}//End constructor
 	
 	public void move()
@@ -119,10 +124,19 @@ public abstract class Characters extends Entity
 		}//End if
 	}//End method undoMove
 	
-	/* * * * * * * * *
-	 *  Room methods *
-	 * * * * * * * * */
+	/* * * * * * * * * * *
+	 *  Evidence methods *
+	 * * * * * * * * * * */
 	
+	public String getName()
+	{
+		return name;
+	}
+	
+	public String getSlogan()
+	{
+		return slogan;
+	}
 	
 	//GETTER & SETTERS
 	public int getLastMoveX()

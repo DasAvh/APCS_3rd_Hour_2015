@@ -1,5 +1,7 @@
 package states;
 
+import graphics.Assets;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -26,7 +28,9 @@ public abstract class State
 	protected static final Font font = new Font("Consolas", Font.PLAIN, fontSize),
 								titleFont = new Font("Consolas", Font.BOLD, titleFontSize),
 								hugeFont = new Font("Consolas", Font.BOLD, hugeFontSize);		
-	
+	protected static int HEIGHT, WIDTH;
+	protected static Color fade;
+	protected static int speed, ticks, index, x, y, xMove, yMove;
 	
 	public State(Game game)
 	{
@@ -108,5 +112,91 @@ public abstract class State
 		}//End for
 	}//End render method
 	
+	////////FADING\\\\\\\\\
+
+	public void imageFade(Graphics g) 
+	{	
+		//Sets background
+	//	g.drawImage(Assets.mainMenuImages.get(index), 0, 0, 800, 600, null);
+		translateImage(g);
+		g.setColor(fade);
+		g.fillRect(0, 0, WIDTH, HEIGHT);
+		
+		darken();
+
+		
+		if(ticks == 2)
+		{
+			x = 0;
+			y = 0;
+			switchImages();
+			setDirection();
+			ticks = 0;
+		}
+	}//End render method
+
+	private void darken()
+	{
+		if(fade.getAlpha() == 255)
+		{
+			speed = -1;
+			ticks++;
+		}
+		else if(fade.getAlpha() == 0)
+		{
+			speed = 1;
+			ticks++;
+		}//End if
+		
+		fade = new Color(0,0,0, fade.getAlpha() + speed);
+	}//End darken method
+	
+	private void translateImage(Graphics g)
+	{
+		g.drawImage(Assets.mainMenuImages.get(index), x, y, 1400, 1200, null);
+		x += xMove;
+		y += yMove;
+	}
+	
+	private void switchImages()
+	{
+		index = Utilities.genRandomNum(Assets.mainMenuImages.size());
+	}
+	
+	protected void setDirection()
+	{
+		int temp = Utilities.genRandomNum(4);
+		
+		if(temp == 0)
+		{
+			System.out.println("ZERO");
+			x = -600;
+			y = -600;
+			xMove = 1;
+			yMove = 1;
+		}else if(temp == 1)
+		{
+			System.out.println("ONE");
+			x = -600  ;
+			y = 0 ;
+			xMove = 1;
+			yMove = -1;
+		}else if(temp == 2)
+		{
+			System.out.println("TWO");
+			x = 0;
+			y = -600;
+			xMove = -1;
+			yMove = 1;
+		}else if(temp == 3)
+		{
+			System.out.println("THREE");
+			x = 0;
+			y = 0;
+			xMove = -1;
+			yMove = -1;
+		}
+
+	}
 	
 }//End abstract class State

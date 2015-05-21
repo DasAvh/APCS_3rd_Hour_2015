@@ -8,8 +8,6 @@ import java.util.ArrayList;
 
 public class Utilities 
 {
-	//Fields
-	private static int prevNum;
 	
 	public static String loadFile(String path)
 	{
@@ -22,8 +20,7 @@ public class Utilities
 			
 			while((line = br.readLine()) != null)
 				builder.append(line + "\n");
-				
-				
+			
 			br.close();
 		}catch(IOException e){
 			e.printStackTrace();
@@ -32,31 +29,9 @@ public class Utilities
 		return builder.toString();
 	}//End loadFile
 	
-	public static ArrayList<String> loadFileArray(String path)
-	{
-		StringBuilder builder = new StringBuilder();
-		ArrayList<String> text = new ArrayList<String>();
-		try
-		{
-			BufferedReader br = new BufferedReader(new FileReader(path));
-			String line;
-			
-			while((line = br.readLine()) != null)
-				text.add(line);
-				
-				
-			br.close();
-		}catch(IOException e){
-			e.printStackTrace();
-		}//End try-catch
-		
-		return text;
-	}//End loadFile
-	
-	
-	
 	public static String[] loadFile(String path, String ignore)
 	{
+		StringBuilder builder = new StringBuilder();
 		String[] sections = {
 				"","",""
 		};
@@ -88,6 +63,27 @@ public class Utilities
 		return sections;
 	}//End loadFile
 	
+	public static ArrayList<String> loadFileArray(String path)
+	{
+		StringBuilder builder = new StringBuilder();
+		ArrayList<String> text = new ArrayList<String>();
+		try
+		{
+			BufferedReader br = new BufferedReader(new FileReader(path));
+			String line;
+			
+			while((line = br.readLine()) != null)
+				text.add(line);
+				
+				
+			br.close();
+		}catch(IOException e){
+			e.printStackTrace();
+		}//End try-catch
+		
+		return text;
+	}//End loadFile
+	
 	public static int parseInt(String number){
 		try{
 			return Integer.parseInt(number);
@@ -106,17 +102,6 @@ public class Utilities
 	{
 		return (int)(Math.random() * seed);
 	}//End method genRandomNumber
-	
-	public static int genNonRepeatRandomNum(int seed)
-	{
-		int num = (int)(Math.random() * seed);
-		
-		while (num == prevNum)
-			num = (int)(Math.random() * seed);
-		
-		prevNum = num;
-		return num;
-	}
 	
 	public static Color genRandomColor()
 	{
