@@ -12,6 +12,7 @@ public class Room
 {
 	//Fields
 	public static Room[] rooms = new Room[10];
+	public static ArrayList<Room> rooms2 = new ArrayList<Room>();
 	public static final int ROOM_WIDTH = 2;
 	public static final int ROOM_HEIGHT = 2;
 	public static final int ROOM_SIZE = ROOM_WIDTH * ROOM_HEIGHT; 
@@ -68,6 +69,8 @@ public class Room
 		default:
 			break;
 		}
+		
+		rooms2.add(this);
 	}//End constructor
 	
 	public boolean isFull()
@@ -130,5 +133,10 @@ public class Room
 	public int getId()
 	{
 		return id;
+	}
+	
+	public String toString()
+	{
+		return name;
 	}
 }//End class Room

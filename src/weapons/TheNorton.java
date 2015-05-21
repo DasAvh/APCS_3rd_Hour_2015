@@ -2,12 +2,11 @@ package weapons;
 
 import graphics.Assets;
 
-public class TheNorton extends Weapon 
+public class TheNorton extends Weapon
 {
-
 	public TheNorton() 
 	{
-		super(Assets.theNorton, "The Nortan", "The Norton Anthology of English Literature");
+		super(Assets.theNorton, "The Nortan", "The Norton Anthology of English Literature",1);
 	}//End constructor
 
 	public String toString()

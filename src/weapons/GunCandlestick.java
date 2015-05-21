@@ -7,7 +7,7 @@ public class GunCandleStick extends Weapon
 
 	public GunCandleStick() 
 	{
-		super(Assets.gunCandleStick, "Gun CandleStick", "Candlestick made of guns");
+		super(Assets.gunCandleStick, "Gun CandleStick", "Candlestick made of guns",2);
 	}//End constructor
 
 	public String toString()

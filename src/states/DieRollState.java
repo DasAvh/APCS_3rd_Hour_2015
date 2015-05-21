@@ -85,13 +85,10 @@ public class DieRollState extends State
 		{
 			for(int x = 0; x < 6; x++)
 			{
-				GameState.players.add(new Player(game, Board.getBoard().getSpawnX()[x] * Tile.TILE_WIDTH, Board.getBoard().getSpawnY()[x] * Tile.TILE_HEIGHT, x + 1,
+				GameState.players.add(new Player(game, Board.getBoard().getSpawnX()[x] * Tile.TILE_WIDTH, Board.getBoard().getSpawnY()[x] * Tile.TILE_HEIGHT, ChoosePlayersState.choosenCards.get(x).getId(),
 						ChoosePlayersState.choosenCards.get(x).getName(),ChoosePlayersState.choosenCards.get(x).getSlogan()));
 				
 			}//End for
-			game.gameStarted();
-			for(Player p : GameState.players)
-				System.out.println(p.getName() + "\n" + p.getSlogan());
 		}
 	}
 }//End class DieRollState

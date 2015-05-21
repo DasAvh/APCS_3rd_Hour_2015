@@ -5,21 +5,20 @@ import graphics.Assets;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import board.Board;
 import rooms.Door;
 import rooms.Room;
 import runner.Game;
 import states.GameState;
 import states.PlayerOptionsState;
 import states.State;
-import tiles.DoorTile;
-import tiles.Tile;
-import utilities.Utilities;
+import board.Board;
+import cards.RoomCard;
+import cards.WeaponCard;
 
 public class Player extends Characters 
 {
 	private BufferedImage texture;
-
+	
 	public Player(Game game, int x, int y, int id, String name, String slogan) 
 	{
 		super(game, x, y, Characters.CHARACTER_WIDTH, Characters.CHARACTER_HEIGHT, id, name, slogan);
@@ -123,6 +122,12 @@ public class Player extends Characters
 		return room != null;
 	}//End method isInRoom
 	
+	public Room getRoom()
+	{
+		return room;
+	}
+	
+
 	@Override
 	public void render(Graphics g)
 	{

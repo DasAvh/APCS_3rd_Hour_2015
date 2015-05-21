@@ -124,6 +124,8 @@ public abstract class Characters extends Entity
 		}//End if
 	}//End method undoMove
 	
+
+	
 	/* * * * * * * * * * *
 	 *  Evidence methods *
 	 * * * * * * * * * * */

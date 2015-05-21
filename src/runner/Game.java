@@ -4,11 +4,7 @@ import graphics.Assets;
 
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-import java.io.ObjectInputStream.GetField;
 
-import cards.Card;
-import board.Board;
-import javafx.scene.layout.Border;
 import sound.SoundBoard;
 import states.ChoosePlayersState;
 import states.DieRollState;
@@ -18,9 +14,13 @@ import states.HowToPlayState;
 import states.MainMenuState;
 import states.PauseGameState;
 import states.PlayerOptionsState;
+import states.ResultsState;
 import states.State;
+import states.SuggestionState;
 import userinput.KeyboardManager;
-import userinput.MouseManager;
+import weapons.Weapon;
+import board.Board;
+import cards.Card;
 import display.Display;
 
 
@@ -48,11 +48,15 @@ public class Game implements Runnable
 	private State playerOptionsState;
 	private State dieState;
 	private State pauseState;
+	private State suggestionState;
+	private State resultsState;
 	
 	//Input
 	private KeyboardManager keyboard;
 	private boolean newGame;
 	
+	//Evidence
+
 	
 	//Camera
 	private Camera boardCamera;
@@ -74,9 +78,11 @@ public class Game implements Runnable
 		
 		//Loads Assets
 		Assets.initialize();
+		Weapon.initialize();
 		SoundBoard.initialize();
 		Board.initialize(this, "res/boards/TestBoardMap.txt", "res/boards/TestBoardData.txt");
 		Card.initialize(this);
+		
 		//Setups game camera
 		boardCamera = new Camera(this, 0, 0);
 		
@@ -89,7 +95,8 @@ public class Game implements Runnable
 		playerOptionsState = new PlayerOptionsState(this);
 		dieState = new DieRollState(this);
 		pauseState = new PauseGameState(this);
-		
+		suggestionState = new SuggestionState(this);
+		resultsState = new ResultsState(this);
 		//Sets menuState to display main menu
 		
 		State.setState(menuState);

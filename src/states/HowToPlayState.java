@@ -37,7 +37,7 @@ public class HowToPlayState extends State
 		
 		//How to play message
 		instructions = Utilities.loadFileArray("res/Instructions.txt");
-		System.out.print(instructions);
+		
 		//Message settings
 		messageFont = new Font("Impact", Font.BOLD, messageFontSize);
 		

@@ -41,7 +41,7 @@ public class Assets
 	{
 		//Sprite sheets
 		SpriteSheet boardSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tiles/FloorSheet.png"));
-		SpriteSheet playerSheet = new SpriteSheet(ImageLoader.loadImage("/textures/players/PlayerSheet.png"));
+		SpriteSheet playerSheet = new SpriteSheet(ImageLoader.loadImage("/textures/players/PlayerSheet2.png"));
 		SpriteSheet weaponsSheet = new SpriteSheet(ImageLoader.loadImage("/textures/weapons/WeaponsSheet.png"));
 		SpriteSheet roomsSheet = new SpriteSheet(ImageLoader.loadImage("/textures/rooms/RoomsSheet.png"));
 		

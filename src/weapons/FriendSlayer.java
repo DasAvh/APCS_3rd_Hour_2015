@@ -2,12 +2,12 @@ package weapons;
 
 import graphics.Assets;
 
-public class FriendSlayer extends Weapon 
+public class FriendSlayer extends Weapon
 {
 
 	public FriendSlayer() 
 	{
-		super(Assets.friendSlayer, "FriendSlayer", "A fireaxe named Friendslayer");
+		super(Assets.friendSlayer, "FriendSlayer", "A fireaxe named Friendslayer",4);
 	}//End constructor
 
 	public String toString()

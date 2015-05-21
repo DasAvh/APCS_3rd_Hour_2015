@@ -2,12 +2,12 @@ package weapons;
 
 import graphics.Assets;
 
-public class FrozenWaterBottle extends Weapon 
+public class FrozenWaterBottle extends Weapon
 {
 
 	public FrozenWaterBottle() 
 	{
-		super(Assets.frozenWaterBottle,"Frozen Water Bottle", "FROZEN water bottle");
+		super(Assets.frozenWaterBottle,"Frozen Water Bottle", "FROZEN water bottle",3);
 	}//End constructor
 	
 	public String toString()

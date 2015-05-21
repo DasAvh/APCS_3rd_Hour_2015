@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import cards.Card;
+import cards.RoomCard;
 import rooms.Room;
 import runner.Game;
 
@@ -53,7 +55,14 @@ public class PlayerOptionsState extends State
 		if(game.getKeyboardManager().down && choosenText != textOptions.size() - 1)
 			choosenText ++;
 		
-		if(game.getKeyboardManager().enter && choosenText == 3)
+		if(game.getKeyboardManager().enter && choosenText == 0)
+		{
+			SuggestionState.setRoom(roomToRender);
+			setState(State.getState("suggestion"));
+
+			choosenText = 0;
+		}
+		else if(game.getKeyboardManager().enter && choosenText == 3)
 		{
 			GameState.nextPlayer();
 			setState(State.getState("game"));

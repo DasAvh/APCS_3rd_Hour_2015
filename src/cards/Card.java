@@ -13,7 +13,7 @@ import graphics.Assets;
 
 public class Card extends Entity
 {
-	private static final int CARD_WIDTH = 200, CARD_HEIGHT = 250;
+	public static final int CARD_WIDTH = 200, CARD_HEIGHT = 250;
 	//Fields
 	public static ArrayList<PlayerCard> playerCards = new ArrayList<PlayerCard>();
 	public static ArrayList<WeaponCard> weaponCards = new ArrayList<WeaponCard>();
@@ -27,6 +27,7 @@ public class Card extends Entity
 		String[] temp;
 		int rowPadding = 100;
 		int colPadding = 0;
+		
 		for(int x = 0; x < Assets.chars.size(); x++)
 		{
 			temp = Assets.chars.get(x).split("-");
@@ -40,22 +41,29 @@ public class Card extends Entity
 			}
 		}//End for
 		
-		Weapon.initialize();
+		rowPadding = 100;
+		colPadding = 0;
 		
 		for(int x = 0; x < Weapon.weapons.size(); x++)
 		{
-			weaponCards.add(new WeaponCard(game, 0,0, CARD_WIDTH, CARD_HEIGHT, x, Weapon.weapons.get(x).getName(),Weapon.weapons.get(x).getSlogan()));
+			weaponCards.add(new WeaponCard(game, colPadding, rowPadding, CARD_WIDTH, CARD_HEIGHT, x, Weapon.weapons.get(x).getName(),Weapon.weapons.get(x).getSlogan()));
+			
+			colPadding += CARD_WIDTH + 25;
+			if((x + 1) % 3 == 0)
+			{
+				rowPadding += 25 + CARD_HEIGHT;
+				colPadding = 0;
+			}
 		}//End for
 		
 		for(int x = 1; x < Room.rooms.length; x++)
 		{
-			System.out.println(x);
 			roomCards.add(new RoomCard(game, 0,0, CARD_WIDTH, CARD_HEIGHT, x, Room.rooms[x].getName()));
 		}//End for
 		
-		System.out.println(playerCards);
-		System.out.println(weaponCards);
-		System.out.println(roomCards);
+		System.out.println(playerCards.size());
+		System.out.println(weaponCards.size());
+		System.out.println(roomCards.size());
 	}//End method initialize
 	
 	public Card(Game game, int x, int y, int width, int height, int id) 
@@ -88,6 +96,12 @@ public class Card extends Entity
 	public void unChoosen()
 	{
 		choosen = false;
+	}
+	
+	public static void reset()
+	{
+		for(int x = 0; x < playerCards.size(); x++)
+			playerCards.get(x).unChoosen();
 	}
 	
 	@Override

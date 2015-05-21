@@ -2,11 +2,11 @@ package weapons;
 
 import graphics.Assets;
 
-public class Tuba extends Weapon 
+public class Tuba extends Weapon
 {
 	public Tuba()
 	{
-		super(Assets.tuba, "Tuba", "This is a tuba");
+		super(Assets.tuba, "Tuba", "This is a tuba",0);
 	}//End constructor
 
 	public String toString()

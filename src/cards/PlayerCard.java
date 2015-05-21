@@ -1,6 +1,7 @@
 package cards;
 
 import runner.Game;
+import entity.chars.Player;
 
 public class PlayerCard extends Card
 {
@@ -12,4 +13,18 @@ public class PlayerCard extends Card
 		this.slogan = slogan;
 	}//End PlayerCard class
 	
+	public PlayerCard getCard()
+	{
+		return this;
+	}
+	
+	public String toString()
+	{
+		return getName();
+	}
+	
+	public Object equal(Object other)
+	{
+		return getName().equals(((Player)(other)).getName()); 
+	}
 }///End PlayerCard class

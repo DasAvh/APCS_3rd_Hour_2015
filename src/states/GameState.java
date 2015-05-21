@@ -4,18 +4,19 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-import cards.Card;
-import javafx.scene.AmbientLight;
+import rooms.Room;
 import runner.Game;
-import tiles.Tile;
+import weapons.Weapon;
 import board.Board;
-import entity.Entity;
+import cards.Card;
 import entity.chars.Player;
+import evidence.Watson;
 
 public class GameState extends State 
 {
 	//Fields
 	private Board board;
+	private static Watson watson;
 	
 	//Players
 	public static ArrayList<Player> players;
@@ -29,7 +30,6 @@ public class GameState extends State
 		
 		board = Board.getBoard();
 		players = new ArrayList<Player>();
-
 		
 		backDropColor = new Color(0, 0, 0, 155);
 		passiveTextColor = new Color(255, 0, 0);
@@ -100,9 +100,20 @@ public class GameState extends State
 		//End if
 	}//End method nextPlayer
 
+	public static Watson getWatson()
+	{
+		return watson;
+	}
+	
 	@Override
-	public void startup() {
+	public void startup() 
+	{
 		// TODO Auto-generated method stub
-		
+		if(game.newGame())
+		{
+			watson = new Watson(players, Weapon.weapons, Room.rooms2);
+			Card.reset();
+			game.gameStarted();
+		}
 	}
 }//End GameState class

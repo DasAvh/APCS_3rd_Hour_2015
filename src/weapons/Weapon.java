@@ -16,6 +16,7 @@ public class Weapon
 	protected BufferedImage texture;
 	protected boolean isMurderWeapon;
 	private String name, slogan;
+	private int id;
 	
 	public static void initialize()
 	{
@@ -27,11 +28,12 @@ public class Weapon
 		weapons.add(new CafeteriaFood());
 	}
 	
-	public Weapon(BufferedImage texture, String name, String slogan)
+	public Weapon(BufferedImage texture, String name, String slogan, int id)
 	{
 		this.texture = texture;
 		this.name = name;
 		this.slogan = slogan;
+		this.id = id;
 	}//End constructor
 	
 	public void makeMurderWeapon()
@@ -57,6 +59,11 @@ public class Weapon
 	public String getSlogan()
 	{
 		return slogan;
+	}
+	
+	public int getId()
+	{
+		return id;
 	}
 }//End class Weapon
 
