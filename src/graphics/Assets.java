@@ -59,7 +59,7 @@ public class Assets
 				
 		//Load cards
 		playerCardImages = new HashMap<Integer, BufferedImage>();
-		listCardFilesForFolder(new File("res/textures/cards/"));
+		listCardFilesForFolder(new File("res/textures/cards/players/"));
 		
 		//Player assets
 		playerImages = new ArrayList<BufferedImage>();
@@ -127,7 +127,7 @@ public class Assets
 	        {
 	        	int index = fileEntry.getName().indexOf(".");
 	        	
-	        	playerCardImages.put( Utilities.parseInt(fileEntry.getName().substring(0, index)),ImageLoader.loadImage("/textures/cards/" + fileEntry.getName()));
+	        	playerCardImages.put( Utilities.parseInt(fileEntry.getName().substring(0, index)),ImageLoader.loadImage("/textures/cards/players/" + fileEntry.getName()));
 	            System.out.println(fileEntry.getName());
 	        }//End if
 	    }//End if
