@@ -22,6 +22,11 @@ public class RoomCard extends Card
 		return getName();
 	}
 	
+	public String getSlogan()
+	{
+		return slogan;
+	}
+	
 	public Object equal(Object other)
 	{
 		return getName().equals(((Room)(other)).getName()); 

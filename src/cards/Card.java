@@ -13,14 +13,22 @@ import graphics.Assets;
 
 public class Card extends Entity
 {
-	public static final int CARD_WIDTH = 200, CARD_HEIGHT = 250;
+	public static final int CARD_WIDTH = 296, CARD_HEIGHT = 376;
 	//Fields
 	public static ArrayList<PlayerCard> playerCards = new ArrayList<PlayerCard>();
 	public static ArrayList<WeaponCard> weaponCards = new ArrayList<WeaponCard>();
 	public static ArrayList<RoomCard> roomCards = new ArrayList<RoomCard>();
-	public static BufferedImage texture;
-	private boolean choosen;
+	protected BufferedImage texture;
+	protected boolean choosen;
 	protected String name, slogan;
+	
+	
+	public Card(Game game, int x, int y, int width, int height, int id) 
+	{
+		super(game, x, y, width, height, id);
+		System.out.println(id);
+		choosen = false;
+	}
 	
 	public static void initialize(Game game)
 	{
@@ -46,7 +54,7 @@ public class Card extends Entity
 		
 		for(int x = 0; x < Weapon.weapons.size(); x++)
 		{
-			weaponCards.add(new WeaponCard(game, colPadding, rowPadding, CARD_WIDTH, CARD_HEIGHT, x, Weapon.weapons.get(x).getName(),Weapon.weapons.get(x).getSlogan()));
+			weaponCards.add(new WeaponCard(game, colPadding, rowPadding, CARD_WIDTH, CARD_HEIGHT, Weapon.weapons.get(x).getId(), Weapon.weapons.get(x).getName(),Weapon.weapons.get(x).getSlogan()));
 			
 			colPadding += CARD_WIDTH + 25;
 			if((x + 1) % 3 == 0)
@@ -65,13 +73,6 @@ public class Card extends Entity
 		System.out.println(weaponCards.size());
 		System.out.println(roomCards.size());
 	}//End method initialize
-	
-	public Card(Game game, int x, int y, int width, int height, int id) 
-	{
-		super(game, x, y, width, height, id);
-		texture = Assets.mainMenuBackgroundImage;
-		choosen = false;
-	}
 
 	public String getName()
 	{
@@ -109,6 +110,21 @@ public class Card extends Entity
 	{
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public static ArrayList<PlayerCard> getPlayerCards()
+	{
+		return playerCards;
+	}
+
+	public static ArrayList<WeaponCard> getWeaponCards()
+	{
+		return weaponCards;
+	}
+
+	public static ArrayList<RoomCard> getRoomCards()
+	{
+		return roomCards;
 	}
 
 	@Override

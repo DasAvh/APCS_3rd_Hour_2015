@@ -3,6 +3,7 @@ package graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import utilities.Utilities;
 /*
@@ -23,7 +24,10 @@ public class Assets
 	public static BufferedImage mainMenuBackgroundImage;
 	
 	//Players
-	public static BufferedImage playerOne, playerTwo, playerThree, playerFour, playerFive, playerSix; 
+	public static ArrayList<BufferedImage> playerImages;
+	
+	//Cards
+	public static HashMap<Integer, BufferedImage> playerCardImages;
 	
 	//Floors
 	public static BufferedImage hallway, door, wall, room, spawn;
@@ -53,13 +57,18 @@ public class Assets
 		mainMenuImages = new ArrayList<BufferedImage>();
 		listFilesForFolder(new File("res/textures/menu/"));
 				
+		//Load cards
+		playerCardImages = new HashMap<Integer, BufferedImage>();
+		listCardFilesForFolder(new File("res/textures/cards/"));
+		
 		//Player assets
-		playerOne = playerSheet.crop(0, 0, width, height);
-		playerTwo = playerSheet.crop(width, 0, width, height);
-		playerThree = playerSheet.crop(width * 2, 0, width, height);
-		playerFour = playerSheet.crop(width * 3, 0, width, height);
-		playerFive = playerSheet.crop(0, height, width, height);
-		playerSix = playerSheet.crop(width, height, width, height);
+		playerImages = new ArrayList<BufferedImage>();
+		playerImages.add(playerSheet.crop(0, 0, width, height));
+		playerImages.add(playerSheet.crop(width, 0, width, height));
+		playerImages.add(playerSheet.crop(width * 2, 0, width, height));
+		playerImages.add(playerSheet.crop(width * 3, 0, width, height));
+		playerImages.add(playerSheet.crop(0, height, width, height));
+		playerImages.add(playerSheet.crop(width, height, width, height));
 		
 		//Floor Assets
 		hallway = boardSheet.crop(0, 0, width, height);
@@ -102,6 +111,23 @@ public class Assets
 	        } else 
 	        {
 	        	mainMenuImages.add(ImageLoader.loadImage("/textures/menu/" + fileEntry.getName()));
+	            System.out.println(fileEntry.getName());
+	        }//End if
+	    }//End if
+	}//End method listFilesForFolder
+	
+	private static void listCardFilesForFolder(final File folder)
+	{
+	    for (final File fileEntry : folder.listFiles()) 
+	    {
+	        if (fileEntry.isDirectory()) 
+	        {
+	            listFilesForFolder(fileEntry);
+	        } else 
+	        {
+	        	int index = fileEntry.getName().indexOf(".");
+	        	
+	        	playerCardImages.put( Utilities.parseInt(fileEntry.getName().substring(0, index)),ImageLoader.loadImage("/textures/cards/" + fileEntry.getName()));
 	            System.out.println(fileEntry.getName());
 	        }//End if
 	    }//End if

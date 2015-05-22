@@ -64,8 +64,7 @@ public class ChoosePlayersState extends State
 			{
 				System.out.println(Card.playerCards.get(choosenText));
 				game.getCamera().centerOnEntity(card);
-				g.setColor(Color.BLUE);
-				g.fillRect((int)(card.getX() - game.getCamera().getxOffset()) - 5, (int)(card.getY() - game.getCamera().getyOffset() - 5), card.getWidth() + 10, card.getHeight() + 10);
+				g.setColor(new Color(0,0,0,155));
 			}
 			
 

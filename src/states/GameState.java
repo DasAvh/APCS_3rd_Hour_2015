@@ -112,6 +112,18 @@ public class GameState extends State
 		if(game.newGame())
 		{
 			watson = new Watson(players, Weapon.weapons, Room.rooms2);
+			
+			for(Player p : players)
+			{
+				Card[] temp = p.getCards();
+				
+				for(Card c : temp)
+					System.out.println(p + ": " + c);
+				
+				System.out.println("----------------------------------------------");
+				
+			}
+			
 			Card.reset();
 			game.gameStarted();
 		}

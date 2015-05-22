@@ -6,11 +6,13 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import sound.SoundBoard;
+import states.AcussationState;
 import states.ChoosePlayersState;
 import states.DieRollState;
 import states.GameOptionsState;
 import states.GameState;
 import states.HowToPlayState;
+import states.InterragationState;
 import states.MainMenuState;
 import states.PauseGameState;
 import states.PlayerOptionsState;
@@ -49,6 +51,8 @@ public class Game implements Runnable
 	private State dieState;
 	private State pauseState;
 	private State suggestionState;
+	private State interragationState;
+	private State acussationState;
 	private State resultsState;
 	
 	//Input
@@ -96,6 +100,8 @@ public class Game implements Runnable
 		dieState = new DieRollState(this);
 		pauseState = new PauseGameState(this);
 		suggestionState = new SuggestionState(this);
+		interragationState = new InterragationState(this);
+		acussationState = new AcussationState(this);
 		resultsState = new ResultsState(this);
 		//Sets menuState to display main menu
 		

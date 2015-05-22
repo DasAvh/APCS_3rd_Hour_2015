@@ -61,6 +61,18 @@ public class PlayerOptionsState extends State
 			setState(State.getState("suggestion"));
 
 			choosenText = 0;
+		}else if(game.getKeyboardManager().enter && choosenText == 1)
+		{
+			InterragationState.setRoom(roomToRender);
+			setState(State.getState("interragation"));
+
+			choosenText = 0;
+		}else if(game.getKeyboardManager().enter && choosenText == 2)
+		{
+			AcussationState.setRoom(roomToRender);
+			setState(State.getState("acussation"));
+		
+			choosenText = 0;
 		}
 		else if(game.getKeyboardManager().enter && choosenText == 3)
 		{

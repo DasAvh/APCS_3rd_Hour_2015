@@ -11,29 +11,21 @@ import runner.Game;
 import states.GameState;
 import states.PlayerOptionsState;
 import states.State;
+import utilities.Utilities;
 import board.Board;
-import cards.RoomCard;
-import cards.WeaponCard;
+import cards.Card;
 
 public class Player extends Characters 
 {
 	private BufferedImage texture;
+	private Card[] cards;
 	
 	public Player(Game game, int x, int y, int id, String name, String slogan) 
 	{
 		super(game, x, y, Characters.CHARACTER_WIDTH, Characters.CHARACTER_HEIGHT, id, name, slogan);
-		
+		cards = new Card[6];
 		//Sets Player texture
-		switch (id) 
-		{ 
-			case 1:texture = Assets.playerOne;break;
-			case 2:texture = Assets.playerTwo;break;
-			case 3:texture = Assets.playerThree;break;
-			case 4:texture = Assets.playerFour;break;
-			case 5:texture = Assets.playerFive;break;
-			case 6:texture = Assets.playerSix;break;
-			default:texture = Assets.missing;break;
-		}//End switch 
+		texture = Assets.playerImages.remove(Utilities.genRandomNum(Assets.playerImages.size() ));
 	}//End constructor
 
 	@Override
@@ -127,7 +119,20 @@ public class Player extends Characters
 		return room;
 	}
 	
-
+	public void giveCards(Card[] cards)
+	{
+		this.cards = cards;
+	}
+	
+	public Card[] getCards()
+	{
+		return cards;
+	}
+	
+	public String toString()
+	{
+		return name;
+	}
 	@Override
 	public void render(Graphics g)
 	{
