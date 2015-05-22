@@ -97,6 +97,10 @@ public class MainMenuState extends State
 		// TODO Auto-generated method stub
 		imageFade(g);
 		drawMenu(g);
+		g.setColor(Color.WHITE);
+		g.setFont(new Font("Arial", Font.PLAIN, 12));
+		g.drawString("Disclaimer", 0, 588);
+		g.drawString("No Justin the Menu isn't fixed yet", 0, 600);
 	}
 
 }//End class MainMenuState
