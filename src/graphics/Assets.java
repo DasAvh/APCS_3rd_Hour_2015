@@ -6,62 +6,75 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import utilities.Utilities;
+
 /*
  * Add method to set players image
  */
-public class Assets
-{
-	//Dimensions
+public class Assets {
+	// Dimensions
 	private static final int width = 32, height = 32;
 	private static final int cardWidth = 256, cardHeight = 256;
 	private static final int roomWidth = 800, roomHeight = 600;
-	
-	//MainMenu
+
+	// MainMenu
 	public static ArrayList<BufferedImage> mainMenuImages;
-	
-	//General
+
+	// General
 	public static BufferedImage missing;
 	public static BufferedImage mainMenuBackgroundImage;
-	
-	//Players
+
+	// Players
 	public static ArrayList<BufferedImage> playerImages;
-	
-	//Cards
+
+	// Cards
 	public static HashMap<Integer, BufferedImage> playerCardImages;
-	
-	//Floors
+	public static HashMap<Integer, BufferedImage> weaponCardImages;
+	public static HashMap<Integer, BufferedImage> roomCardImages;
+	// Floors
 	public static BufferedImage hallway, door, wall, room, spawn;
-	
-	//Rooms
-	public static BufferedImage clarkRoom, chemLab, chavezRoom, cafeteria, autoRoom, bathroom, bandRoom, artStudio, gym, hall;
-	
-	//Weapons
-	public static BufferedImage cafeteriaFood, friendSlayer, frozenWaterBottle, gunCandleStick,
-								theNorton, tuba;
-	
+
+	// Rooms
+	public static BufferedImage clarkRoom, chemLab, chavezRoom, cafeteria,
+			autoRoom, bathroom, bandRoom, artStudio, gym, hall;
+	// Weapons
+	public static BufferedImage cafeteriaFood, friendSlayer, frozenWaterBottle,
+			gunCandleStick, theNorton, tuba;
+
 	public static ArrayList<String> chars;
-	
-	public static void initialize()
-	{
-		//Sprite sheets
-		SpriteSheet boardSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tiles/FloorSheet.png"));
-		SpriteSheet playerSheet = new SpriteSheet(ImageLoader.loadImage("/textures/players/PlayerSheet2.png"));
-		SpriteSheet weaponsSheet = new SpriteSheet(ImageLoader.loadImage("/textures/weapons/WeaponsSheet.png"));
-		SpriteSheet roomsSheet = new SpriteSheet(ImageLoader.loadImage("/textures/rooms/RoomsSheet.png"));
-		
-		//General
+	public static ArrayList<String> winnerSayings;
+
+	public static void initialize() {
+		// Sprite sheets
+		SpriteSheet boardSheet = new SpriteSheet(
+				ImageLoader.loadImage("/textures/tiles/FloorSheet.png"));
+		SpriteSheet playerSheet = new SpriteSheet(
+				ImageLoader.loadImage("/textures/players/PlayerSheet2.png"));
+		SpriteSheet weaponsSheet = new SpriteSheet(
+				ImageLoader.loadImage("/textures/weapons/WeaponsSheet.png"));
+		SpriteSheet roomsSheet = new SpriteSheet(
+				ImageLoader.loadImage("/textures/rooms/RoomsSheet.png"));
+
+		// General
 		missing = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_GRAY);
-		mainMenuBackgroundImage = ImageLoader.loadImage("/textures/misc/Josh.png");
-		
-		//Load folder of images - Only for main menu
+		mainMenuBackgroundImage = ImageLoader
+				.loadImage("/textures/misc/Josh.png");
+
+		// Load folder of images - Only for main menu
 		mainMenuImages = new ArrayList<BufferedImage>();
 		listFilesForFolder(new File("res/textures/menu/"));
-				
-		//Load cards
+
+		// Load cards
 		playerCardImages = new HashMap<Integer, BufferedImage>();
-		listCardFilesForFolder(new File("res/textures/cards/players/"));
-		
-		//Player assets
+		weaponCardImages = new HashMap<Integer, BufferedImage>();
+		roomCardImages = new HashMap<Integer, BufferedImage>();
+		listCardFilesForFolder(new File("res/textures/cards/players/"),
+				"/textures/cards/players/", playerCardImages);
+		listCardFilesForFolder(new File("res/textures/cards/weapons/"),
+				"/textures/cards/weapons/", weaponCardImages);
+		listCardFilesForFolder(new File("res/textures/cards/rooms/"),
+				"/textures/cards/rooms/", roomCardImages);
+
+		// Player assets
 		playerImages = new ArrayList<BufferedImage>();
 		playerImages.add(playerSheet.crop(0, 0, width, height));
 		playerImages.add(playerSheet.crop(width, 0, width, height));
@@ -69,67 +82,71 @@ public class Assets
 		playerImages.add(playerSheet.crop(width * 3, 0, width, height));
 		playerImages.add(playerSheet.crop(0, height, width, height));
 		playerImages.add(playerSheet.crop(width, height, width, height));
-		
-		//Floor Assets
+
+		// Floor Assets
 		hallway = boardSheet.crop(0, 0, width, height);
 		wall = boardSheet.crop(width, 0, width, height);
 		room = boardSheet.crop(width * 2, 0, width, height);
 		spawn = boardSheet.crop(width * 3, 0, width, height);
 		door = boardSheet.crop(0, height, width, height);
-		
-		//Weapon assets
+
+		// Weapon assets
 		cafeteriaFood = weaponsSheet.crop(0, 0, cardWidth, cardHeight);
 		friendSlayer = weaponsSheet.crop(cardWidth, 0, cardWidth, cardHeight);
-		frozenWaterBottle = weaponsSheet.crop(cardWidth * 2, 0, cardWidth, cardHeight);
-		gunCandleStick = weaponsSheet.crop(cardWidth * 3, 0, cardWidth, cardHeight);
+		frozenWaterBottle = weaponsSheet.crop(cardWidth * 2, 0, cardWidth,
+				cardHeight);
+		gunCandleStick = weaponsSheet.crop(cardWidth * 3, 0, cardWidth,
+				cardHeight);
 		theNorton = weaponsSheet.crop(0, cardHeight, cardWidth, cardHeight);
 		tuba = weaponsSheet.crop(cardWidth, cardHeight, cardWidth, cardHeight);
-		
-		//Room assets
+
+		// Room assets
 		clarkRoom = roomsSheet.crop(0, 0, roomWidth, roomHeight);
 		chemLab = roomsSheet.crop(roomWidth, 0, roomWidth, roomHeight);
 		chavezRoom = roomsSheet.crop(roomWidth * 2, 0, roomWidth, roomHeight);
 		cafeteria = roomsSheet.crop(0, roomHeight, roomWidth, roomHeight);
-		autoRoom = roomsSheet.crop(roomWidth, roomHeight, roomWidth, roomHeight);
-		bathroom = roomsSheet.crop(roomWidth * 2, roomHeight, roomWidth, roomHeight);
+		autoRoom = roomsSheet
+				.crop(roomWidth, roomHeight, roomWidth, roomHeight);
+		bathroom = roomsSheet.crop(roomWidth * 2, roomHeight, roomWidth,
+				roomHeight);
 		bandRoom = roomsSheet.crop(0, roomHeight * 2, roomWidth, roomHeight);
-		artStudio = roomsSheet.crop(roomWidth, roomHeight * 2, roomWidth, roomHeight);
-		gym = roomsSheet.crop(roomWidth * 2, roomHeight * 2, roomWidth, roomHeight);
-		
-		//Load class
+		artStudio = roomsSheet.crop(roomWidth, roomHeight * 2, roomWidth,
+				roomHeight);
+		gym = roomsSheet.crop(roomWidth * 2, roomHeight * 2, roomWidth,
+				roomHeight);
+
+		// Load class
 		chars = Utilities.loadFileArray("res/lists/players.txt");
-		System.out.println(chars);
-	}//End init method
-	
-	private static void listFilesForFolder(final File folder)
-	{
-	    for (final File fileEntry : folder.listFiles()) 
-	    {
-	        if (fileEntry.isDirectory()) 
-	        {
-	            listFilesForFolder(fileEntry);
-	        } else 
-	        {
-	        	mainMenuImages.add(ImageLoader.loadImage("/textures/menu/" + fileEntry.getName()));
-	            System.out.println(fileEntry.getName());
-	        }//End if
-	    }//End if
-	}//End method listFilesForFolder
-	
-	private static void listCardFilesForFolder(final File folder)
-	{
-	    for (final File fileEntry : folder.listFiles()) 
-	    {
-	        if (fileEntry.isDirectory()) 
-	        {
-	            listFilesForFolder(fileEntry);
-	        } else 
-	        {
-	        	int index = fileEntry.getName().indexOf(".");
-	        	
-	        	playerCardImages.put( Utilities.parseInt(fileEntry.getName().substring(0, index)),ImageLoader.loadImage("/textures/cards/players/" + fileEntry.getName()));
-	            System.out.println(fileEntry.getName());
-	        }//End if
-	    }//End if
-	}//End method listFilesForFolder
-}//End class Assets
+		winnerSayings = Utilities.loadFileArray("res/lists/winnerSayings.txt");
+		System.out.println(winnerSayings);
+	}// End init method
+
+	private static void listFilesForFolder(final File folder) {
+		for (final File fileEntry : folder.listFiles()) {
+			if (fileEntry.isDirectory()) {
+				listFilesForFolder(fileEntry);
+			} else {
+				mainMenuImages.add(ImageLoader.loadImage("/textures/menu/"
+						+ fileEntry.getName()));
+				System.out.println(fileEntry.getName());
+			}// End if
+		}// End if
+	}// End method listFilesForFolder
+
+	private static void listCardFilesForFolder(final File folder, String path,
+			HashMap<Integer, BufferedImage> list) {
+		for (final File fileEntry : folder.listFiles()) {
+			if (fileEntry.isDirectory()) {
+				listFilesForFolder(fileEntry);
+			} else {
+				int index = fileEntry.getName().indexOf(".");
+				System.out.println(fileEntry.getPath());
+				list.put(
+						Utilities.parseInt(fileEntry.getName().substring(0,
+								index)),
+						ImageLoader.loadImage(path + fileEntry.getName()));
+				System.out.println(fileEntry.getName());
+			}// End if
+		}// End if
+	}// End method listFilesForFolder
+}// End class Assets

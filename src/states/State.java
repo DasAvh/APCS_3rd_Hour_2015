@@ -4,6 +4,7 @@ import graphics.Assets;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -199,4 +200,11 @@ public abstract class State
 
 	}
 	
+	
+	  protected void drawCenteredString(String s, int w, int h, int y, Graphics g) 
+	  {
+			FontMetrics fm = g.getFontMetrics();
+			int x = (w - fm.stringWidth(s)) / 2;
+			g.drawString(s, x, y);
+	  }
 }//End abstract class State

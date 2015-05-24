@@ -14,18 +14,21 @@ import states.State;
 import utilities.Utilities;
 import board.Board;
 import cards.Card;
+import cards.PlayerCard;
 
 public class Player extends Characters 
 {
 	private BufferedImage texture;
 	private Card[] cards;
+	private boolean hasLost;
 	
 	public Player(Game game, int x, int y, int id, String name, String slogan) 
 	{
 		super(game, x, y, Characters.CHARACTER_WIDTH, Characters.CHARACTER_HEIGHT, id, name, slogan);
 		cards = new Card[6];
+		hasLost = false;
 		//Sets Player texture
-		texture = Assets.playerImages.remove(Utilities.genRandomNum(Assets.playerImages.size() ));
+		texture = Assets.playerImages.get(Utilities.genRandomNum(Assets.playerImages.size() ));
 	}//End constructor
 
 	@Override
@@ -129,9 +132,33 @@ public class Player extends Characters
 		return cards;
 	}
 	
+	public String getName()
+	{
+		return name;
+	}
+	
+	public void playerLost()
+	{
+		hasLost = true;
+		GameState.aPlayerLost();
+	}
+	
+	public boolean hasPlayerLost()
+	{
+		return hasLost;
+	}
 	public String toString()
 	{
 		return name;
+	}
+	
+	
+	public boolean equals(Object other)
+	{
+		if(other instanceof PlayerCard)
+			return getName().equals(((PlayerCard)(other)).getName());
+		else
+			return getName().equals(((Player)(other)).getName());
 	}
 	@Override
 	public void render(Graphics g)

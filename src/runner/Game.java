@@ -5,20 +5,24 @@ import graphics.Assets;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
+import rooms.Room;
 import sound.SoundBoard;
-import states.AcussationState;
 import states.ChoosePlayersState;
 import states.DieRollState;
 import states.GameOptionsState;
 import states.GameState;
 import states.HowToPlayState;
-import states.InterragationState;
+import states.LookAtCardsState;
 import states.MainMenuState;
 import states.PauseGameState;
 import states.PlayerOptionsState;
-import states.ResultsState;
+import states.PlayerWinsState;
+import states.PlayersLostState;
 import states.State;
-import states.SuggestionState;
+import states.sia.AcussationState;
+import states.sia.InterragationState;
+import states.sia.ResultsState;
+import states.sia.SuggestionState;
 import userinput.KeyboardManager;
 import weapons.Weapon;
 import board.Board;
@@ -54,7 +58,9 @@ public class Game implements Runnable
 	private State interragationState;
 	private State acussationState;
 	private State resultsState;
-	
+	private State lookAtCardsState;
+	private State playerWinsState;
+	private State playersLostState;
 	//Input
 	private KeyboardManager keyboard;
 	private boolean newGame;
@@ -103,7 +109,11 @@ public class Game implements Runnable
 		interragationState = new InterragationState(this);
 		acussationState = new AcussationState(this);
 		resultsState = new ResultsState(this);
+		lookAtCardsState = new LookAtCardsState(this);
+		playerWinsState = new PlayerWinsState(this);
+		playersLostState = new PlayersLostState(this);
 		//Sets menuState to display main menu
+
 		
 		State.setState(menuState);
 	}//End initialize method
@@ -111,11 +121,6 @@ public class Game implements Runnable
 	private void tick()
 	{
 		keyboard.tick();
-		
-		if(keyboard.numPadOne)
-			State.setState(playerOptionsState);
-		else if(keyboard.numPadTwo)
-			State.setState(gameState);
 		
 		if(State.getState() != null)
 		{
@@ -198,6 +203,11 @@ public class Game implements Runnable
 	public void gameStarted()
 	{
 		newGame = false;
+	}
+	
+	public void endGame()
+	{
+		newGame = true;
 	}
 	
 	public Camera getCamera()

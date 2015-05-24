@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import javax.xml.bind.annotation.XmlAccessOrder;
 
+import cards.Card;
 import display.Display;
 import runner.Game;
 import sound.SoundBoard;

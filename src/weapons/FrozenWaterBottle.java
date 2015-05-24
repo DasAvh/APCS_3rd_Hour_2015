@@ -7,7 +7,7 @@ public class FrozenWaterBottle extends Weapon
 
 	public FrozenWaterBottle() 
 	{
-		super(Assets.frozenWaterBottle,"Frozen Water Bottle", "FROZEN water bottle",3);
+		super(Assets.frozenWaterBottle,"a Frozen Water Bottle", "FROZEN water bottle",3);
 	}//End constructor
 	
 	public String toString()

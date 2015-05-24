@@ -10,11 +10,12 @@ import graphics.Assets;
 public class PlayerCard extends Card
 {
 
-	public PlayerCard(Game game, int x, int y, int width, int height, int id, String name, String slogan) 
+	public PlayerCard(Game game, int x, int y, int width, int height, int id, String name, String slogan, String interSlogan) 
 	{
 		super(game, x, y, width, height, id);
 		this.name = name;
 		this.slogan = slogan;
+		this.interSlogan = interSlogan;
 		texture = Assets.playerCardImages.get(id);
 	}//End PlayerCard class
 	
@@ -38,11 +39,11 @@ public class PlayerCard extends Card
 	
 	public String toString()
 	{
-		return getName() + " " + id;
+		return getName();
 	}
 	
 	public Object equal(Object other)
 	{
-		return getName().equals(((Player)(other)).getName()); 
+		return getName().equals(((PlayerCard)(other)).getName()); 
 	}
 }///End PlayerCard class

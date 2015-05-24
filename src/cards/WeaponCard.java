@@ -1,5 +1,6 @@
 package cards;
 
+import graphics.Assets;
 import runner.Game;
 import weapons.Weapon;
 
@@ -11,6 +12,7 @@ public class WeaponCard extends Card
 		super(game, x, y, width, height, id);
 		this.name = name;
 		this.slogan = slogan;
+		texture = Assets.weaponCardImages.get(id);
 	}//End WeaponCard class
 	
 	public WeaponCard getCard()
@@ -25,6 +27,6 @@ public class WeaponCard extends Card
 
 	public Object equal(Object other)
 	{
-		return getName().equals(((Weapon)(other)).getName()); 
+		return getName().equals(((WeaponCard)(other)).getName()); 
 	}
 }//End class WeaponCard

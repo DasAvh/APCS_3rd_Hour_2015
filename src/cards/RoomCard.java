@@ -1,5 +1,6 @@
 package cards;
 
+import graphics.Assets;
 import rooms.Room;
 import runner.Game;
 
@@ -10,6 +11,7 @@ public class RoomCard extends Card
 		super(game, x, y, width, height, id);
 		this.name = name;
 		this.slogan = "A " + name;
+		texture = Assets.roomCardImages.get(id);
 	}//End WeaponCard class
 	
 	public RoomCard getCard()
@@ -29,6 +31,6 @@ public class RoomCard extends Card
 	
 	public Object equal(Object other)
 	{
-		return getName().equals(((Room)(other)).getName()); 
+		return getName().equals(((RoomCard)(other)).getName()); 
 	}
 }//End RoomCard Class

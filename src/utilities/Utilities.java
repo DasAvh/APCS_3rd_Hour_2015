@@ -6,6 +6,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import rooms.Room;
+import weapons.Weapon;
+import entity.chars.Player;
+
 public class Utilities 
 {
 	
@@ -124,4 +128,27 @@ public class Utilities
 			e.printStackTrace();
 		}//End try catch
 	}//End pauseGame method
+	
+	public static void copyWArrayList(ArrayList<Weapon> l1, ArrayList<Weapon> l2)
+	{
+		l1.clear();
+		for(Weapon e : l2)
+			l1.add(e);
+	}
+
+	public static void copyPArrayList(ArrayList<Player> l1, ArrayList<Player> l2) 
+	{
+		// TODO Auto-generated method stub
+		l1.clear();
+		for(Player e : l2)
+			l1.add(e);
+	}
+	
+	public static void copyRArrayList(ArrayList<Room> l1, ArrayList<Room> l2) 
+	{
+		// TODO Auto-generated method stub
+		l1.clear();
+		for(Room e : l2)
+			l1.add(e);
+	}
 }//End Utilities class

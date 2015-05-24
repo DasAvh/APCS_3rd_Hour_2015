@@ -7,7 +7,7 @@ public class FriendSlayer extends Weapon
 
 	public FriendSlayer() 
 	{
-		super(Assets.friendSlayer, "FriendSlayer", "A fireaxe named Friendslayer",4);
+		super(Assets.friendSlayer, "the FriendSlayer", "A fireaxe named Friendslayer",4);
 	}//End constructor
 
 	public String toString()

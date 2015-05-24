@@ -49,7 +49,7 @@ public class ChoosePlayersState extends State
 			setState(State.getState("die"));
 		}
 		
-		game.getCamera().centerOnEntity(Card.playerCards.get(choosenText));
+		//game.getCamera().centerOnEntity(Card.playerCards.get(choosenText));
 	}//End tick method
 
 	@Override
@@ -73,8 +73,8 @@ public class ChoosePlayersState extends State
 	}//End render method
 
 	@Override
-	public void startup() {
-		// TODO Auto-generated method stub
+	public void startup() 
+	{
 		for(int x = 0; x < choosenCards.size(); x++)
 			choosenCards.get(x).unChoosen();
 	}

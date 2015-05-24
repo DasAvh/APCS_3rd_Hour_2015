@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import cards.WeaponCard;
+
 public class Weapon
 {
 	//Ids
@@ -14,7 +16,6 @@ public class Weapon
 	public static final int WEAPON_HEIGHT = 256;
 	
 	protected BufferedImage texture;
-	protected boolean isMurderWeapon;
 	private String name, slogan;
 	private int id;
 	
@@ -34,17 +35,7 @@ public class Weapon
 		this.name = name;
 		this.slogan = slogan;
 		this.id = id;
-	}//End constructor
-	
-	public void makeMurderWeapon()
-	{
-		isMurderWeapon = true;
-	}//End makeMurederWeapon method
-	
-	public boolean isMurderWeapon()
-	{
-		return isMurderWeapon;
-	}//End isMurderWeapon method
+	}//End constructor	
 	
 	public void render(Graphics g, int x, int y)
 	{
@@ -64,6 +55,11 @@ public class Weapon
 	public int getId()
 	{
 		return id;
+	}
+	
+	public boolean equals(Object other)
+	{
+		return getName().equals(((WeaponCard)(other)).getName()); 
 	}
 }//End class Weapon
 

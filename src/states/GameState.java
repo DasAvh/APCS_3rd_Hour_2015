@@ -21,7 +21,7 @@ public class GameState extends State
 	//Players
 	public static ArrayList<Player> players;
 	public static int currentPlayer;
-	
+	private static int playersThatLost;
 	//Spaces
 	
 	public GameState(Game game)
@@ -43,30 +43,47 @@ public class GameState extends State
 	@Override
 	public void tick() 
 	{
-		board.tick();
-		
-		if(!players.get(currentPlayer).hasRolled())
+		if(game.getKeyboardManager().leftArrow)
+			playersThatLost++;
+		if(playersThatLost != players.size())
 		{
-			setState(getState("die"));
-			return;
-		}
-		
-		if(players.get(currentPlayer).getAmountOfMoves() == 0)
+			board.tick();
+			if(!players.get(currentPlayer).hasPlayerLost())
+			{
+				if(!players.get(currentPlayer).hasRolled())
+				{
+					game.getCamera().centerOnEntity(players.get(currentPlayer));
+					setState(getState("die"));
+					return;
+				}
+				
+				if(players.get(currentPlayer).getAmountOfMoves() == 0)
+				{
+					players.get(currentPlayer).resetRoll();
+					if(currentPlayer != players.size() - 1)
+						currentPlayer++;
+					else 
+						currentPlayer = 0;
+				}
+				
+				//Exit game
+				if(game.getKeyboardManager().escape)
+					State.setState(getState("pause"));
+				
+				
+				//Allows only the currentPlayer to move
+				players.get(currentPlayer).tick();
+			}else
+			{
+				if(currentPlayer != players.size() - 1)
+					currentPlayer++;
+				else 
+					currentPlayer = 0;
+			}//End if
+		}else
 		{
-			players.get(currentPlayer).resetRoll();
-			if(currentPlayer != players.size() - 1)
-				currentPlayer++;
-			else 
-				currentPlayer = 0;
+			setState(getState("playersLost"));
 		}
-		
-		//Exit game
-		if(game.getKeyboardManager().escape)
-			State.setState(getState("pause"));
-		
-		
-		//Allows only the currentPlayer to move
-		players.get(currentPlayer).tick();
 	}//End method tick
 
 	@Override
@@ -105,6 +122,11 @@ public class GameState extends State
 		return watson;
 	}
 	
+	public static void aPlayerLost()
+	{
+		playersThatLost++;
+	}
+	
 	@Override
 	public void startup() 
 	{
@@ -112,17 +134,6 @@ public class GameState extends State
 		if(game.newGame())
 		{
 			watson = new Watson(players, Weapon.weapons, Room.rooms2);
-			
-			for(Player p : players)
-			{
-				Card[] temp = p.getCards();
-				
-				for(Card c : temp)
-					System.out.println(p + ": " + c);
-				
-				System.out.println("----------------------------------------------");
-				
-			}
 			
 			Card.reset();
 			game.gameStarted();

@@ -6,7 +6,7 @@ public class CafeteriaFood extends Weapon
 {
 	public CafeteriaFood() 
 	{
-		super(Assets.cafeteriaFood, "Cafeteria Food", "Some Cafeteria food",5);
+		super(Assets.cafeteriaFood, "some Cafeteria Food", "Some Cafeteria food",5);
 	}//End constructor
 	
 	

@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import utilities.Utilities;
+import cards.RoomCard;
 import entity.Entity;
 import entity.chars.Player;
 import graphics.Assets;
@@ -138,5 +139,11 @@ public class Room
 	public String toString()
 	{
 		return name;
+	}
+	
+	
+	public boolean equals(Object other)
+	{
+		return getName().equals(((RoomCard)(other)).getName()); 
 	}
 }//End class Room

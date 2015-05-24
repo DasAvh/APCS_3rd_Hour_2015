@@ -47,7 +47,7 @@ public class PauseGameState extends State
 		//End if
 		
 		if(game.getKeyboardManager().enter && choosenText == CARDS)
-			setState(State.getState("howToPlay"));
+			setState(State.getState("lookAtCards"));
 		//End if
 		
 		if(game.getKeyboardManager().enter && choosenText == SETTINGS)
@@ -55,8 +55,10 @@ public class PauseGameState extends State
 		//End if
 		
 		if(game.getKeyboardManager().enter && choosenText == EXIT_TO_MENU)
+		{
+			game.endGame();
 			setState(State.getState("mainMenu"));
-		//End if
+		}//End if
 		
 	}
 
