@@ -60,6 +60,7 @@ public class SoundBoard
 	public static void stopSound()
 	{
 		clip.stop();
+		clip.close();
 		clip = null;
 	}
 	
