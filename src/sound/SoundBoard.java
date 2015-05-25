@@ -14,10 +14,12 @@ public class SoundBoard
 	
 	//Ids
 	public static String mainMenu; 
+	public static String hotline;
 	
 	public static void initialize()
 	{
 		mainMenu = "res/sounds/mainMenu.wav";
+		hotline  = "res/sounds/hotline.wav";
 	}
 	
 	public static void playSound(String name)

@@ -1,11 +1,9 @@
 package entity;
 
-import java.awt.Graphics;
-import java.util.ArrayList;
+import java.awt.Graphics2D;
 
 import runner.Game;
 import tiles.Tile;
-import utilities.Utilities;
 
 public abstract class Entity
 {
@@ -36,7 +34,7 @@ public abstract class Entity
 	//Used for drawing the entity and 
 	//Giving the entity function
 	public abstract void tick();
-	public abstract void render(Graphics g);
+	public abstract void render(Graphics2D g);
 
 	//Getters & Setters
 	public int getX() {return x;}

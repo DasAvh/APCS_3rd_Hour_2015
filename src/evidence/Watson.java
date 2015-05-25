@@ -18,17 +18,29 @@ public class Watson {
 	public static Room roomEvidenceIsIn;
 	public static Player playerInRoom;
 
+	private List<Player> tempPpl;
+	private List<Weapon> tempWeaps;
+	private List<Room> tempRooms;
+	
 	public Watson(ArrayList<Player> ppl, ArrayList<Weapon> weaps,
 			ArrayList<Room> rooms) {
 		groups = new ArrayList<RGroup>();
 		int index = 1;
 
-		for (Player c : ppl) {
-			Weapon w = weaps.remove((int) (Math.random() * weaps.size()));
-			Room r = rooms.remove((int) (Math.random() * rooms.size()));
+		tempPpl = new ArrayList<Player>(ppl);
+		tempWeaps = new ArrayList<Weapon>(weaps);
+		tempRooms = new ArrayList<Room>(rooms);
+		System.out.println(ppl);
+		System.out.println(tempWeaps);
+		System.out.println(tempRooms);
+		
+		for (Player c : tempPpl) {
+			Weapon w = tempWeaps.remove((int) (Math.random() * tempWeaps.size()));
+			Room r = tempRooms.remove((int) (Math.random() * tempRooms.size()));
 			RGroup g = new RGroup(c, w, r, index);
 			index++;
 			groups.add(g);
+			System.out.println(tempWeaps);
 		}
 
 		groups.get((int) (Math.random() * groups.size())).setIsIt();
@@ -40,9 +52,10 @@ public class Watson {
 		System.out.println("WATSON OUT");
 	}
 
-	private void givePlayersCards(ArrayList<Player> ppl,
-			ArrayList<Weapon> weaps, ArrayList<Room> rooms) {
+	private void givePlayersCards(ArrayList<Player> ppl, ArrayList<Weapon> weaps, ArrayList<Room> rooms) 
+	{
 		ArrayList<PlayerCard> tempPlayerCards = new ArrayList<PlayerCard>();
+		
 		for (int x = 0; x < ppl.size(); x++)
 			tempPlayerCards.add(Card.getPlayerCards().get(ppl.get(x).getId()));
 
@@ -101,6 +114,9 @@ public class Watson {
 				}
 
 			}// End while
+			for(int y = 0; y < cards.length; y++)
+				System.out.println(GameState.players.get(x).getName() + " " + cards[y]);
+			
 			choosenCards.clear();
 
 			GameState.players.get(x).giveCards(cards);
@@ -141,6 +157,7 @@ public class Watson {
 				if (i.getRoom().equals(r)) {
 					playerInRoom = i.getPlayer();
 					roomEvidenceIsIn = i.getRoom();
+					System.out.println("Else if : Player in room " + playerInRoom);
 					return i.getPlayer().getName() + " was in the " + r;
 				}
 			}
@@ -153,6 +170,7 @@ public class Watson {
 				if (i.getRoom().equals(w)) {
 					playerInRoom = i.getPlayer();
 					roomEvidenceIsIn = i.getRoom();
+					System.out.println("Else : Player in room " + playerInRoom);
 					return "The " + i.getWeapon().getName() + " was in " + r;
 				}
 			}
@@ -167,7 +185,6 @@ public class Watson {
 			RoomCard r) {
 		ArrayList<String> msgs = new ArrayList<String>();
 		// Room Then Character Then
-		boolean winner = false;
 		Weapon weap = null;
 		Player pl = null;
 		Room rm = null;
@@ -222,12 +239,12 @@ public class Watson {
 		if (weap.equals(w) && pl.equals(p) && rm.equals(r)) {
 			msgs.add(r.getSlogan());
 			msgs.add(p.getName());
-			msgs.add(w.getSlogan());
+			msgs.add(" and " + w.getName());
 			msgs.add(p.getSlogan());
 		} else {
 			msgs.add(r.getSlogan());
 			msgs.add(p.getName());
-			msgs.add(w.getSlogan());
+			msgs.add(" and " + w.getName());
 			msgs.add("You Lose");
 		}
 

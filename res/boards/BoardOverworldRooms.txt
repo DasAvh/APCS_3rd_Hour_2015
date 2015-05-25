@@ -1,0 +1,9 @@
+1 1 clarkRoom
+9 1 chemLab
+17 1 chavezRoom
+1 8 cafeteria
+9 8 auto
+17 8 bathroom
+1 15 bandRoom
+9 15 artStudio
+17 15 gym

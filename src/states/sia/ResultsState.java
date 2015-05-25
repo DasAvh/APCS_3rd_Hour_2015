@@ -1,23 +1,20 @@
 package states.sia;
 
-import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 
-import rooms.Room;
 import runner.Game;
 import states.GameState;
 import states.State;
+import utilities.Utilities;
 import cards.Card;
 import cards.PlayerCard;
 import evidence.Watson;
-import graphics.Assets;
 
 public class ResultsState extends State {
 	private String suggestion;
 	private String suggestionTwo;
-	private boolean didWin;
 	private ArrayList<String> listOfSuggestion;
 	private Card cardToDraw;
 	private int mode;
@@ -48,6 +45,7 @@ public class ResultsState extends State {
 						Card.CARD_HEIGHT, 25, "Nobody", "was", "Here");
 			else
 				cardToDraw = Card.playerCards.get(Watson.playerInRoom.getId());
+			// End if
 
 			mode = 0;
 		} else if (getPrevState() == getState("interragation")) {
@@ -101,13 +99,14 @@ public class ResultsState extends State {
 	}
 
 	@Override
-	public void render(Graphics g) {
+	public void render(Graphics2D g) {
+		g.setColor(Utilities.rainbowFade());
+
 		switch (mode) {
 		case SUGGESTION_MODE: {
 			g.drawImage(Watson.roomEvidenceIsIn.getTexture(), 0, 0, null);
-			g.setColor(Color.CYAN);
-			g.setFont(new Font("Consolas", Font.BOLD, 20));
 			cardToDraw.render(g);
+			g.setFont(new Font("Consolas", Font.PLAIN, 20));
 			game.getCamera().centerOnEntity(cardToDraw);
 			drawCenteredString(suggestion, 800, 600, 525, g);
 		}
@@ -116,9 +115,7 @@ public class ResultsState extends State {
 			g.drawImage(SIAState.roomIn.getTexture(), 0, 0, null);
 			cardToDraw.render(g);
 			game.getCamera().centerOnEntity(cardToDraw);
-			g.setColor(Color.CYAN);
-			g.setFont(new Font("Consolas", Font.BOLD, 14));
-
+			g.setFont(genFont);
 			for (int x = 0; x < listOfSuggestion.size(); x++) {
 				drawCenteredString(suggestion, 800, 600, 525, g);
 				drawCenteredString(suggestionTwo, 800, 600, 545, g);
@@ -129,36 +126,37 @@ public class ResultsState extends State {
 			g.drawImage(SIAState.roomIn.getTexture(), 0, 0, null);
 			cardToDraw.render(g);
 			game.getCamera().centerOnEntity(cardToDraw);
-
-			g.setColor(Color.CYAN);
-			g.setFont(new Font("Consolas", Font.PLAIN, 14));
-
+			g.setFont(new Font("Consolas", Font.PLAIN, 32));
 			switch (currentScene) {
 			case 0:
 				drawCenteredString(listOfSuggestion.get(currentScene), 800,
-						600, 525, g);
+						600, 545, g);
 				break;
 			case 1:
 				drawCenteredString(listOfSuggestion.get(currentScene), 800,
-						600, 525, g);
+						600, 545, g);
 				break;
 			case 2:
 				drawCenteredString(listOfSuggestion.get(currentScene), 800,
-						600, 525, g);
+						600, 545, g);
 				break;
-			case 3:
-				drawCenteredString(listOfSuggestion.get(currentScene), 800,
-						600, 525, g);
-				break;
+			case 3: {
+				String line = listOfSuggestion.get(currentScene);
+				String temp[] = line.split("~");
 
+				for (int x = 0; x < temp.length; x++)
+					drawCenteredString(temp[x], 800, 600, 525 + (x * 32), g);
+
+			}
+				break;
 			default:
 				break;
-			}
-		}
+			}// End switch
+		}// End switch
 			break;
 		default:
 			break;
-		}
+		}// End switch
 
 	}
 

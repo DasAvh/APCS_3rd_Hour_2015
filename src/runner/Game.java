@@ -1,11 +1,14 @@
 package runner;
+
 import graphic.camera.Camera;
 import graphics.Assets;
+import graphics.Overworld;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferStrategy;
 
-import rooms.Room;
 import sound.SoundBoard;
 import states.ChoosePlayersState;
 import states.DieRollState;
@@ -24,28 +27,28 @@ import states.sia.InterragationState;
 import states.sia.ResultsState;
 import states.sia.SuggestionState;
 import userinput.KeyboardManager;
+import utilities.Utilities;
 import weapons.Weapon;
 import board.Board;
 import cards.Card;
 import display.Display;
 
-
-public class Game implements Runnable 
-{
-	//Fields
+public class Game implements Runnable {
+	// Fields
 	private Display display;
 	private int width, height;
 	public String title;
-	
-	//Threading
+
+	// Threading
 	private Thread thread;
 	private boolean isRunning = false;
-	
-	//Drawing stuff
+
+	// Drawing stuff
 	private BufferStrategy bs;
 	private Graphics g;
+	private Graphics2D g2;
 
-	//States
+	// States
 	private State gameState;
 	private State menuState;
 	private State howToPlayState;
@@ -61,42 +64,40 @@ public class Game implements Runnable
 	private State lookAtCardsState;
 	private State playerWinsState;
 	private State playersLostState;
-	//Input
+	// Input
 	private KeyboardManager keyboard;
 	private boolean newGame;
-	
-	//Evidence
+	private Board board;
+	// Evidence
 
-	
-	//Camera
+	// Camera
 	private Camera boardCamera;
-	
-	public Game(String title, int width, int height)
-	{	
+
+	public Game(String title, int width, int height) {
 		this.width = width;
 		this.height = height;
 		this.title = title;
 		keyboard = new KeyboardManager();
 		newGame = true;
-	}//End 3-args constructor
+	}// End 3-args constructor
 
-	private void initialize()
-	{
-		//Creates window and adds KeyListener
+	private void initialize() {
+		// Creates window and adds KeyListener
 		display = new Display(title, width, height);
 		display.getFrame().addKeyListener(keyboard);
-		
-		//Loads Assets
+
+		// Loads Assets
 		Assets.initialize();
 		Weapon.initialize();
 		SoundBoard.initialize();
-		Board.initialize(this, "res/boards/TestBoardMap.txt", "res/boards/TestBoardData.txt");
+		//Board.initialize(this, "res/boards/BoardMap.txt","res/boards/BoardData.txt");
+		board = new Board(this,"res/boards/BoardMap.txt","res/boards/BoardData.txt");
 		Card.initialize(this);
-		
-		//Setups game camera
+		Overworld.initialize(this, "res/boards/BoardOverworldRooms.txt");
+		// Setups game camera
 		boardCamera = new Camera(this, 0, 0);
-		
-		//Create states
+
+		// Create states
 		menuState = new MainMenuState(this);
 		gameState = new GameState(this);
 		howToPlayState = new HowToPlayState(this);
@@ -112,50 +113,51 @@ public class Game implements Runnable
 		lookAtCardsState = new LookAtCardsState(this);
 		playerWinsState = new PlayerWinsState(this);
 		playersLostState = new PlayersLostState(this);
-		//Sets menuState to display main menu
-
+		// Sets menuState to display main menu
 		
 		State.setState(menuState);
-	}//End initialize method
+	}// End initialize method
 
-	private void tick()
-	{
+	private void tick() {
 		keyboard.tick();
-		
-		if(State.getState() != null)
-		{
+
+		if (State.getState() != null) {
 			State.getState().tick();
-		}//End if
-	}//End method tick
-	
-	public void render()
-	{
+		}// End if
+	}// End method tick
+
+	public void render() {
 		bs = display.getCanvas().getBufferStrategy();
-		
-		if(bs == null)
-		{
+
+		if (bs == null) {
 			display.getCanvas().createBufferStrategy(3);
 			return;
-		}//End if
-		
+		}// End if
+
 		g = bs.getDrawGraphics();
-		
-		//Clear Screen
+
+		// Clear Screen
 		g.clearRect(0, 0, width, height);
-		//Drawing
-		
-		if(State.getState() != null)
-			State.getState().render(g);
-		
-		//End Drawing
+		// Drawing
+		g.setColor(Utilities.hotlineFade());
+		g.fillRect(0, 0, width, height);
+
+		g2 = (Graphics2D) g;
+
+		g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
+				RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+
+		if (State.getState() != null)
+			State.getState().render(g2);
+
+		// End Drawing
 		bs.show();
 		g.dispose();
-	}//End method render
-	
-	public void run()
-	{
+	}// End method render
+
+	public void run() {
 		initialize();
-		
+
 		int fps = 60;
 		double timePerTick = 1000000000 / fps;
 		double delta = 0;
@@ -164,88 +166,80 @@ public class Game implements Runnable
 		long timer = 0;
 		int ticks = 0;
 		
-		while(isRunning)
-		{
+		while (isRunning) {
 			now = System.nanoTime();
 			delta += (now - lastTime) / timePerTick;
 			timer += now - lastTime;
 			lastTime = now;
-			
-			if(delta >= 1)
-			{
+
+			if (delta >= 1) {
 				tick();
 				render();
 				ticks++;
 				delta--;
-			}//End if
-			
-			if(timer >= 1000000000)
-			{
-				//System.out.println("Ticks and Frames: " + ticks);
+			}// End if
+
+			if (timer >= 1000000000) {
 				ticks = 0;
 				timer = 0;
-			}//End if
-		}//End while
-		
+			}// End if
+		}// End while
+
 		stop();
-	}//End run method
-	
-	public KeyboardManager getKeyboardManager()
-	{
+	}// End run method
+
+	public KeyboardManager getKeyboardManager() {
 		return keyboard;
-	}//End getKeyboardManager
-	
-	public boolean newGame()
+	}// End getKeyboardManager
+
+	public Board getBoard()
 	{
+		return board;
+	}
+	
+	public boolean newGame() {
 		return newGame;
-	}
-	
-	public void gameStarted()
-	{
+	}//End newGame method
+
+	public void gameStarted() {
 		newGame = false;
-	}
-	
-	public void endGame()
-	{
+	}//End gameStarted method
+
+	public void endGame() {
 		newGame = true;
-	}
-	
-	public Camera getCamera()
-	{
+	}//End endGame method
+
+	public Camera getCamera() {
 		return boardCamera;
-	}//End getCamera method
-	
-	public int getWidth()
-	{
+	}// End getCamera method
+
+	public int getWidth() {
 		return width;
-	}//End getWidth method
-	
-	public int getHeight()
-	{
+	}// End getWidth method
+
+	public int getHeight() {
 		return height;
-	}//End getHeight method
-	
-	public synchronized void start()
-	{
-		if(isRunning)
+	}// End getHeight method
+
+	public synchronized void start() {
+		if (isRunning)
 			return;
-		
+
 		isRunning = true;
 		thread = new Thread(this);
-		//Calls run method
+		// Calls run method
 		thread.start();
-	}//End start method
-	
-	public synchronized void stop()
-	{
-		if(!isRunning)
+	}// End start method
+
+	public synchronized void stop() {
+		if (!isRunning)
 			return;
-		
+
 		isRunning = false;
 		try {
 			thread.join();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-		}//End try-catch
-	}//End stop method
-}//End class Game
+		}// End try-catch
+	}// End stop method
+}// End class Game

@@ -2,17 +2,13 @@ package tiles;
 
 import graphics.Assets;
 
-public class SpawnTile extends Tile
-{
+public class SpawnTile extends Tile {
 
-	public SpawnTile(int id)
-	{
+	public SpawnTile(int id) {
 		super(Assets.spawn, id);
-		// TODO Auto-generated constructor stub
 	}
 
-	public boolean isWalkable()
-	{
+	public boolean isWalkable() {
 		return true;
 	}
-}//End class SpawnTile
+}// End class SpawnTile

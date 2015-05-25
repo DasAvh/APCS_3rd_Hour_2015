@@ -2,6 +2,9 @@ package rooms;
 
 public class PassageRoom extends Room
 {
+	/*
+	 * Not Used in final game, functions as general room
+	 */
 	//Fields
 	private PassageRoom teleport;
 	

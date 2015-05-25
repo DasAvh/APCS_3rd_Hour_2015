@@ -1,18 +1,17 @@
 package states.sia;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 
-import cards.Card;
-import cards.PlayerCard;
-import cards.RoomCard;
-import cards.WeaponCard;
 import rooms.Room;
 import runner.Game;
 import states.ChoosePlayersState;
 import states.GameState;
 import states.State;
 import utilities.Utilities;
+import cards.Card;
+import cards.PlayerCard;
+import cards.RoomCard;
+import cards.WeaponCard;
 
 public class SIAState extends State {
 
@@ -34,13 +33,16 @@ public class SIAState extends State {
 
 	@Override
 	public void startup() {
+		System.out.println("SUPER CLASS STARTUP");
 		cardSelection = 0;
 		Card.realignPlayerCards(ChoosePlayersState.choosenCards);
+
 		Card.realignWeaponCards(Card.weaponCards);
 	}
 
 	@Override
 	public void tick() {
+		
 		if (game.getKeyboardManager().left && choosenText != 0)
 			choosenText--;
 
@@ -57,8 +59,7 @@ public class SIAState extends State {
 
 		if (game.getKeyboardManager().enter) {
 			if (cardSelection == 0) {
-				selectedPlayer = Card.playerCards.get(GameState.players.get(
-						choosenText).getId());
+				selectedPlayer = ChoosePlayersState.choosenCards.get(choosenText);
 			} else if (cardSelection == 1) {
 				selectedWeapon = Card.weaponCards.get(choosenText);
 
@@ -70,22 +71,21 @@ public class SIAState extends State {
 	}
 
 	@Override
-	public void render(Graphics g) {
+	public void render(Graphics2D g) {
 		getPrevState().render(g);
 		drawScreen(g);
 	}
 
-	private void drawScreen(Graphics g) {
+	private void drawScreen(Graphics2D g) {
 		Card card;
 		if (cardSelection == 0) {
 			for (int x = 0; x < 6; x++) {
-				card = Card.playerCards.get(GameState.players.get(x).getId());
+				card = ChoosePlayersState.choosenCards.get(x);
 
 				if (x == choosenText) {
-					System.out.println(Card.playerCards.get(GameState.players
-							.get(choosenText).getId()));
+					System.out.println(card);
 					game.getCamera().centerOnEntity(card);
-					g.setColor(Color.BLUE);
+					g.setColor(Utilities.rainbowFade());
 					g.fillRect((int) (card.getX() - game.getCamera()
 							.getxOffset()) - 5, (int) (card.getY()
 							- game.getCamera().getyOffset() - 5), card
@@ -100,9 +100,9 @@ public class SIAState extends State {
 				card = Card.weaponCards.get(i);
 
 				if (i == choosenText) {
-					System.out.println(Card.weaponCards.get(choosenText));
+					
 					game.getCamera().centerOnEntity(card);
-					g.setColor(Color.BLUE);
+					g.setColor(Utilities.rainbowFade());
 					g.fillRect((int) (card.getX() - game.getCamera()
 							.getxOffset()) - 5, (int) (card.getY()
 							- game.getCamera().getyOffset() - 5), card

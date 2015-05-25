@@ -1,23 +1,19 @@
 package graphics;
 
-
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class ImageLoader 
-{
+public class ImageLoader {
 
-	public static BufferedImage loadImage(String path)
-	{
+	public static BufferedImage loadImage(String path) {
 		try {
-			System.out.println(path);
 			return ImageIO.read(ImageLoader.class.getResource(path));
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.exit(1);
-		}//End try-catch
+		}// End try-catch
 		return null;
-	}//End loadImage method
-}//End class ImageLoader
+	}// End loadImage method
+}// End class ImageLoader

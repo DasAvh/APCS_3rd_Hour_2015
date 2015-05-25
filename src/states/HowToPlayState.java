@@ -1,91 +1,70 @@
 package states;
 
-import graphics.Assets;
-
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 import runner.Game;
 import utilities.Utilities;
 
-public class HowToPlayState extends State
-{
-	//Ids
-	private static final int RETURN = 1;
-	
-	/*
-	 * Message is not yet implemented
-	 */
-	
-	//Fields
+public class HowToPlayState extends State {
+	// Fields
 	private ArrayList<String> instructions;
-	
-	private Font messageFont;
-	private static final int messageFontSize = 24;
-	
-	public HowToPlayState(Game game) 
-	{
+
+	public HowToPlayState(Game game) {
 		super(game);
-		
-		//Text options
+
+		// Text options
 		titleText = "HOW TO PLAY";
 		textOptions = new ArrayList<String>();
 		textOptions.add("Jessie do it");
 		textOptions.add("Return");
-		
-		//How to play message
+
+		// How to play message
 		instructions = Utilities.loadFileArray("res/Instructions.txt");
-		
-		//Message settings
-		messageFont = new Font("Impact", Font.BOLD, messageFontSize);
-		
-		//Setup colors
+
+		// Setup colors
 		passiveTextColor = new Color(255, 255, 255);
 		activeTextColor = new Color(0, 255, 255);
 		backDropColor = new Color(0, 0, 0, 155);
-		
-		//Defaults chosen text
-		choosenText = 0; 
-		
+
+		// Defaults chosen text
+		choosenText = 0;
+
 		addState("howToPlay", this);
-	}//End constructor
+	}// End constructor
 
 	@Override
-	public void tick() 
-	{
+	public void tick() {
 		navigateMenu();
-		if(game.getKeyboardManager().enter)
+		if (game.getKeyboardManager().enter)
 			setState(State.getPrevState());
-		//End if
-	}//End tick method
+		// End if
+	}// End tick method
 
 	@Override
-	public void render(Graphics g) 
-	{
-		//Sets background
+	public void render(Graphics2D g) {
+		// Sets background
 		imageFade(g);
-		
+
 		g.setColor(backDropColor);
-		g.fillRect(150, 150 - fontSize, 500, 200 * textOptions.size()); 
-		
-		
-		Font nozzle = new Font("Arial", Font.BOLD, 12);
+		g.fillRect(140, 150 - fontSize, 530, 200 * textOptions.size());
+
+		Font nozzle = new Font("Arial", Font.BOLD, 14);
 		g.setFont(nozzle);
 		g.setColor(Color.CYAN);
-		
-		for(int x = 0; x < instructions.size(); x++)
-		{
-			g.drawString(instructions.get(x), 200, (x * 14) + 150 );
+
+		for (int x = 0; x < instructions.size(); x++) {
+			g.drawString(instructions.get(x), 150, (x * 14) + 150);
 			System.out.println("\n");
 		}
-	}//End render method
+	}// End render method
 
 	@Override
 	public void startup() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-}//End class HowToPlayState
+}// End class HowToPlayState

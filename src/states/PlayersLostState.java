@@ -1,8 +1,7 @@
 package states;
 
-import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import runner.Game;
 import utilities.Utilities;
@@ -34,20 +33,21 @@ public class PlayersLostState extends State {
 	@Override
 	public void tick() {
 		if (game.getKeyboardManager().enter)
-			System.exit(1);
+			setState(getState("mainMenu"));
 
 	}
 
 	@Override
-	public void render(Graphics g) {
+	public void render(Graphics2D g) {
 		imageFade(g);
 		game.getCamera().centerOnEntity(killerCard);
 		killerCard.render(g);
 
-		g.setColor(Color.CYAN);
+		g.setColor(Utilities.rainbowFade());
 		g.setFont(new Font("Consolas", Font.BOLD, 20));
 		drawCenteredString(lostMessage, 800, 600, 525, g);
-		drawCenteredString(killer.getName() + " was the killer!", 800, 600, 545, g);
+		drawCenteredString(killer.getName() + " was the killer!", 800, 600,
+				545, g);
 	}
 
 }

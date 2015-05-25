@@ -2,16 +2,14 @@ package weapons;
 
 import graphics.Assets;
 
-public class GunCandleStick extends Weapon
-{
+public class GunCandleStick extends Weapon {
 
-	public GunCandleStick() 
-	{
-		super(Assets.gunCandleStick, "a Gun CandleStick", "Candlestick made of guns",2);
-	}//End constructor
+	public GunCandleStick() {
+		super(Assets.gunCandleStick, "a Gun CandleStick",
+				"Candlestick made of guns", 2);
+	}// End constructor
 
-	public String toString()
-	{
+	public String toString() {
 		return "Candlestick made of guns";
-	}//End toString method
-}//End class GunCandleStick
+	}// End toString method
+}// End class GunCandleStick
