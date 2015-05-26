@@ -18,7 +18,7 @@ public class PlayersLostState extends State {
 
 	public PlayersLostState(Game game) {
 		super(game);
-
+		game.endGame();
 		addState("playersLost", this);
 	}
 
