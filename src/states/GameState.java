@@ -45,8 +45,6 @@ public class GameState extends State {
 
 	@Override
 	public void tick() {
-		if (game.getKeyboardManager().leftArrow)
-			playersThatLost++;
 		if (playersThatLost != players.size()) {
 			board.tick();
 			if (!players.get(currentPlayer).hasPlayerLost()) {
@@ -84,7 +82,7 @@ public class GameState extends State {
 	@Override
 	public void render(Graphics2D g) {
 		// Renders board
-		//Overworld.renderOutside(g);
+		// Overworld.renderOutside(g);
 		board.render(g);
 		Overworld.renderRooms(g);
 		// Renders players
@@ -125,7 +123,7 @@ public class GameState extends State {
 		if (game.newGame()) {
 			watson = new Watson(players, Weapon.weapons, Room.rooms2);
 			// SoundBoard.playSound(SoundBoard.hotline);
-			
+			playersThatLost = 0;
 			Card.reset();
 			game.gameStarted();
 		}

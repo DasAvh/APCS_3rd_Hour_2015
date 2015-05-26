@@ -66,8 +66,11 @@ public class DieRollState extends State {
 	@Override
 	public void startup() {
 
+		System.out.println(game.newGame());
+		
 		if (game.newGame()) {
 			GameState.currentPlayer = 0;
+			
 			GameState.players.clear();
 			for (int x = 0; x < 6; x++) {
 				GameState.players.add(new Player(game, game.getBoard()
