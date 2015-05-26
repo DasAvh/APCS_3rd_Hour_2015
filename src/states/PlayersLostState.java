@@ -24,6 +24,7 @@ public class PlayersLostState extends State {
 
 	@Override
 	public void startup() {
+		game.endGame();
 		killer = Watson.getKiller();
 		killerCard = Card.playerCards.get(killer.getId());
 		lostMessage = Assets.winnerSayings.get(Utilities
