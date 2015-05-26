@@ -42,7 +42,7 @@ public class SIAState extends State {
 
 	@Override
 	public void tick() {
-		
+
 		if (game.getKeyboardManager().left && choosenText != 0)
 			choosenText--;
 
@@ -59,7 +59,8 @@ public class SIAState extends State {
 
 		if (game.getKeyboardManager().enter) {
 			if (cardSelection == 0) {
-				selectedPlayer = ChoosePlayersState.choosenCards.get(choosenText);
+				selectedPlayer = ChoosePlayersState.choosenCards
+						.get(choosenText);
 			} else if (cardSelection == 1) {
 				selectedWeapon = Card.weaponCards.get(choosenText);
 
@@ -100,7 +101,7 @@ public class SIAState extends State {
 				card = Card.weaponCards.get(i);
 
 				if (i == choosenText) {
-					
+
 					game.getCamera().centerOnEntity(card);
 					g.setColor(Utilities.rainbowFade());
 					g.fillRect((int) (card.getX() - game.getCamera()

@@ -90,8 +90,10 @@ public class Game implements Runnable {
 		Assets.initialize();
 		Weapon.initialize();
 		SoundBoard.initialize();
-		//Board.initialize(this, "res/boards/BoardMap.txt","res/boards/BoardData.txt");
-		board = new Board(this,"res/boards/BoardMap.txt","res/boards/BoardData.txt");
+		// Board.initialize(this,
+		// "res/boards/BoardMap.txt","res/boards/BoardData.txt");
+		board = new Board(this, "res/boards/BoardMap.txt",
+				"res/boards/BoardData.txt");
 		Card.initialize(this);
 		Overworld.initialize(this, "res/boards/BoardOverworldRooms.txt");
 		// Setups game camera
@@ -114,7 +116,7 @@ public class Game implements Runnable {
 		playerWinsState = new PlayerWinsState(this);
 		playersLostState = new PlayersLostState(this);
 		// Sets menuState to display main menu
-		
+
 		State.setState(menuState);
 	}// End initialize method
 
@@ -165,7 +167,7 @@ public class Game implements Runnable {
 		long lastTime = System.nanoTime();
 		long timer = 0;
 		int ticks = 0;
-		
+
 		while (isRunning) {
 			now = System.nanoTime();
 			delta += (now - lastTime) / timePerTick;
@@ -173,6 +175,10 @@ public class Game implements Runnable {
 			lastTime = now;
 
 			if (delta >= 1) {
+				
+				if(keyboard.m)
+					SoundBoard.requestSong();
+				
 				tick();
 				render();
 				ticks++;
@@ -192,22 +198,21 @@ public class Game implements Runnable {
 		return keyboard;
 	}// End getKeyboardManager
 
-	public Board getBoard()
-	{
+	public Board getBoard() {
 		return board;
 	}
-	
+
 	public boolean newGame() {
 		return newGame;
-	}//End newGame method
+	}// End newGame method
 
 	public void gameStarted() {
 		newGame = false;
-	}//End gameStarted method
+	}// End gameStarted method
 
 	public void endGame() {
 		newGame = true;
-	}//End endGame method
+	}// End endGame method
 
 	public Camera getCamera() {
 		return boardCamera;

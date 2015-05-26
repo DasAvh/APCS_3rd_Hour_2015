@@ -5,7 +5,8 @@ Warning: SEIZURES
 Controls:  
 Move – WASD 
 Selection – ENTER 
- 
+Request Song - M then type id in console
+
 Instructions: 
 Have each player choose a character before starting the game. 
 Your goal is to investigate a grisly murder (Chavez) 
