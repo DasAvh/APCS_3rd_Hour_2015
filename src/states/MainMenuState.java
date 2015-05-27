@@ -73,7 +73,7 @@ public class MainMenuState extends State {
 	@Override
 	public void startup() {
 		if (!SoundBoard.isSoundPlaying()) {
-			SoundBoard.playSoundWithLoop(SoundBoard.playList[0][1], 100);
+			SoundBoard.playSoundWithLoop("res/sounds/Max Payne.wav", 100);
 		}
 	}// End startup method
 
