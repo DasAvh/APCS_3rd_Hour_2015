@@ -3,9 +3,13 @@ How to Play
 Warning: SEIZURES 
  
 Controls:  
+General:
 Move – WASD 
-Selection – ENTER 
-Request Song - M then type id in console
+Selection – ENTER
+
+During Game: 
+Request Song - M
+Pause / Play - P
 
 Instructions: 
 Have each player choose a character before starting the game. 

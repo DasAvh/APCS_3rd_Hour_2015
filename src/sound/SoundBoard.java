@@ -15,9 +15,6 @@ public class SoundBoard
 	private static Clip clip;	
 	private static ArrayList<String> files;
 	public static String[][] playList;
-	private static int id;
-	//Ids
-
 	
 	public static void initialize()
 	{
@@ -54,6 +51,9 @@ public class SoundBoard
 	
 	public static void playSoundWithLoop(String name, int loopNum)
 	{   
+		if(isSoundPlaying())
+			stopSound();
+		
 		try
 		{
 			//Opens file
@@ -72,31 +72,9 @@ public class SoundBoard
 	
 	public static void stopSound()
 	{
-		clip.stop();
 		clip.close();
 		clip = null;
 	}//End method stopSound
-	
-	public static void requestSong()
-	{
-		Scanner input = new Scanner(System.in);
-		
-		for(int x = 0; x < playList.length; x++)
-			System.out.printf("Id - %-3d Song :  %s%n", x, playList[x][0]);
-		
-		System.out.println("Enter id of song: ");
-		id = input.nextInt();
-		
-		if(id < playList.length && id > -1)
-		{
-			if(isSoundPlaying())
-				stopSound();
-			
-			playSoundWithLoop(playList[id][1], 100);
-		}else
-			System.out.println("Error, invalid id");
-		//input.close();
-	}//End method requestSong
 	
 	public static boolean isSoundPlaying()
 	{
@@ -114,5 +92,13 @@ public class SoundBoard
 		}// End for
 		System.out.println("DONE");
 	}// End method listFilesForFolder
+	
+	public static void pauseResumeMusic()
+	{
+		if(clip.isActive())
+			clip.stop();
+		else
+			clip.start();
+	}//End pauseResumeMusic
 	
 }//End class SoundBoard

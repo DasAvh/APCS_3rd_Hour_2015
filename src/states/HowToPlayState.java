@@ -49,7 +49,7 @@ public class HowToPlayState extends State {
 		imageFade(g);
 
 		g.setColor(backDropColor);
-		g.fillRect(140, 150 - fontSize, 530, 200 * textOptions.size());
+		g.fillRect(140, 150 - fontSize, 530, 205 * textOptions.size());
 
 		Font nozzle = new Font("Arial", Font.BOLD, 14);
 		g.setFont(nozzle);

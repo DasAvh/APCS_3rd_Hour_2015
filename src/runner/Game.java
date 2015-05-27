@@ -17,6 +17,7 @@ import states.GameState;
 import states.HowToPlayState;
 import states.LookAtCardsState;
 import states.MainMenuState;
+import states.MusicSelectionState;
 import states.PauseGameState;
 import states.PlayerOptionsState;
 import states.PlayerWinsState;
@@ -64,6 +65,8 @@ public class Game implements Runnable {
 	private State lookAtCardsState;
 	private State playerWinsState;
 	private State playersLostState;
+	private State musicSelectionState;
+	
 	// Input
 	private KeyboardManager keyboard;
 	private boolean newGame;
@@ -115,8 +118,9 @@ public class Game implements Runnable {
 		lookAtCardsState = new LookAtCardsState(this);
 		playerWinsState = new PlayerWinsState(this);
 		playersLostState = new PlayersLostState(this);
+		musicSelectionState = new MusicSelectionState(this);
+		
 		// Sets menuState to display main menu
-
 		State.setState(menuState);
 	}// End initialize method
 
@@ -175,10 +179,7 @@ public class Game implements Runnable {
 			lastTime = now;
 
 			if (delta >= 1) {
-				
-				if(keyboard.m)
-					SoundBoard.requestSong();
-				
+					
 				tick();
 				render();
 				ticks++;

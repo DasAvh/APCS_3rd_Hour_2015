@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import rooms.Room;
 import runner.Game;
+import sound.SoundBoard;
 import utilities.Utilities;
 import weapons.Weapon;
 import board.Board;
@@ -45,6 +46,12 @@ public class GameState extends State {
 
 	@Override
 	public void tick() {
+		if(game.getKeyboardManager().m)
+			State.setState(State.getState("music"));
+		
+		if(game.getKeyboardManager().p)
+			SoundBoard.pauseResumeMusic();
+		
 		if (playersThatLost != players.size()) {
 			board.tick();
 			if (!players.get(currentPlayer).hasPlayerLost()) {
